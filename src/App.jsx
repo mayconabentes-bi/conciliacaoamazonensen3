@@ -75,7 +75,7 @@ const App = () => {
     };
 
     return (
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
             <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={
