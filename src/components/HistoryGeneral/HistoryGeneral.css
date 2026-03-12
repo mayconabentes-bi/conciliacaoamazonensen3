@@ -1,0 +1,222 @@
+.history-general {
+    padding: 160px 0;
+    background: var(--cream);
+    color: var(--navy-deep);
+    position: relative;
+    overflow: hidden;
+}
+
+.history-general::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(201, 168, 76, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.history-general-inner {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.history-general-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.history-general-header h2 {
+    font-size: 3.5rem;
+    color: var(--navy-deep);
+    margin-bottom: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.history-general-header h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 30px auto 0;
+}
+
+.history-general-intro {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--navy-mid);
+    font-style: italic;
+    opacity: 0.85;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.history-general-image {
+    max-width: 900px;
+    margin: 3rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(197, 168, 124, 0.2);
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.history-general-image:hover .featured-image {
+    transform: scale(1.02);
+}
+
+.history-general-body {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.history-general-section {
+    position: relative;
+}
+
+.history-general-section h3 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.history-general-section h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+}
+
+.history-general-content {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    color: var(--text);
+    text-align: justify;
+}
+
+.history-general-content p {
+    margin-bottom: 30px;
+}
+
+.history-general-attributes {
+    margin-top: 60px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.history-general-attributes h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.attributes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.attribute-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.attribute-item:last-child {
+    border-bottom: none;
+}
+
+.attr-label {
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.attr-value {
+    font-size: 1.2rem;
+    color: var(--navy-deep);
+    font-weight: 400;
+    text-align: right;
+}
+
+.history-general-footer {
+    margin-top: 120px;
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.history-general-footer p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-general {
+        padding: 100px 20px;
+    }
+    
+    .history-general-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .history-general-intro {
+        font-size: 1.35rem;
+    }
+    
+    .history-general-content {
+        font-size: 1.15rem;
+        text-align: left;
+    }
+
+    .attribute-item {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .attr-value {
+        text-align: left;
+    }
+}

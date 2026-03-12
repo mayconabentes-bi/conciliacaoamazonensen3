@@ -1,0 +1,295 @@
+.hero {
+    position: relative;
+    min-height: 80vh;
+    /* Permite que o conteúdo cresça em zoom */
+    padding: 140px 0 100px;
+    overflow: hidden;
+    background: var(--navy-deep);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-geo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-geo svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 900px);
+    height: min(90vw, 900px);
+    opacity: .055;
+    animation: geoSpin 120s linear infinite;
+}
+
+@keyframes geoSpin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.hero-grad {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(135deg, rgba(7, 15, 30, .92) 0%, rgba(12, 26, 48, .6) 50%, rgba(7, 15, 30, .85) 100%),
+        radial-gradient(ellipse 80% 60% at 30% 50%, rgba(201, 168, 76, .07) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-accent {
+    position: absolute;
+    left: 4vw;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
+    opacity: .25;
+    z-index: 3;
+}
+
+.hero-slides {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+.hero-slide.active {
+    position: relative;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hero-slide-content {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza os filhos (tags, botões) */
+}
+
+.hero-slide-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: .4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.hero-slide-tag::before,
+.hero-slide-tag::after {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+}
+
+.hero-slide h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 2rem;
+}
+
+.hero-slide h1 strong {
+    color: var(--gold-lt);
+    font-weight: 600;
+    font-style: italic;
+    display: block;
+}
+
+.hero-slide p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(250, 246, 238, .65);
+    max-width: 35rem;
+    margin-bottom: 3rem;
+}
+
+.hero-slide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 1.2rem 2.5rem;
+    transition: var(--transition);
+}
+
+.hero-slide-btn:hover {
+    background: var(--gold-lt);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(201, 168, 76, .3);
+}
+
+.hero-controls {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.hero-dots {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.hero-dot {
+    width: 2rem;
+    height: 2px;
+    background: rgba(255, 255, 255, .2);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.hero-dot.active {
+    background: var(--gold);
+}
+
+.hero-value-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: .3em;
+    color: rgba(201, 168, 76, .55);
+    text-transform: uppercase;
+}
+
+.hero-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, .05);
+    z-index: 10;
+}
+
+.hero-progress-bar {
+    height: 100%;
+    background: var(--gold);
+    transform-origin: left;
+}
+
+.hero-scroll {
+    position: absolute;
+    right: 3vw;
+    bottom: 40px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: scrollBounce 2.5s ease infinite;
+}
+
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        opacity: .4;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(6px);
+    }
+}
+
+.hero-scroll span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: .3em;
+    color: rgba(201, 168, 76, .5);
+    writing-mode: vertical-lr;
+    text-transform: uppercase;
+}
+
+.hero-scroll-line {
+    width: 1px;
+    height: 3rem;
+    background: linear-gradient(180deg, var(--gold), transparent);
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        min-height: auto;
+        padding: 120px 0 80px;
+    }
+
+    .hero-accent {
+        display: none;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-slide h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-slide p {
+        font-size: 1rem;
+    }
+
+    .hero-controls {
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slide h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-slide-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-slide-tag {
+        font-size: 0.6rem;
+        letter-spacing: .2em;
+    }
+}

@@ -1,0 +1,210 @@
+:root {
+    --admin-bg: #0a0e14;
+    --admin-card: #151b23;
+    --admin-border: #30363d;
+    --admin-text: #e6edf3;
+    --admin-muted: #848d97;
+    --admin-gold: #c9a84c;
+    --admin-gold-hover: #e5c15e;
+}
+
+.admin-wrapper {
+    min-height: 100vh;
+    background: var(--admin-bg);
+    color: var(--admin-text);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+}
+
+/* Login Page */
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1a2332 0%, #0a0e14 100%);
+}
+
+.login-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--admin-gold);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--admin-muted);
+}
+
+.login-form input {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--admin-border);
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.login-form input:focus {
+    border-color: var(--admin-gold);
+}
+
+.login-btn {
+    width: 100%;
+    background: var(--admin-gold);
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-btn:hover {
+    background: var(--admin-gold-hover);
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+    width: 260px;
+    background: var(--admin-card);
+    border-right: 1px solid var(--admin-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.sidebar-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--admin-gold);
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    color: var(--admin-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+    gap: 12px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--admin-text);
+    background: rgba(201, 168, 76, 0.1);
+}
+
+.nav-item.active {
+    border-right: 3px solid var(--admin-gold);
+    color: var(--admin-gold);
+}
+
+/* Admin Main Content */
+.admin-main {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.admin-page-header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+}
+
+.admin-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.editor-form .form-group {
+    margin-bottom: 24px;
+}
+
+.editor-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.editor-form input,
+.editor-form textarea {
+    width: 100%;
+    background: #0d1117;
+    border: 1px solid var(--admin-border);
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+}
+
+.editor-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.save-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--admin-bg);
+    padding: 20px 0;
+    border-top: 1px solid var(--admin-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-save {
+    background: var(--admin-gold);
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}

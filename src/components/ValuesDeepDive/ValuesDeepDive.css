@@ -1,0 +1,112 @@
+.values-section {
+    padding: 6rem 0;
+    background: var(--navy-deep);
+}
+
+.values-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+}
+
+.values-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.values-header p {
+    font-size: 1rem;
+    color: rgba(250, 246, 238, .5);
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(201, 168, 76, .1);
+}
+
+.value-card {
+    background: var(--navy-deep);
+    padding: 3rem 2rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.value-card:hover {
+    background: rgba(201, 168, 76, .05);
+    transform: translateY(-4px);
+    z-index: 2;
+}
+
+.value-card:hover::before {
+    transform: scaleX(1);
+}
+
+.value-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-style: italic;
+    color: rgba(201, 168, 76, .08);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: .15em;
+    color: var(--gold-lt);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(250, 246, 238, .55);
+}
+
+.value-card-note {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(201, 168, 76, .1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(201, 168, 76, .6);
+}
+
+@media (max-width: 1200px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        padding: 2.5rem 1.5rem;
+    }
+}

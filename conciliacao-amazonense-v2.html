@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conciliação Amazonense Nº 3 — Venerável Loja Maçônica | Manaus</title>
+<meta name="description" content="Venerável Loja Maçônica Conciliação Amazonense Nº 3. Integridade, Amizade, Respeito e Serviço no coração da Amazônia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy:      #0c1a30;
+  --navy-mid:  #142238;
+  --navy-deep: #070f1e;
+  --gold:      #c9a84c;
+  --gold-lt:   #e2c47a;
+  --gold-pale: #f5e6c0;
+  --cream:     #faf6ee;
+  --warm:      #f0ead6;
+  --text:      #2a2a2a;
+  --muted:     #6b7280;
+  --border:    rgba(201,168,76,.18);
+  --white:     #ffffff;
+  --transition: all .35s cubic-bezier(.4,0,.2,1);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Lato', sans-serif; font-weight: 300; color: var(--text); background: var(--white); overflow-x: hidden; }
+img  { max-width: 100%; display: block; }
+a    { text-decoration: none; color: inherit; }
+ul   { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════ */
+.cinzel    { font-family: 'Cinzel', serif; }
+.cormorant { font-family: 'Cormorant Garamond', serif; }
+.container { max-width: 1220px; margin: 0 auto; padding: 0 32px; }
+.gold-line {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+}
+.gold-line::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+.gold-line span { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .35em; color: var(--gold); text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════════════════════ */
+.announce {
+  background: var(--navy);
+  padding: 9px 32px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px;
+}
+.announce p { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .18em; color: rgba(201,168,76,.8); text-align: center; }
+.announce a { color: var(--gold); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.announce a:hover { border-color: var(--gold); }
+
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
+.navbar {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201,168,76,.15);
+  transition: box-shadow .3s;
+}
+.navbar.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.1); }
+.nav-inner {
+  display: flex; align-items: stretch;
+  height: 72px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 32px 0 0;
+  border-right: 1px solid rgba(201,168,76,.12);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo svg { width: 44px; height: 44px; flex-shrink: 0; }
+.nav-logo-text { line-height: 1.3; }
+.nav-logo-text .main { font-family: 'Cinzel', serif; font-size: 13px; color: var(--navy); letter-spacing: .08em; display: block; }
+.nav-logo-text .sub  { font-family: 'Cinzel', serif; font-size: 9px;  color: var(--gold); letter-spacing: .15em; display: block; margin-top: 2px; }
+.nav-links {
+  display: flex; align-items: stretch; flex: 1;
+  padding: 0 16px;
+}
+.nav-item {
+  position: relative;
+  display: flex; align-items: center;
+}
+.nav-item > a {
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 18px;
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .12em;
+  color: var(--navy); text-transform: uppercase;
+  transition: color .25s;
+  height: 100%; white-space: nowrap;
+}
+.nav-item > a:hover, .nav-item > a.active { color: var(--gold); }
+.nav-item > a .chevron { font-size: 8px; opacity: .5; margin-top: 1px; }
+
+/* Dropdown mega-menu */
+.nav-dropdown {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid rgba(201,168,76,.15);
+  box-shadow: 0 16px 48px rgba(0,0,0,.12);
+  padding: 28px 0; min-width: 260px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  transform: translateX(-50%) translateY(8px);
+}
+.nav-item:hover .nav-dropdown {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown a {
+  display: block; padding: 9px 28px;
+  font-size: 13px; color: var(--text);
+  transition: background .2s, color .2s;
+  border-left: 3px solid transparent;
+}
+.nav-dropdown a:hover { background: rgba(201,168,76,.06); border-left-color: var(--gold); color: var(--navy); }
+.nav-dropdown-title {
+  padding: 0 28px 10px;
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .3em; color: var(--gold); text-transform: uppercase;
+  border-bottom: 1px solid rgba(201,168,76,.12); margin-bottom: 8px;
+}
+
+.nav-actions {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 24px;
+  margin-left: auto; flex-shrink: 0;
+}
+.btn-nav-outline {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  border: 1px solid var(--navy); color: var(--navy);
+  padding: 9px 20px; transition: var(--transition);
+}
+.btn-nav-outline:hover { background: var(--navy); color: var(--white); }
+.btn-nav-gold {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  background: var(--gold); color: var(--navy);
+  padding: 9px 22px; transition: var(--transition);
+}
+.btn-nav-gold:hover { background: var(--gold-lt); box-shadow: 0 6px 20px rgba(201,168,76,.35); }
+
+/* Mobile hamburger */
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.nav-hamburger span { width: 24px; height: 2px; background: var(--navy); transition: .3s; display: block; }
+
+/* ═══════════════════════════════════════════════
+   HERO — FULLSCREEN VALUE SLIDER
+═══════════════════════════════════════════════ */
+.hero {
+  position: relative; height: 100vh; min-height: 640px;
+  overflow: hidden; background: var(--navy-deep);
+  display: flex; flex-direction: column;
+}
+
+/* Geometric background art */
+.hero-geo {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden;
+}
+.hero-geo svg {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 900px; height: 900px;
+  opacity: .055;
+  animation: geoSpin 120s linear infinite;
+}
+@keyframes geoSpin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+/* Gradient overlay */
+.hero-grad {
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    linear-gradient(135deg, rgba(7,15,30,.92) 0%, rgba(12,26,48,.6) 50%, rgba(7,15,30,.85) 100%),
+    radial-gradient(ellipse 80% 60% at 30% 50%, rgba(201,168,76,.07) 0%, transparent 60%);
+}
+
+/* Gold vertical accent */
+.hero-accent {
+  position: absolute; left: 80px; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(180deg,transparent 0%,var(--gold) 30%,var(--gold) 70%,transparent 100%);
+  opacity: .25; z-index: 3;
+}
+
+/* Slides */
+.hero-slides { position: absolute; inset: 0; z-index: 3; }
+.hero-slide {
+  position: absolute; inset: 0;
+  display: flex; align-items: center;
+  padding: 0 120px;
+  opacity: 0; transition: opacity 1.2s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-slide-content { max-width: 720px; }
+.hero-slide-tag {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .45em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-slide-tag::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.hero-slide h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px,7vw,90px); font-weight: 300;
+  line-height: 1.05; color: var(--cream);
+  margin-bottom: 28px;
+}
+.hero-slide h1 strong { color: var(--gold-lt); font-weight: 600; font-style: italic; display: block; }
+.hero-slide p {
+  font-size: 17px; line-height: 1.85; color: rgba(250,246,238,.65);
+  max-width: 520px; margin-bottom: 44px;
+}
+.hero-slide-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  background: var(--gold); color: var(--navy);
+  padding: 16px 36px; transition: var(--transition);
+}
+.hero-slide-btn:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,.3); }
+.hero-slide-btn svg { transition: transform .3s; }
+.hero-slide-btn:hover svg { transform: translateX(4px); }
+
+/* Controls */
+.hero-controls {
+  position: absolute; bottom: 48px; left: 120px; z-index: 10;
+  display: flex; align-items: center; gap: 24px;
+}
+.hero-dots { display: flex; gap: 10px; }
+.hero-dot {
+  width: 28px; height: 2px; background: rgba(255,255,255,.3);
+  cursor: pointer; transition: .3s; position: relative;
+}
+.hero-dot.active { background: var(--gold); }
+.hero-dot.active::after {
+  content: ''; position: absolute; inset: -6px;
+}
+.hero-value-label {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .35em;
+  color: rgba(201,168,76,.55); text-transform: uppercase;
+}
+
+/* Progress bar */
+.hero-progress {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: rgba(255,255,255,.08); z-index: 10;
+}
+.hero-progress-bar {
+  height: 100%; background: var(--gold);
+  animation: progressBar 5s linear infinite;
+  transform-origin: left;
+}
+@keyframes progressBar { from { width: 0 } to { width: 100% } }
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute; right: 60px; bottom: 40px; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  animation: scrollBounce 2.5s ease infinite;
+}
+@keyframes scrollBounce { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(6px)} }
+.hero-scroll span { font-family:'Cinzel',serif; font-size:9px; letter-spacing:.3em; color:rgba(201,168,76,.5); writing-mode:vertical-lr; text-transform:uppercase; }
+.hero-scroll-line { width:1px; height:52px; background:linear-gradient(180deg,var(--gold),transparent); }
+
+/* ═══════════════════════════════════════════════
+   VALUES STRIP (like UGLE's core values bar)
+═══════════════════════════════════════════════ */
+.values-strip {
+  background: var(--navy);
+  padding: 0;
+}
+.values-strip-inner {
+  display: grid; grid-template-columns: repeat(4,1fr);
+}
+.value-tab {
+  padding: 22px 28px;
+  border-right: 1px solid rgba(255,255,255,.06);
+  cursor: pointer;
+  transition: background .3s;
+  display: flex; align-items: center; gap: 14px;
+  position: relative;
+}
+.value-tab:last-child { border-right: none; }
+.value-tab::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transition: transform .3s;
+}
+.value-tab:hover::after, .value-tab.active::after { transform: scaleX(1); }
+.value-tab:hover, .value-tab.active { background: rgba(201,168,76,.06); }
+.value-tab-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic;
+  color: rgba(201,168,76,.2); line-height: 1; min-width: 32px;
+}
+.value-tab.active .value-tab-num { color: rgba(201,168,76,.5); }
+.value-tab-label {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .14em;
+  color: rgba(255,255,255,.45); text-transform: uppercase;
+}
+.value-tab.active .value-tab-label { color: var(--gold-lt); }
+
+/* ═══════════════════════════════════════════════
+   INTRO — WHO WE ARE (like UGLE's welcome section)
+═══════════════════════════════════════════════ */
+.intro { padding: 110px 0; background: var(--white); }
+.intro-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+}
+.intro-emblem {
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+.intro-emblem-ring {
+  width: 400px; height: 400px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.intro-emblem-ring::before {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 50%; border: 1px solid rgba(201,168,76,.12);
+}
+.intro-emblem-ring::after {
+  content: ''; position: absolute; inset: 20px;
+  border-radius: 50%; border: 1px solid rgba(201,168,76,.08);
+}
+.intro-emblem svg { width: 220px; height: 220px; position: relative; z-index: 2; }
+.intro-emblem-dots {
+  position: absolute; inset: 0;
+  animation: slowSpin 80s linear infinite;
+}
+.intro-text {}
+.intro-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px,3.5vw,52px); font-weight: 300;
+  line-height: 1.2; color: var(--navy); margin-bottom: 24px;
+}
+.intro-text h2 em { color: var(--gold); font-style: italic; }
+.intro-text p { font-size: 16px; line-height: 1.9; color: var(--muted); margin-bottom: 20px; }
+.intro-text .highlight {
+  font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic;
+  color: var(--navy); line-height: 1.6; border-left: 3px solid var(--gold);
+  padding-left: 20px; margin: 32px 0;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  background: var(--navy); color: var(--white);
+  padding: 15px 32px; transition: var(--transition);
+}
+.btn-primary:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  border: 1px solid var(--navy); color: var(--navy);
+  padding: 15px 32px; transition: var(--transition); margin-left: 16px;
+}
+.btn-ghost:hover { background: var(--navy); color: var(--white); }
+
+@keyframes slowSpin { to { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════════════
+   VALUES DEEP DIVE (like UGLE Our Values section)
+═══════════════════════════════════════════════ */
+.values-section { padding: 110px 0; background: var(--navy-deep); }
+.values-header { text-align: center; margin-bottom: 72px; }
+.values-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px,4vw,56px); font-weight: 300;
+  color: var(--cream); margin-bottom: 16px;
+}
+.values-header p { font-size: 16px; color: rgba(250,246,238,.5); max-width: 520px; margin: 0 auto; }
+.values-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
+}
+.value-card {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.1);
+  padding: 48px 32px; transition: var(--transition); position: relative; overflow: hidden;
+  cursor: default;
+}
+.value-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform: scaleX(0); transition: transform .5s;
+}
+.value-card:hover { background: rgba(201,168,76,.06); border-color: rgba(201,168,76,.25); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.value-card:hover::before { transform: scaleX(1); }
+.value-card-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 64px; font-style: italic;
+  color: rgba(201,168,76,.08); line-height: 1; margin-bottom: 20px;
+}
+.value-card-icon { margin-bottom: 20px; }
+.value-card h3 {
+  font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: .15em;
+  color: var(--gold-lt); margin-bottom: 14px; text-transform: uppercase;
+}
+.value-card p { font-size: 14px; line-height: 1.8; color: rgba(250,246,238,.55); }
+.value-card-note {
+  margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(201,168,76,.1);
+  font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic;
+  color: rgba(201,168,76,.6); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════════ */
+.stats-bar { background: var(--gold); padding: 48px 0; }
+.stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+.stat-item {
+  text-align: center; padding: 0 24px;
+  border-right: 1px solid rgba(12,26,48,.15);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif; font-size: 52px; font-style: italic;
+  color: var(--navy); line-height: 1; margin-bottom: 6px;
+}
+.stat-label {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .2em;
+  color: rgba(12,26,48,.65); text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   HISTORY SECTION
+═══════════════════════════════════════════════ */
+.history { padding: 110px 0; background: var(--cream); }
+.history-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start;
+}
+.history-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px,3.5vw,50px); font-weight: 300;
+  color: var(--navy); margin-bottom: 24px; line-height: 1.2;
+}
+.history-text h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
+.history-text p { font-size: 15px; line-height: 1.9; color: var(--muted); margin-bottom: 20px; }
+.history-text ul {
+  margin: 28px 0; padding-left: 0;
+}
+.history-text ul li {
+  font-size: 14px; color: var(--muted); line-height: 1.7;
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid rgba(201,168,76,.15); position: relative;
+}
+.history-text ul li::before {
+  content: '▪'; color: var(--gold); position: absolute; left: 0; font-size: 10px; top: 12px;
+}
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: flex; gap: 24px; padding-bottom: 40px;
+  position: relative;
+}
+.tl-item:not(:last-child)::before {
+  content: ''; position: absolute; left: 19px; top: 40px; bottom: 0;
+  width: 1px; background: linear-gradient(180deg,var(--gold),rgba(201,168,76,.1));
+}
+.tl-dot {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: 1px solid var(--gold); transform: rotate(45deg);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream); position: relative; z-index: 1;
+  transition: background .3s;
+}
+.tl-dot-inner { width: 10px; height: 10px; background: var(--gold); }
+.tl-item:hover .tl-dot { background: var(--gold); }
+.tl-item:hover .tl-dot-inner { background: var(--white); }
+.tl-body { padding-top: 6px; }
+.tl-year { font-family:'Cinzel',serif; font-size:10px; letter-spacing:.2em; color:var(--gold); margin-bottom:5px; text-transform:uppercase; }
+.tl-title { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--navy); margin-bottom:6px; }
+.tl-desc { font-size:13px; color:var(--muted); line-height:1.7; }
+
+/* ═══════════════════════════════════════════════
+   ACADEMIA FILOSÓFICA (like UGLE's Blog section)
+═══════════════════════════════════════════════ */
+.academia { padding: 110px 0; background: var(--white); }
+.section-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 56px;
+}
+.section-header-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px,3.5vw,50px); font-weight: 300;
+  color: var(--navy); line-height: 1.15;
+}
+.section-header-left h2 em { color: var(--gold); font-style: italic; font-weight: 600; }
+.btn-link {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .2em;
+  color: var(--gold); text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(201,168,76,.3); padding-bottom: 2px;
+  transition: gap .3s, border-color .3s; white-space: nowrap;
+}
+.btn-link:hover { gap: 14px; border-color: var(--gold); }
+.articles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.article-card {
+  background: var(--white); border: 1px solid rgba(201,168,76,.1);
+  transition: var(--transition); overflow: hidden; display: flex; flex-direction: column;
+}
+.article-card:hover { border-color: rgba(201,168,76,.35); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+.article-card-img {
+  height: 200px; background: var(--navy-mid);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.article-card-img-placeholder {
+  font-family: 'Cormorant Garamond', serif; font-size: 48px; font-style: italic;
+  color: rgba(201,168,76,.15);
+}
+.article-card-img::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px; background: linear-gradient(0deg,rgba(20,34,56,.6),transparent);
+}
+.article-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+.article-cat {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .3em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.article-cat::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.article-card h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+  color: var(--navy); line-height: 1.3; margin-bottom: 12px;
+}
+.article-excerpt { font-size: 14px; color: var(--muted); line-height: 1.75; flex: 1; }
+.article-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid rgba(201,168,76,.1);
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .12em;
+  color: rgba(201,168,76,.5); text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   INSTITUTO SOCIAL (like UGLE's Community section)
+═══════════════════════════════════════════════ */
+.instituto { padding: 110px 0; background: var(--navy-mid); }
+.instituto-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.instituto-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px,3.5vw,50px); font-weight: 300;
+  color: var(--cream); margin-bottom: 24px; line-height: 1.2;
+}
+.instituto-text h2 em { color: var(--gold-lt); font-style: italic; font-weight: 600; }
+.instituto-text p { font-size: 15px; line-height: 1.9; color: rgba(250,246,238,.6); margin-bottom: 20px; }
+.instituto-text blockquote {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic;
+  color: var(--gold-lt); line-height: 1.55; border-left: 3px solid var(--gold);
+  padding-left: 22px; margin: 32px 0;
+}
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  background: var(--gold); color: var(--navy);
+  padding: 15px 32px; transition: var(--transition);
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,168,76,.3); }
+.instituto-projects { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.project-card {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(201,168,76,.1);
+  padding: 32px 28px; transition: var(--transition);
+}
+.project-card:hover { background: rgba(201,168,76,.07); border-color: rgba(201,168,76,.25); }
+.project-icon { margin-bottom: 16px; font-size: 28px; }
+.project-card h4 {
+  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .12em;
+  color: var(--gold-lt); margin-bottom: 10px; text-transform: uppercase;
+}
+.project-card p { font-size: 13px; color: rgba(250,246,238,.5); line-height: 1.7; }
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS (like UGLE's member quotes)
+═══════════════════════════════════════════════ */
+.testimonials { padding: 110px 0; background: var(--warm); }
+.testimonials-header { text-align: center; margin-bottom: 64px; }
+.testimonials-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px,3.5vw,50px); font-weight: 300;
+  color: var(--navy); margin-bottom: 14px;
+}
+.testimonials-header p { font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto; }
+.testimonials-track {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+}
+.testimonial-card {
+  background: var(--white); border: 1px solid rgba(201,168,76,.15);
+  padding: 40px 36px; position: relative; transition: var(--transition);
+}
+.testimonial-card:hover { border-color: rgba(201,168,76,.35); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.08); }
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif; font-size: 80px; line-height: .7;
+  color: rgba(201,168,76,.15); position: absolute; top: 24px; left: 28px;
+}
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic;
+  color: var(--navy); line-height: 1.65; margin-bottom: 28px; margin-top: 28px;
+}
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--navy); display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold); flex-shrink: 0;
+}
+.testimonial-info strong {
+  display: block; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .08em;
+  color: var(--navy); font-weight: 600;
+}
+.testimonial-info span {
+  font-size: 12px; color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════
+   JOIN CTA (like UGLE's Join section)
+═══════════════════════════════════════════════ */
+.join { padding: 110px 0; background: var(--navy-deep); position: relative; overflow: hidden; }
+.join-geo {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  opacity: .04; pointer-events: none;
+}
+.join-geo svg { width: 800px; height: 800px; animation: geoSpin 100s linear infinite reverse; }
+.join-inner { position: relative; z-index: 2; }
+.join-content { text-align: center; max-width: 720px; margin: 0 auto; }
+.join-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px,5vw,68px); font-weight: 300;
+  color: var(--cream); margin-bottom: 20px; line-height: 1.1;
+}
+.join-content h2 em { color: var(--gold-lt); font-style: italic; font-weight: 600; display: block; }
+.join-content p { font-size: 16px; line-height: 1.9; color: rgba(250,246,238,.55); max-width: 540px; margin: 0 auto 48px; }
+.join-form {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  max-width: 640px; margin: 0 auto;
+}
+.join-field { display: flex; flex-direction: column; gap: 7px; }
+.join-field.full { grid-column: 1/-1; }
+.join-field label {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .25em;
+  color: rgba(201,168,76,.7); text-transform: uppercase;
+}
+.join-field input, .join-field select, .join-field textarea {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.2);
+  padding: 13px 16px; color: var(--cream);
+  font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 300;
+  outline: none; transition: border-color .3s, background .3s;
+  -webkit-appearance: none;
+}
+.join-field input:focus, .join-field select:focus, .join-field textarea:focus {
+  border-color: var(--gold); background: rgba(201,168,76,.06);
+}
+.join-field select option { background: var(--navy-mid); }
+.join-field textarea { resize: vertical; min-height: 90px; }
+.join-submit { grid-column: 1/-1; margin-top: 4px; }
+.join-submit button {
+  width: 100%; background: var(--gold); color: var(--navy);
+  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+  padding: 17px; transition: var(--transition);
+}
+.join-submit button:hover { background: var(--gold-lt); box-shadow: 0 10px 32px rgba(201,168,76,.3); }
+.join-disclaimer {
+  margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.25); text-align: center; grid-column:1/-1;
+}
+
+/* ═══════════════════════════════════════════════
+   NEWSLETTER STRIP
+═══════════════════════════════════════════════ */
+.newsletter {
+  background: var(--gold); padding: 48px 0;
+}
+.newsletter-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.newsletter-text h3 {
+  font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: .1em;
+  color: var(--navy); margin-bottom: 4px;
+}
+.newsletter-text p { font-size: 14px; color: rgba(12,26,48,.65); }
+.newsletter-form { display: flex; gap: 0; min-width: 420px; }
+.newsletter-form input {
+  flex: 1; background: rgba(255,255,255,.7); border: none;
+  padding: 14px 20px; font-family: 'Lato',sans-serif; font-size: 14px;
+  color: var(--navy); outline: none;
+}
+.newsletter-form input::placeholder { color: rgba(12,26,48,.4); }
+.newsletter-form button {
+  background: var(--navy); color: var(--white);
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  padding: 14px 24px; border: none; cursor: pointer; transition: background .3s; white-space: nowrap;
+}
+.newsletter-form button:hover { background: var(--navy-deep); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(201,168,76,.12);
+  padding: 80px 0 0;
+}
+.footer-main {
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.footer-brand {}
+.footer-brand .brand-name {
+  font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold-lt);
+  letter-spacing: .1em; margin-bottom: 4px;
+}
+.footer-brand .brand-sub {
+  font-family: 'Cinzel', serif; font-size: 9px; color: rgba(255,255,255,.3);
+  letter-spacing: .22em; margin-bottom: 20px; display: block;
+}
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.8; max-width: 280px; margin-bottom: 24px; }
+.footer-socials { display: flex; gap: 12px; }
+.footer-social {
+  width: 36px; height: 36px; border: 1px solid rgba(201,168,76,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(201,168,76,.5); font-size: 13px; transition: .3s;
+}
+.footer-social:hover { background: rgba(201,168,76,.1); border-color: var(--gold); color: var(--gold); }
+.footer-col h4 {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: .3em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 22px;
+}
+.footer-col ul li a {
+  font-size: 13px; color: rgba(255,255,255,.4); line-height: 1;
+  transition: color .25s; display: block; padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.footer-col ul li a:hover { color: var(--gold-lt); padding-left: 6px; }
+.footer-bottom {
+  padding: 24px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-family:'Cinzel',serif; font-size:9px; letter-spacing:.15em; color:rgba(255,255,255,.25); }
+.footer-motto { font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:rgba(201,168,76,.35); }
+.footer-links { display:flex; gap:24px; }
+.footer-links a { font-size:11px; color:rgba(255,255,255,.25); transition:.25s; }
+.footer-links a:hover { color:rgba(201,168,76,.6); }
+
+/* ═══════════════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════════════ */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 300;
+  background: var(--navy-deep);
+  transform: translateX(-100%); transition: transform .4s cubic-bezier(.4,0,.2,1);
+  padding: 80px 40px 40px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 0;
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu-close {
+  position: absolute; top: 22px; right: 24px;
+  font-size: 24px; color: rgba(255,255,255,.5); cursor: pointer;
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+}
+.mobile-menu a {
+  display: block; font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: .12em;
+  color: rgba(255,255,255,.7); padding: 16px 0;
+  border-bottom: 1px solid rgba(201,168,76,.08);
+  transition: color .2s;
+}
+.mobile-menu a:hover { color: var(--gold-lt); }
+.mobile-menu-cta { margin-top: 32px; }
+.mobile-menu-cta a {
+  border: none; background: var(--gold); color: var(--navy);
+  padding: 16px; text-align: center; display: block;
+  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .18em;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; margin-left: auto; }
+  .nav-actions { display: none; }
+  .hero-slide { padding: 0 60px; }
+  .hero-controls { left: 60px; }
+  .hero-accent { display: none; }
+  .intro-inner, .history-inner, .instituto-inner { grid-template-columns: 1fr; gap: 56px; }
+  .intro-emblem { order: -1; }
+  .intro-emblem-ring { width: 280px; height: 280px; }
+  .intro-emblem svg { width: 150px; height: 150px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .values-strip-inner { grid-template-columns: 1fr 1fr; }
+  .articles-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-track { grid-template-columns: 1fr; }
+  .join-form { grid-template-columns: 1fr; }
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .newsletter-inner { flex-direction: column; }
+  .newsletter-form { min-width: unset; width: 100%; }
+}
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  .hero-slide { padding: 0 24px; }
+  .hero-controls { left: 24px; }
+  .hero-scroll { display: none; }
+  .values-grid, .values-strip-inner, .articles-grid, .stats-inner,
+  .footer-main, .instituto-projects { grid-template-columns: 1fr; }
+  .section-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .join-form { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .testimonials-track { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     ANNOUNCEMENT BAR
+══════════════════════════════════════════ -->
+<div class="announce">
+  <p>
+    📅 Próxima Sessão: <strong style="color:var(--gold-lt)">15 de Março, 2026 — 20h</strong>
+    &nbsp;·&nbsp;
+    <a href="#ingressar">Interessado em ingressar? Manifeste seu interesse →</a>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="36" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+          <circle cx="40" cy="40" r="26" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+          <line x1="40" y1="12" x2="18" y2="65" stroke="#c9a84c" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="40" y1="12" x2="62" y2="65" stroke="#c9a84c" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="24" y1="50" x2="56" y2="50" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M20 65 L20 38 L52 38" stroke="#e2c47a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="40" y="32" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="15" fill="#c9a84c" opacity="0.9">G</text>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="main">Conciliação Amazonense</span>
+          <span class="sub">Venerável Loja Maçônica Nº 3</span>
+        </div>
+      </a>
+
+      <!-- Links with dropdowns -->
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="#sobre">Descobrir <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-title">Descobrir a Maçonaria</div>
+            <a href="#sobre">O que é a Maçonaria?</a>
+            <a href="#historia">História da Loja</a>
+            <a href="#valores">Nossos Valores</a>
+            <a href="#academia">Academia Filosófica</a>
+            <a href="#faq">Perguntas Frequentes</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#ingressar">Ingressar <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-title">Tornar-se Maçom</div>
+            <a href="#ingressar">Por que ingressar?</a>
+            <a href="#ingressar">Como funciona o processo</a>
+            <a href="#ingressar">Registrar interesse</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="#academia">Academia</a>
+        </li>
+        <li class="nav-item">
+          <a href="#instituto">Instituto Social</a>
+        </li>
+        <li class="nav-item">
+          <a href="#sobre">Sobre Nós <span class="chevron">▾</span></a>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-title">A Loja</div>
+            <a href="#historia">Nossa História</a>
+            <a href="#instituto">Projetos Sociais</a>
+            <a href="#ingressar">Fale Conosco</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <a href="#" class="btn-nav-outline">Área do Irmão</a>
+        <a href="#ingressar" class="btn-nav-gold">Ingressar</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <a href="#sobre" onclick="toggleMenu()">Descobrir a Maçonaria</a>
+  <a href="#historia" onclick="toggleMenu()">História da Loja</a>
+  <a href="#valores" onclick="toggleMenu()">Nossos Valores</a>
+  <a href="#academia" onclick="toggleMenu()">Academia Filosófica</a>
+  <a href="#instituto" onclick="toggleMenu()">Instituto Social</a>
+  <a href="#" onclick="toggleMenu()">Área do Irmão</a>
+  <div class="mobile-menu-cta">
+    <a href="#ingressar" onclick="toggleMenu()">Registrar Interesse em Ingressar</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO SLIDER
+══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-geo">
+    <svg viewBox="0 0 900 900" fill="none">
+      <polygon points="450,40 820,220 860,450 820,680 450,860 80,680 40,450 80,220" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <polygon points="450,120 740,265 790,450 740,635 450,780 160,635 110,450 160,265" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
+      <polygon points="450,200 660,310 720,450 660,590 450,700 240,590 180,450 240,310" stroke="#c9a84c" stroke-width="0.4" fill="none"/>
+      <circle cx="450" cy="450" r="80" stroke="#c9a84c" stroke-width="0.5" fill="none"/>
+      <circle cx="450" cy="450" r="160" stroke="#c9a84c" stroke-width="0.3" fill="none"/>
+      <circle cx="450" cy="450" r="240" stroke="#c9a84c" stroke-width="0.2" fill="none"/>
+      <line x1="450" y1="40" x2="450" y2="860" stroke="#c9a84c" stroke-width="0.3"/>
+      <line x1="40" y1="450" x2="860" y2="450" stroke="#c9a84c" stroke-width="0.3"/>
+      <line x1="160" y1="160" x2="740" y2="740" stroke="#c9a84c" stroke-width="0.2"/>
+      <line x1="740" y1="160" x2="160" y2="740" stroke="#c9a84c" stroke-width="0.2"/>
+      <polygon points="450,200 660,590 240,590" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
+      <polygon points="450,700 240,310 660,310" stroke="#c9a84c" stroke-width="0.6" fill="none"/>
+    </svg>
+  </div>
+  <div class="hero-grad"></div>
+  <div class="hero-accent"></div>
+
+  <div class="hero-slides" id="heroSlides">
+    <!-- Slide 1: Integridade -->
+    <div class="hero-slide active" data-value="Integridade">
+      <div class="hero-slide-content">
+        <div class="hero-slide-tag">Oriente de Manaus · Desde a Fundação</div>
+        <h1>
+          Construindo uma sociedade
+          <strong>com Integridade</strong>
+        </h1>
+        <p>Honestidade, confiabilidade e princípios sólidos formam a base de um caráter virtuoso. A Maçonaria cultiva esses valores em cada irmão, gerando homens de palavra e ação.</p>
+        <a href="#sobre" class="hero-slide-btn">
+          Descobrir a Maçonaria
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 2: Amizade -->
+    <div class="hero-slide" data-value="Amizade">
+      <div class="hero-slide-content">
+        <div class="hero-slide-tag">Fraternidade Universal · Nº 3</div>
+        <h1>
+          Uma base comum para
+          <strong>Amizade Verdadeira</strong>
+        </h1>
+        <p>A Maçonaria oferece a seus membros a oportunidade de construir amizades profundas e duradouras com pessoas de diferentes origens, unidas por valores e propósitos comuns.</p>
+        <a href="#ingressar" class="hero-slide-btn">
+          Conhecer a Loja
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 3: Respeito -->
+    <div class="hero-slide" data-value="Respeito">
+      <div class="hero-slide-content">
+        <div class="hero-slide-tag">Diversidade · Inclusão · Harmonia</div>
+        <h1>
+          Tratar cada um com
+          <strong>Respeito e Dignidade</strong>
+        </h1>
+        <p>Desde suas origens, a Maçonaria respeita as crenças de seus membros. Um espaço onde diferentes origens convergem, cultivando tolerância e harmonia genuína.</p>
+        <a href="#valores" class="hero-slide-btn">
+          Nossos Valores
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 4: Serviço -->
+    <div class="hero-slide" data-value="Serviço">
+      <div class="hero-slide-content">
+        <div class="hero-slide-tag">Impacto Social · Amazônia</div>
+        <h1>
+          Criando impacto através do
+          <strong>Serviço Comunitário</strong>
+        </h1>
+        <p>Participar de eventos, arrecadar fundos para causas sociais ou voluntariar em organizações comunitárias — o serviço está no coração da Maçonaria Amazonense.</p>
+        <a href="#instituto" class="hero-slide-btn">
+          Instituto Social
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="hero-controls">
+    <div class="hero-dots" id="heroDots">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
+      <div class="hero-dot" onclick="goSlide(3)"></div>
+    </div>
+    <div class="hero-value-label" id="heroLabel">Integridade</div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Rolar</span>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="hero-progress">
+    <div class="hero-progress-bar" id="heroProgress"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     VALUES STRIP
+══════════════════════════════════════════ -->
+<div class="values-strip">
+  <div class="values-strip-inner" id="valuesStrip">
+    <div class="value-tab active" onclick="goSlide(0);highlightTab(this)">
+      <div class="value-tab-num">I</div>
+      <div class="value-tab-label">Integridade</div>
+    </div>
+    <div class="value-tab" onclick="goSlide(1);highlightTab(this)">
+      <div class="value-tab-num">II</div>
+      <div class="value-tab-label">Amizade</div>
+    </div>
+    <div class="value-tab" onclick="goSlide(2);highlightTab(this)">
+      <div class="value-tab-num">III</div>
+      <div class="value-tab-label">Respeito</div>
+    </div>
+    <div class="value-tab" onclick="goSlide(3);highlightTab(this)">
+      <div class="value-tab-num">IV</div>
+      <div class="value-tab-label">Serviço</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     INTRO — QUEM SOMOS
+══════════════════════════════════════════ -->
+<section class="intro" id="sobre">
+  <div class="container">
+    <div class="intro-inner">
+      <div class="intro-emblem reveal">
+        <div class="intro-emblem-ring">
+          <!-- Orbiting dots -->
+          <svg class="intro-emblem-dots" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 400 400">
+            <circle cx="200" cy="10"  r="4" fill="#c9a84c" opacity="0.3"/>
+            <circle cx="390" cy="200" r="3" fill="#c9a84c" opacity="0.2"/>
+            <circle cx="200" cy="390" r="4" fill="#c9a84c" opacity="0.3"/>
+            <circle cx="10"  cy="200" r="3" fill="#c9a84c" opacity="0.2"/>
+            <circle cx="340" cy="60"  r="2" fill="#c9a84c" opacity="0.15"/>
+            <circle cx="340" cy="340" r="2" fill="#c9a84c" opacity="0.15"/>
+            <circle cx="60"  cy="340" r="2" fill="#c9a84c" opacity="0.15"/>
+            <circle cx="60"  cy="60"  r="2" fill="#c9a84c" opacity="0.15"/>
+          </svg>
+          <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="110" cy="110" r="100" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+            <circle cx="110" cy="110" r="78"  stroke="#c9a84c" stroke-width="0.6" opacity="0.15"/>
+            <line x1="110" y1="28" x2="70"  y2="186" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="110" y1="28" x2="150" y2="186" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="80"  y1="140" x2="140" y2="140" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+            <path d="M62 186 L62 108 L148 108" stroke="#e2c47a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <text x="110" y="96" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="28" fill="#c9a84c" opacity="0.85">G</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="intro-text">
+        <div class="gold-line reveal"><span>Bem-vindos</span></div>
+        <h2 class="reveal">A Loja Maçônica<br>Conciliação <em>Amazonense</em></h2>
+        <div class="intro-text highlight reveal">
+          "Somos uma organização secular e fraterna cujas raízes remontam às tradições dos construtores medievais — edificadores de catedrais e de caráter humano."
+        </div>
+        <p class="reveal reveal-delay-1">
+          A Venerável Loja Conciliação Amazonense Nº 3 é uma das mais tradicionais instituições maçônicas do estado do Amazonas. Fundada no Oriente de Manaus, nossa loja reúne homens livres e de bons costumes unidos pelo propósito de aperfeiçoamento moral, filosófico e social.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Para os Maçons, existem quatro valores fundamentais que orientam seu caminho na vida: <strong>Integridade, Amizade, Respeito e Serviço</strong>. Em um mundo de incertezas, esses princípios são tão relevantes hoje quanto em qualquer outro momento de nossa história.
+        </p>
+        <div class="reveal reveal-delay-3" style="margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;">
+          <a href="#sobre" class="btn-primary">O que é a Maçonaria</a>
+          <a href="#historia" class="btn-ghost">Nossa História</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     VALUES DEEP DIVE
+══════════════════════════════════════════ -->
+<section class="values-section" id="valores">
+  <div class="container">
+    <div class="values-header">
+      <div class="gold-line reveal" style="justify-content:center"><span>Nossos Fundamentos</span></div>
+      <h2 class="reveal">Os Quatro Pilares da <em style="color:var(--gold-lt);font-style:italic">Maçonaria</em></h2>
+      <p class="reveal reveal-delay-1">Os valores fundamentais que definem quem somos, pelo que nos pautamos e o que fazemos.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-card-num">I</div>
+        <div class="value-card-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 3L4 9v7c0 7.18 5.18 13.9 12 15.56C23.82 29.9 29 23.18 29 16V9L16 3z" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+            <path d="M11 16l3.5 3.5 7-7" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Integridade</h3>
+        <p>Honestidade, confiabilidade, honra e responsabilidade formam a base de um caráter virtuoso. Cultivam confiança e revelam o compromisso com princípios sólidos.</p>
+        <div class="value-card-note">"Seja em público ou na privacidade, o Maçom age sempre do mesmo modo."</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-card-num">II</div>
+        <div class="value-card-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 28s-12-7.58-12-16a8 8 0 0 1 12-6.93A8 8 0 0 1 28 12c0 8.42-12 16-12 16z" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <h3>Amizade</h3>
+        <p>A Maçonaria proporciona oportunidades para construir amizades profundas e duradouras com pessoas de todas as origens, unidas por interesses e valores comuns.</p>
+        <div class="value-card-note">"Irmãos de Loja são irmãos para a vida — na prosperidade e na adversidade."</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-card-num">III</div>
+        <div class="value-card-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="10" r="5" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+            <path d="M4 28c0-6.63 5.37-12 12-12s12 5.37 12 12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M22 6l2 2-2 2" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Respeito</h3>
+        <p>Desde seus primórdios, a Maçonaria respeita as crenças de seus membros. Promove um ambiente onde a diversidade é valorizada e onde diferentes origens convergem em harmonia.</p>
+        <div class="value-card-note">"Nenhum Maçom é superior a outro dentro do Templo — apenas mais experiente."</div>
+      </div>
+
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-card-num">IV</div>
+        <div class="value-card-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M4 20l8-8 5 5 11-11" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6h4v4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 28h24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Serviço</h3>
+        <p>Participar de eventos, apoiar causas sociais ou voluntariar na comunidade — o serviço está no coração da Maçonaria. Nossos membros contribuem com tempo, recursos e conhecimento.</p>
+        <div class="value-card-note">"O serviço é o primeiro ensinamento recebido por todo novo Maçom."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num">3ª</div>
+        <div class="stat-label">Mais Antiga do Amazonas</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num">+50</div>
+        <div class="stat-label">Irmãos Ativos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num">+100</div>
+        <div class="stat-label">Famílias Apoiadas</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Anos de Tradição</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HISTORY SECTION
+══════════════════════════════════════════ -->
+<section class="history" id="historia">
+  <div class="container">
+    <div class="history-inner">
+      <div class="history-text">
+        <div class="gold-line reveal"><span>Nossa Trajetória</span></div>
+        <h2 class="reveal">Uma História de <em>Tradição</em> no coração da Amazônia</h2>
+        <p class="reveal reveal-delay-1">
+          Fundada no Oriente de Manaus, a Loja Conciliação Amazonense Nº 3 carrega consigo décadas de história maçônica profundamente entrelaçada com o desenvolvimento da cultura e da sociedade amazonense.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Desde os primórdios da Maçonaria organizada no Amazonas, a Loja Nº 3 ocupou posição de destaque, atraindo homens de diferentes profissões e origens, unidos pelo ideal de aperfeiçoamento moral e serviço ao próximo.
+        </p>
+        <ul class="reveal reveal-delay-3">
+          <li>Tolerância e respeito — radicais em um mundo marcado por conflitos</li>
+          <li>Meritocracia, numa época em que o nascimento determinava o sucesso</li>
+          <li>Elevados padrões de civilidade interpessoal e filosófica</li>
+          <li>Educação científica, humanista e artística</li>
+          <li>Aperfeiçoamento pessoal e social contínuo</li>
+        </ul>
+        <a href="#ingressar" class="btn-primary reveal reveal-delay-4" style="margin-top:12px;display:inline-flex">
+          Conhecer a nossa história completa →
+        </a>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Fundação</div>
+            <div class="tl-title">Instalação no Oriente de Manaus</div>
+            <p class="tl-desc">A Loja recebe o número 3, marcando sua posição entre as mais antigas do Amazonas. Fundadores de diferentes origens se unem pelo ideal maçônico.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal reveal-delay-1">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Consolidação</div>
+            <div class="tl-title">Referência Filosófica Regional</div>
+            <p class="tl-desc">A loja consolida-se como centro de estudos filosóficos e filantrópicos, contribuindo decisivamente para o desenvolvimento da Maçonaria na região Norte.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal reveal-delay-2">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Instituto Social</div>
+            <div class="tl-title">Criação do Braço Social</div>
+            <p class="tl-desc">A dimensão filantrópica ganha estrutura formal. Projetos educacionais e de assistência passam a impactar diretamente famílias da comunidade manauara.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal reveal-delay-3">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-body">
+            <div class="tl-year">Presente</div>
+            <div class="tl-title">Renovação e Plataforma Digital</div>
+            <p class="tl-desc">A loja abraça a era digital, ampliando seu alcance filosófico e comunitário. A Academia Filosófica passa a publicar conteúdo aberto para toda a região.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ACADEMIA FILOSÓFICA
+══════════════════════════════════════════ -->
+<section class="academia" id="academia">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="gold-line reveal"><span>Conhecimento</span></div>
+        <h2 class="reveal">Academia <em>Filosófica</em></h2>
+      </div>
+      <a href="#" class="btn-link reveal">Ver todos os artigos →</a>
+    </div>
+
+    <div class="articles-grid">
+      <div class="article-card reveal">
+        <div class="article-card-img">
+          <div class="article-card-img-placeholder">⊕</div>
+        </div>
+        <div class="article-card-body">
+          <div class="article-cat">Simbologia</div>
+          <h3>O Compasso e o Esquadro: Ferramentas do Autoconhecimento</h3>
+          <p class="article-excerpt">Uma reflexão sobre como os instrumentos do construtor se tornam metáforas poderosas para o aperfeiçoamento do caráter e da virtude humana.</p>
+          <div class="article-meta">
+            <span>Filosofia Maçônica</span>
+            <span>12 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card reveal reveal-delay-1">
+        <div class="article-card-img">
+          <div class="article-card-img-placeholder">◈</div>
+        </div>
+        <div class="article-card-body">
+          <div class="article-cat">Ética</div>
+          <h3>As Virtudes Cardinais na Tradição Maçônica Contemporânea</h3>
+          <p class="article-excerpt">Como prudência, justiça, fortaleza e temperança continuam sendo pilares incontornáveis para o homem e o cidadão no século XXI.</p>
+          <div class="article-meta">
+            <span>Ética & Virtude</span>
+            <span>8 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card reveal reveal-delay-2">
+        <div class="article-card-img">
+          <div class="article-card-img-placeholder">◇</div>
+        </div>
+        <div class="article-card-body">
+          <div class="article-cat">História</div>
+          <h3>Maçonaria e o Iluminismo: Raízes do Pensamento Moderno</h3>
+          <p class="article-excerpt">A influência decisiva da tradição maçônica na formação dos ideais de liberdade, igualdade e fraternidade que moldaram o mundo ocidental.</p>
+          <div class="article-meta">
+            <span>História & Tradição</span>
+            <span>15 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INSTITUTO SOCIAL
+══════════════════════════════════════════ -->
+<section class="instituto" id="instituto">
+  <div class="container">
+    <div class="instituto-inner">
+      <div class="instituto-text">
+        <div class="gold-line reveal"><span>Responsabilidade Social</span></div>
+        <h2 class="reveal">Instituto Social<br><em>Conciliação</em></h2>
+        <blockquote class="reveal reveal-delay-1">
+          "Fazer do mundo um lugar melhor do que o encontramos — esta é nossa maior obra."
+        </blockquote>
+        <p class="reveal reveal-delay-2">
+          A Maçonaria não existe para si mesma. Nosso Instituto Social traduz em ação concreta os valores de fraternidade e caridade que fundamentam nossa ordem no Amazonas.
+        </p>
+        <p class="reveal reveal-delay-3">
+          Projetos educacionais, assistência a famílias vulneráveis, campanhas de saúde e ações de impacto real na vida das comunidades de Manaus e do interior do estado.
+        </p>
+        <a href="#" class="btn-gold reveal reveal-delay-4" style="margin-top:12px">
+          Conhecer nossos projetos →
+        </a>
+      </div>
+
+      <div class="instituto-projects">
+        <div class="project-card reveal">
+          <div class="project-icon">📚</div>
+          <h4>Educação</h4>
+          <p>Bolsas de estudo, doação de materiais e suporte a estudantes carentes da rede pública de Manaus.</p>
+        </div>
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-icon">🏥</div>
+          <h4>Saúde</h4>
+          <p>Campanhas de doação de sangue, mutirões de atendimento e suporte a hospitais filantrópicos.</p>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-icon">🌿</div>
+          <h4>Amazônia</h4>
+          <p>Ações de preservação ambiental e apoio a comunidades ribeirinhas do estado do Amazonas.</p>
+        </div>
+        <div class="project-card reveal reveal-delay-3">
+          <div class="project-icon">🤝</div>
+          <h4>Assistência Social</h4>
+          <p>Apoio a famílias em situação de vulnerabilidade através de parcerias com entidades locais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="gold-line reveal" style="justify-content:center"><span>Depoimentos</span></div>
+      <h2 class="reveal">O que dizem nossos <em style="color:var(--gold);font-style:italic">Irmãos</em></h2>
+      <p class="reveal reveal-delay-1">Cada membro tem uma história única sobre o que o trouxe à Maçonaria.</p>
+    </div>
+
+    <div class="testimonials-track">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">O que mais ganho com a Maçonaria é autoconfiança nas minhas capacidades como pessoa e profissional. O ambiente de respeito mútuo no Templo transforma quem somos fora dele.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">C</div>
+          <div class="testimonial-info">
+            <strong>Carlos Medeiros</strong>
+            <span>Membro desde 2018 · Grau de Mestre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Ingressei por curiosidade filosófica, mas o que encontrei superou todas as expectativas. As amizades que construí na Loja Nº 3 são das mais genuínas da minha vida.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div class="testimonial-info">
+            <strong>Roberto Almeida</strong>
+            <span>Membro desde 2015 · Grau de Mestre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">A Maçonaria me deu valores, camaradagem e um senso de pertencimento que buscava há muito tempo. O estudo filosófico na Academia da Loja é particularmente enriquecedor.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div class="testimonial-info">
+            <strong>Marcos Ferreira</strong>
+            <span>Membro desde 2020 · Grau de Companheiro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════ -->
+<div class="newsletter">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h3>Newsletter Filosófica</h3>
+        <p>Receba mensalmente artigos sobre virtudes, filosofia e liderança.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Seu e-mail">
+        <button type="button">Subscrever</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JOIN CTA
+══════════════════════════════════════════ -->
+<section class="join" id="ingressar">
+  <div class="join-geo">
+    <svg viewBox="0 0 800 800" fill="none">
+      <polygon points="400,40 720,200 760,400 720,600 400,760 80,600 40,400 80,200" stroke="#c9a84c" stroke-width="1" fill="none"/>
+      <circle cx="400" cy="400" r="120" stroke="#c9a84c" stroke-width="0.5" fill="none"/>
+      <circle cx="400" cy="400" r="200" stroke="#c9a84c" stroke-width="0.3" fill="none"/>
+      <polygon points="400,160 600,500 200,500" stroke="#c9a84c" stroke-width="0.7" fill="none"/>
+      <polygon points="400,640 200,300 600,300" stroke="#c9a84c" stroke-width="0.7" fill="none"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="join-inner">
+      <div class="join-content">
+        <div class="gold-line reveal" style="justify-content:center"><span>Iniciação</span></div>
+        <h2 class="reveal">
+          Está pronto para
+          <em>edificar a si mesmo?</em>
+        </h2>
+        <p class="reveal reveal-delay-1">
+          A Maçonaria recebe homens livres e de bons costumes que buscam aperfeiçoamento moral, filosófico e espiritual. Deixe seus dados e entraremos em contato para uma conversa sem compromisso.
+        </p>
+
+        <div class="join-form reveal reveal-delay-2">
+          <div class="join-field">
+            <label>Nome Completo</label>
+            <input type="text" placeholder="Seu nome completo">
+          </div>
+          <div class="join-field">
+            <label>Idade</label>
+            <input type="number" placeholder="Sua idade" min="18">
+          </div>
+          <div class="join-field">
+            <label>E-mail</label>
+            <input type="email" placeholder="seu@email.com">
+          </div>
+          <div class="join-field">
+            <label>WhatsApp</label>
+            <input type="tel" placeholder="(92) 99999-9999">
+          </div>
+          <div class="join-field">
+            <label>Profissão</label>
+            <input type="text" placeholder="Sua área de atuação">
+          </div>
+          <div class="join-field">
+            <label>Cidade</label>
+            <input type="text" placeholder="Manaus / AM">
+          </div>
+          <div class="join-field full">
+            <label>O que te trouxe à Maçonaria?</label>
+            <textarea placeholder="Compartilhe brevemente sua motivação e o que busca..."></textarea>
+          </div>
+          <div class="join-submit">
+            <button type="button" onclick="this.textContent='✓ Enviado com Sucesso'; this.style.background='#1a3260'">
+              Manifestar Interesse em Ingressar
+            </button>
+          </div>
+          <p class="join-disclaimer">Ao enviar, você confirma que tem 18 anos ou mais e que seus dados serão usados apenas para contato relacionado ao processo de ingresso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="brand-name">Conciliação Amazonense</div>
+        <span class="brand-sub">Venerável Loja Maçônica Nº 3 · Oriente de Manaus</span>
+        <p>Fundada no Amazonas, dedicada ao aperfeiçoamento moral, filosófico e social de seus membros e da comunidade amazonense.</p>
+        <div class="footer-socials">
+          <a class="footer-social" href="#" title="Instagram">ig</a>
+          <a class="footer-social" href="#" title="Facebook">fb</a>
+          <a class="footer-social" href="#" title="YouTube">yt</a>
+          <a class="footer-social" href="#" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Portal</h4>
+        <ul>
+          <li><a href="#sobre">O que é a Maçonaria</a></li>
+          <li><a href="#historia">História da Loja</a></li>
+          <li><a href="#valores">Nossos Valores</a></li>
+          <li><a href="#academia">Academia Filosófica</a></li>
+          <li><a href="#instituto">Instituto Social</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Academia</h4>
+        <ul>
+          <li><a href="#">Artigos Filosóficos</a></li>
+          <li><a href="#">Palestras</a></li>
+          <li><a href="#">Seminários</a></li>
+          <li><a href="#">Biblioteca</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#ingressar">Ingressar na Loja</a></li>
+          <li><a href="#">Área do Irmão</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Loja Maçônica Conciliação Amazonense Nº 3 · Todos os direitos reservados</div>
+      <div class="footer-motto">Lux Ex Tenebris — A luz emerge das trevas</div>
+      <div class="footer-links">
+        <a href="#">Cookies</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Acessibilidade</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+// ── Hero Slider ──────────────────────────────────────
+let currentSlide = 0;
+let autoplayTimer;
+const slides     = document.querySelectorAll('.hero-slide');
+const dots       = document.querySelectorAll('.hero-dot');
+const tabs       = document.querySelectorAll('.value-tab');
+const label      = document.getElementById('heroLabel');
+const progressBar = document.getElementById('heroProgress');
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  tabs[currentSlide].classList.remove('active');
+
+  currentSlide = n;
+
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  tabs[currentSlide].classList.add('active');
+  label.textContent = slides[currentSlide].dataset.value;
+
+  // Restart progress bar
+  progressBar.style.animation = 'none';
+  progressBar.offsetHeight; // reflow
+  progressBar.style.animation = 'progressBar 5s linear infinite';
+
+  resetAutoplay();
+}
+
+function nextSlide() {
+  goSlide((currentSlide + 1) % slides.length);
+}
+
+function resetAutoplay() {
+  clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(nextSlide, 5000);
+}
+
+function highlightTab(el) {
+  tabs.forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+resetAutoplay();
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft')  goSlide((currentSlide - 1 + slides.length) % slides.length);
+});
+
+// ── Navbar scroll effect ─────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Mobile menu ──────────────────────────────────────
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+
+// ── Scroll reveal ─────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// Stagger children in grids
+document.querySelectorAll('.values-grid, .articles-grid, .instituto-projects').forEach(grid => {
+  Array.from(grid.children).forEach((child, i) => {
+    child.style.transitionDelay = `${i * 0.1}s`;
+  });
+});
+</script>
+</body>
+</html>
