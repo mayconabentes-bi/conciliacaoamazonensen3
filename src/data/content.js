@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '2.5.3', // Added image to Clube das Acacias and professional icons to Academia
+    version: '2.5.4', // Force content refresh to apply updated image URL handling
     hero: {
         slides: [
             {

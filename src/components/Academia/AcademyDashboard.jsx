@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './AcademyDashboard.css';
+import { resolveAssetUrl } from '../../utils/resolveAssetUrl';
 
 const AcademyDashboard = ({ content, onLogout }) => {
     const [viewMode, setViewMode] = useState('dashboard'); // 'dashboard' or 'category'
@@ -89,7 +90,7 @@ const AcademyDashboard = ({ content, onLogout }) => {
             >
                 <div className="card-media">
                     {item.image ? (
-                        <img src={item.image} alt={item.title} className="card-img" />
+                        <img src={resolveAssetUrl(item.image)} alt={item.title} className="card-img" />
                     ) : (
                         <div className="card-icon-overlay">
                             <span>{item.icon || '✦'}</span>
@@ -264,7 +265,7 @@ const AcademyDashboard = ({ content, onLogout }) => {
                             <div className="modal-scrollable">
                                 {viewingItem.video && renderVideoPlayer(viewingItem.video)}
                                 {!viewingItem.video && viewingItem.image && (
-                                    <img src={viewingItem.image} alt={viewingItem.title} className="modal-hero-img" />
+                                    <img src={resolveAssetUrl(viewingItem.image)} alt={viewingItem.title} className="modal-hero-img" />
                                 )}
                                 
                                 <div className="modal-body">
