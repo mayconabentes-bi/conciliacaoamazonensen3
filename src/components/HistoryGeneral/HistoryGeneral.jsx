@@ -1,5 +1,6 @@
 import React from 'react';
 import './HistoryGeneral.css';
+import { resolveAssetUrl } from '../../utils/resolveAssetUrl';
 
 const HistoryGeneral = ({ content, id = "historia-maçonaria" }) => {
     if (!content) return null;
@@ -18,7 +19,7 @@ const HistoryGeneral = ({ content, id = "historia-maçonaria" }) => {
 
                     {content.image && (
                         <div className="history-general-image reveal reveal-delay-2">
-                            <img src={content.image} alt={content.title} className="featured-image" />
+                            <img src={resolveAssetUrl(content.image)} alt={content.title} className="featured-image" />
                         </div>
                     )}
 
