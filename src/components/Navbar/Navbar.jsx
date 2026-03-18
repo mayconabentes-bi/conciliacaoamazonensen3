@@ -3,9 +3,42 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logoImg from '../../assets/logo-conciliacao.png';
 
-const Navbar = ({ content }) => {
+const Navbar = ({ content, sessions }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // Dynamic Session Logic
+    const getNextSession = () => {
+        if (!sessions || sessions.length === 0) return content?.announce;
+        
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0];
+        
+        const upcoming = [...sessions]
+            .filter(s => s.date >= todayStr)
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+        if (upcoming.length > 0) {
+            const next = upcoming[0];
+            const dateObj = new Date(next.date + 'T00:00:00');
+            const formattedDate = dateObj.toLocaleDateString('pt-BR', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            
+            return {
+                text: next.title,
+                date: `${formattedDate} — ${next.time}h`,
+                linkText: 'Conheça nossa história →',
+                link: next.link || '#historia'
+            };
+        }
+        
+        return content?.announce;
+    };
+
+    const nextSession = getNextSession();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,9 +59,10 @@ const Navbar = ({ content }) => {
         <>
             <div className="announce">
                 <p>
-                    📅 {content.announce.text} <strong style={{ color: 'var(--gold-lt)' }}>{content.announce.date}</strong>
-                    &nbsp;·&nbsp;
-                    <a href={content.announce.link}>{content.announce.linkText}</a>
+                    <span className="session-badge">Próxima Sessão</span>
+                    <span className="session-title">{nextSession?.text}</span>
+                    <span className="session-date">{nextSession?.date}</span>
+                    <a href={nextSession?.link}>{nextSession?.linkText}</a>
                 </p>
             </div>
 

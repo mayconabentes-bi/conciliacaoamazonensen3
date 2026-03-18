@@ -15,7 +15,8 @@ import {
     Library,
     Mic2,
     GraduationCap,
-    Heart
+    Heart,
+    Calendar as CalendarIcon
 } from 'lucide-react';
 
 const Dashboard = () => {
@@ -46,6 +47,13 @@ const Dashboard = () => {
             desc: 'Gerencie o que as pessoas estão dizendo sobre a Conciliação.', 
             icon: <MessageSquare size={24} />, 
             path: '/admin/testimonials',
+            complexity: 'Fácil'
+        },
+        { 
+            title: 'Calendário de Sessões', 
+            desc: 'Gerencie as próximas datas e sessões da loja.', 
+            icon: <CalendarIcon size={24} />, 
+            path: '/admin/sessions',
             complexity: 'Fácil'
         }
     ];

@@ -36,10 +36,11 @@ import StatsEditor from './admin/editors/StatsEditor';
 import TestimonialsEditor from './admin/editors/TestimonialsEditor';
 import NewsletterEditor from './admin/editors/NewsletterEditor';
 import GenericSectionEditor from './admin/editors/GenericSectionEditor';
+import SessionsEditor from './admin/editors/SessionsEditor';
 
 const Website = ({ content, heroIndex, setHeroIndex, syncHeroSlide, submitTestimonial }) => (
     <div className="app">
-        <Navbar content={content.nav} />
+        <Navbar content={content.nav} sessions={content.sessions} />
         <Hero content={content.hero} onSlideChange={setHeroIndex} />
         <ValuesStrip content={content.hero} activeIndex={heroIndex} onTabClick={syncHeroSlide} />
         <main>
@@ -75,7 +76,7 @@ const App = () => {
     };
 
     return (
-        <Router>
+        <Router basename={import.meta.env.BASE_URL}>
             <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={
@@ -108,6 +109,7 @@ const App = () => {
                     <Route path="stats" element={<StatsEditor content={content.stats} onUpdate={(data) => updateSection('stats', data)} />} />
                     <Route path="testimonials" element={<TestimonialsEditor content={content.testimonials} onUpdate={(data) => updateSection('testimonials', data)} />} />
                     <Route path="newsletter" element={<NewsletterEditor content={content.newsletter} onUpdate={(data) => updateSection('newsletter', data)} />} />
+                    <Route path="sessions" element={<SessionsEditor content={content.sessions} onUpdate={(data) => updateSection('sessions', data)} />} />
                     
                     {/* History & Info Pages */}
                     <Route path="history-general" element={<GenericSectionEditor title="Maçonaria Geral" content={content.historyGeneral} onUpdate={(data) => updateSection('historyGeneral', data)} />} />

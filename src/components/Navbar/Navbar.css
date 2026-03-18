@@ -10,20 +10,55 @@
 }
 
 .announce {
-    background: var(--navy-deep);
-    color: rgba(255, 255, 255, .7);
-    padding: 10px 0;
-    font-size: 11px;
-    border-bottom: 1px solid rgba(201, 168, 76, .1);
+    background: linear-gradient(to right, #0a0e14, #1a2332, #0a0e14);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 12px 0;
+    font-size: 11.5px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
     text-align: center;
     position: relative;
     z-index: 201;
+    letter-spacing: 0.03em;
 }
 
 .announce p {
     margin: 0;
     padding: 0 20px;
-    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.announce .session-badge {
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--gold-lt);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.announce .session-date {
+    color: #fff;
+    font-weight: 500;
+}
+
+.announce a {
+    color: var(--gold-lt);
+    text-decoration: none;
+    font-weight: 600;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.announce a:hover {
+    color: #fff;
+    border-bottom-color: var(--gold-lt);
 }
 
 .navbar.scrolled {

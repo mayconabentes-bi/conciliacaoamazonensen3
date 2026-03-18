@@ -5,7 +5,8 @@
 
 .stats-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .stat-item {
@@ -43,6 +44,12 @@
 
     .stat-item {
         border-right: none;
+        border-bottom: 1px solid rgba(12, 26, 48, .1);
+        padding-bottom: 24px;
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
     }
 }
 

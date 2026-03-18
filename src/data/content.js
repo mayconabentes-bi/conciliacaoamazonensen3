@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '2.5.3', // Added image to Clube das Acacias and professional icons to Academia
+    version: '2.6.0', // Added Sessions Calendar
     hero: {
         slides: [
             {
@@ -456,6 +456,22 @@ export const CONTENT = {
             { role: 'Representante Suplente ALM', name: 'CLÁUDIO DE BARROS MOURA', photo: '/src/assets/nominata/claudio_moura.png' }
         ]
     },
+    sessions: [
+        {
+            date: '2026-03-22',
+            time: '20:00',
+            title: 'Sessão Ordinária - Grau de Aprendiz',
+            location: 'Templo Nobre',
+            link: '#historia'
+        },
+        {
+            date: '2026-03-29',
+            time: '20:00',
+            title: 'Sessão de Instrução',
+            location: 'Templo Nobre',
+            link: '#historia'
+        }
+    ],
     clubeAcacias: {
         tag: 'Fraternidade Feminina',
         title: 'Clube das Acácias',

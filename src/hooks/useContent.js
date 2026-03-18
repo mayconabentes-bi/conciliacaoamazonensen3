@@ -23,6 +23,7 @@ export const useContent = () => {
             data.lectures = INITIAL_CONTENT.lectures;
             data.seminars = INITIAL_CONTENT.seminars;
             data.nominata = INITIAL_CONTENT.nominata;
+            data.sessions = INITIAL_CONTENT.sessions;
             data.clubeAcacias = INITIAL_CONTENT.clubeAcacias;
             data.nav = INITIAL_CONTENT.nav;
             data.footer = INITIAL_CONTENT.footer;
@@ -36,6 +37,12 @@ export const useContent = () => {
         // Feature-specific migrations: Testimonials Pending
         if (data.testimonials && !data.testimonials.pending) {
             data.testimonials.pending = [];
+            needsUpdate = true;
+        }
+
+        // Initialize sessions if missing
+        if (!data.sessions) {
+            data.sessions = INITIAL_CONTENT.sessions;
             needsUpdate = true;
         }
 
