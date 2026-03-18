@@ -1,5 +1,6 @@
 import React from 'react';
 import './History.css';
+import { resolveAssetUrl } from '../../utils/resolveAssetUrl';
 
 const History = ({ content }) => {
     const data = content;
@@ -19,7 +20,7 @@ const History = ({ content }) => {
                         <div className="history-content-wrapper">
                             {data.image && (
                                 <div className="history-featured-image reveal reveal-delay-half">
-                                    <img src={data.image} alt="História da Loja" />
+                                    <img src={resolveAssetUrl(data.image)} alt="História da Loja" />
                                     <div className="history-image-caption">Registro Histórico da Conciliação Amazonense</div>
                                 </div>
                             )}

@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+// Vite exposes the base URL via import.meta.env.BASE_URL, which matches the `base`
+// field in vite.config.js. When the app is served from a subpath (e.g. during
+// development at /conciliacaoamazonensen3/), the router needs the same basename
+// so that the <Route path="/"> entries resolve correctly.
+
 import { useReveal } from './hooks/useReveal';
 import { useContent } from './hooks/useContent';
 

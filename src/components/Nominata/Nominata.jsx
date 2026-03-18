@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './Nominata.css';
+import { resolveAssetUrl } from '../../utils/resolveAssetUrl';
 
 const Nominata = ({ content }) => {
     if (!content) return null;
@@ -49,7 +50,7 @@ const Nominata = ({ content }) => {
                                 <div className="member-photo-placeholder">
                                     {member.photo && !member.photo.includes('veneravel.jpg') && !member.photo.includes('primeiro_vigilante.jpg') ? (
                                         <img 
-                                            src={member.photo} 
+                                            src={resolveAssetUrl(member.photo)}
                                             alt={member.name} 
                                             onError={(e) => {
                                                 e.target.onerror = null;
