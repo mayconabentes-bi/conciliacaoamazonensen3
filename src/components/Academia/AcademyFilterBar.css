@@ -1,0 +1,114 @@
+/* ═══════════════════════════════════════════════
+   ACADEMY FILTER BAR — Navy/Gold theme
+   ═══════════════════════════════════════════════ */
+
+.academy-filter-container {
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 3rem;
+}
+
+.academy-filter-bar {
+    background: rgba(12, 26, 48, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.academy-search {
+    display: flex;
+    align-items: center;
+    background: rgba(7, 15, 30, 0.7);
+    border: 1px solid rgba(201, 168, 76, 0.12);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.academy-search:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+}
+
+.academy-search .search-icon {
+    color: var(--gold-lt);
+    margin-right: 0.85rem;
+    opacity: 0.7;
+}
+
+.academy-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', serif;
+    outline: none;
+}
+
+.academy-search input::placeholder {
+    color: rgba(201, 168, 76, 0.35);
+}
+
+.academy-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+}
+
+.filter-chip {
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    color: rgba(226, 196, 122, 0.7);
+    padding: 0.55rem 1.4rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.filter-chip:hover {
+    background: rgba(201, 168, 76, 0.08);
+    border-color: rgba(201, 168, 76, 0.4);
+    color: var(--gold-lt);
+}
+
+.filter-chip.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy-deep);
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.25);
+}
+
+@media (min-width: 992px) {
+    .academy-filter-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .academy-search {
+        width: 380px;
+        flex-shrink: 0;
+    }
+
+    .academy-categories {
+        justify-content: flex-end;
+    }
+
+    .academy-filter-container {
+        margin-top: -2.5rem;
+    }
+}

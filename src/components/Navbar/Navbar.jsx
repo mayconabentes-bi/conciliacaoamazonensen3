@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Search } from 'lucide-react';
 import './Navbar.css';
 import logoImg from '../../assets/logo-conciliacao.png';
 
@@ -53,42 +54,66 @@ const Navbar = ({ content, sessions }) => {
         document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
     };
 
+    const [isReturning, setIsReturning] = useState(false);
+
+    useEffect(() => {
+        const visited = localStorage.getItem('hasVisited');
+        if (visited) {
+            setIsReturning(true);
+        } else {
+            localStorage.setItem('hasVisited', 'true');
+        }
+    }, []);
+
+    const openSearch = () => {
+        window.dispatchEvent(new CustomEvent('openCommandPalette'));
+    };
+
     if (!content) return null;
 
     return (
-        <>
+        <header className="main-header">
             <div className="announce">
                 <p>
                     <span className="session-badge">Próxima Sessão</span>
                     <span className="session-title">{nextSession?.text}</span>
                     <span className="session-date">{nextSession?.date}</span>
-                    <a href={nextSession?.link}>{nextSession?.linkText}</a>
+                    <Link to={nextSession?.link}>{nextSession?.linkText}</Link>
+                    {isReturning && (
+                        <>
+                            <span className="separator">|</span>
+                            <Link to="#academia" className="top-quick-access">Acesso Rápido</Link>
+                        </>
+                    )}
                 </p>
             </div>
 
-            <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} id="navbar">
+            <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isReturning ? 'is-returning' : ''}`} id="navbar">
                 <div className="container">
                     <div className="nav-inner">
-                        <a href="#" className="nav-logo">
+                        <Link to="/" className="nav-logo">
                             <img src={logoImg} alt={`Logo ${content.logo.sub}`} />
                             <div className="nav-logo-text">
-                                <span className="official-name">{content.logo.name}<br />{content.logo.sub}</span>
+                                <span className="official-name">
+                                    GRANDE BENEMÉRITA LOJA SIMBÓLICA<br />
+                                    CONCILIAÇÃO AMAZONENSE Nº 3
+                                </span>
                             </div>
-                        </a>
+                        </Link>
 
                         <ul className="nav-links">
                             {content.links.map((link, index) => (
                                 <li key={index} className="nav-item">
-                                    <a href={link.href}>
+                                    <Link to={link.href}>
                                         {link.label} {link.dropdown && <span className="chevron">▾</span>}
-                                    </a>
+                                    </Link>
                                     {link.dropdown && (
                                         <div className="nav-dropdown">
                                             {link.dropdown.map((drop, dIdx) => (
                                                 <React.Fragment key={dIdx}>
                                                     <div className="nav-dropdown-title">{drop.title}</div>
                                                     {drop.items.map((item, iIdx) => (
-                                                        <a key={iIdx} href={item.href}>{item.label}</a>
+                                                        <Link key={iIdx} to={item.href}>{item.label}</Link>
                                                     ))}
                                                 </React.Fragment>
                                             ))}
@@ -99,7 +124,10 @@ const Navbar = ({ content, sessions }) => {
                         </ul>
 
                         <div className="nav-actions">
-                            <Link to={content.actions.outlineHref} className="btn-nav-outline">{content.actions.outline}</Link>
+                            <button className="btn-search-trigger" onClick={openSearch} title="Buscar conteúdo (Ctrl+K)">
+                                <Search size={18} />
+                            </button>
+                            <Link to="/login" className="btn-nav-outline">Painel de Gestão</Link>
                         </div>
 
                         <button className="nav-hamburger" onClick={toggleMenu} aria-label="Menu">
@@ -113,19 +141,19 @@ const Navbar = ({ content, sessions }) => {
                 <button className="mobile-menu-close" onClick={toggleMenu}>✕</button>
                 {content.links.map((link, index) => (
                     <React.Fragment key={index}>
-                        <a href={link.href} onClick={toggleMenu}>{link.label}</a>
+                        <Link to={link.href} onClick={toggleMenu}>{link.label}</Link>
                         {link.dropdown && link.dropdown.map((drop, dIdx) => (
                             drop.items.map((item, iIdx) => (
-                                <a key={`${dIdx}-${iIdx}`} href={item.href} onClick={toggleMenu} style={{ paddingLeft: '2rem', fontSize: '0.9rem', opacity: 0.8 }}>
+                                <Link key={`${dIdx}-${iIdx}`} to={item.href} onClick={toggleMenu} style={{ paddingLeft: '2rem', fontSize: '0.9rem', opacity: 0.8 }}>
                                     {item.label}
-                                </a>
+                                </Link>
                             ))
                         ))}
                     </React.Fragment>
                 ))}
                 <Link to={content.actions.outlineHref} onClick={toggleMenu}>{content.actions.outline}</Link>
             </div>
-        </>
+        </header>
     );
 };
 

@@ -46,103 +46,29 @@ export const useContent = () => {
             needsUpdate = true;
         }
 
-        try {
-            // Migração do menu Descobrir
-            const discoverLink = data.nav.links.find(l => l.label === 'Descobrir');
-            if (discoverLink && discoverLink.dropdown && discoverLink.dropdown[0]) {
-                const requiredItems = [
-                    { label: 'História da Maçonaria', href: '#historia-maçonaria' },
-                    { label: 'Maçonaria no Brasil', href: '#maconaria-brasil' },
-                    { label: 'Maçonaria no Amazonas', href: '#maconaria-amazonas' },
-                    { label: 'GLOMAM', href: '#glomam' }
-                ];
-                const currentItems = discoverLink.dropdown[0].items;
-                const isIdentical = currentItems.length === requiredItems.length && 
-                                   currentItems.every((item, idx) => 
-                                       item.label === requiredItems[idx].label && 
-                                       item.href === requiredItems[idx].href
-                                   );
-                if (!isIdentical) {
-                    discoverLink.dropdown[0].items = requiredItems;
-                    needsUpdate = true;
-                }
-            }
-
-            // Migração do menu Academia
-            const academyLink = data.nav.links.find(l => l.label === 'Academia');
-            if (academyLink) {
-                const requiredAcademyItems = [
-                    { label: 'Artigos Filosóficos', href: '#academia-portal' },
-                    { label: 'Palestras', href: '#academia-portal' },
-                    { label: 'Seminários', href: '#academia-portal' },
-                    { label: 'Biblioteca', href: '#academia-portal' }
-                ];
-
-                if (!academyLink.dropdown) {
-                    console.log('Transformando Academia em dropdown...');
-                    academyLink.dropdown = [{ title: 'Áreas de Estudo', items: requiredAcademyItems }];
-                    needsUpdate = true;
-                } else if (JSON.stringify(academyLink.dropdown[0].items) !== JSON.stringify(requiredAcademyItems)) {
-                    console.log('Atualizando subcategorias da Academia...');
-                    academyLink.dropdown[0].items = requiredAcademyItems;
-                    needsUpdate = true;
-                }
-            }
-
-            // Migração do menu Sobre a Loja
-            const aboutLink = data.nav.links.find(l => l.label === 'Sobre a Loja');
-            if (aboutLink && aboutLink.dropdown && aboutLink.dropdown[0]) {
-                const requiredAboutItems = [
-                    { label: 'História', href: '#historia' },
-                    { label: 'Nossos Valores', href: '#valores' },
-                    { label: 'Nominata', href: '#nominata' },
-                    { label: 'Veneráveis Mestres', href: '#veneraveis' },
-                    { label: 'Clube das Acácias', href: '#clube-acacias' }
-                ];
-                if (JSON.stringify(aboutLink.dropdown[0].items) !== JSON.stringify(requiredAboutItems)) {
-                    console.log('Atualizando subcategorias de Sobre a Loja...');
-                    aboutLink.dropdown[0].items = requiredAboutItems;
-                    needsUpdate = true;
-                }
-            }
-
-            // Migração do menu Instituto Social
-            const instituteLink = data.nav.links.find(l => l.label === 'Instituto Social');
-            if (instituteLink) {
-                const requiredInstituteItems = [
-                    { label: 'Academia de Liderança', href: '#academia-maconica-de-lideranca' },
-                    { label: 'Estudos Filosóficos', href: '#nucleo-de-estudos-filosoficos' },
-                    { label: 'Fórum Anual', href: '#forum-anual' },
-                    { label: 'Projeto Ribeirinho', href: '#projeto-ribeirinho' },
-                    { label: 'Jovens Empreendedores', href: '#projeto-jovens-empreendedores' },
-                    { label: 'Acervo Histórico', href: '#acervo-conciliacao' },
-                    { label: 'Clube de Negócios', href: '#clube-de-negocios' }
-                ];
-
-                if (!instituteLink.dropdown) {
-                    console.log('Transformando Instituto Social em dropdown...');
-                    instituteLink.dropdown = [{ title: 'Iniciativas Sociais', items: requiredInstituteItems }];
-                    needsUpdate = true;
-                } else if (JSON.stringify(instituteLink.dropdown[0].items) !== JSON.stringify(requiredInstituteItems)) {
-                    console.log('Atualizando subcategorias do Instituto Social...');
-                    instituteLink.dropdown[0].items = requiredInstituteItems;
-                    needsUpdate = true;
-                }
-            }
-        } catch (e) {
-            console.error('Erro na migração do menu:', e);
-        }
+        // Removed legacy hardcoded nav migrations as they conflict with new MPA linking.
         return { data, needsUpdate };
     };
 
     const [content, setContent] = useState(() => {
-        const saved = localStorage.getItem('conciliacao_content');
-        if (saved) {
-            const { data, needsUpdate } = migrateContent(JSON.parse(saved));
-            if (needsUpdate) {
-                localStorage.setItem('conciliacao_content', JSON.stringify(data));
+        try {
+            const saved = localStorage.getItem('conciliacao_content');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (!parsed || typeof parsed !== 'object') {
+                    console.warn('[useContent] Dados do localStorage inválidos. Resetando...');
+                    localStorage.removeItem('conciliacao_content');
+                    return INITIAL_CONTENT;
+                }
+                const { data, needsUpdate } = migrateContent(parsed);
+                if (needsUpdate) {
+                    localStorage.setItem('conciliacao_content', JSON.stringify(data));
+                }
+                return data;
             }
-            return data;
+        } catch (err) {
+            console.error('[useContent] Erro ao carregar do localStorage:', err);
+            localStorage.removeItem('conciliacao_content');
         }
         return INITIAL_CONTENT;
     });

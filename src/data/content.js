@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '2.6.2', // Added Sessions Calendar + Force content refresh for updated image URL handling
+    version: '2.8.3', // Force update to remove legacy GOB references
     hero: {
         slides: [
             {
@@ -12,7 +12,7 @@ export const CONTENT = {
                 strong: 'com Integridade',
                 description: 'Honestidade, confiabilidade e princípios sólidos formam a base de um caráter virtuoso. A Maçonaria cultiva esses valores em cada irmão, gerando homens de palavra e ação.',
                 btnText: 'Descobrir a Maçonaria',
-                btnLink: '#historia-maçonaria',
+                btnLink: '/historia',
                 value: 'Integridade'
             },
             {
@@ -21,7 +21,7 @@ export const CONTENT = {
                 strong: 'Amizade Verdadeira',
                 description: 'A Maçonaria oferece a seus membros a oportunidade de construir amizades profundas e duradouras com pessoas de diferentes origens, unidas por valores e propósitos comuns.',
                 btnText: 'Conhecer a Loja',
-                btnLink: '#historia',
+                btnLink: '/historia',
                 value: 'Amizade'
             },
             {
@@ -30,7 +30,7 @@ export const CONTENT = {
                 strong: 'Respeito e Dignidade',
                 description: 'Desde suas origens, a Maçonaria respeita as crenças de seus membros. Um espaço onde diferentes origens convergem, cultivando tolerância e harmonia genuína.',
                 btnText: 'Nossos Valores',
-                btnLink: '#valores',
+                btnLink: '/#valores',
                 value: 'Respeito'
             },
             {
@@ -39,7 +39,7 @@ export const CONTENT = {
                 strong: 'Serviço Comunitário',
                 description: 'Participar de eventos, arrecadar fundos para causas sociais ou voluntariar em organizações comunitárias — o serviço está no coração da Maçonaria Amazonense.',
                 btnText: 'Instituto Social',
-                btnLink: '#instituto',
+                btnLink: '/instituto',
                 value: 'Serviço'
             }
         ]
@@ -164,7 +164,7 @@ export const CONTENT = {
             },
             {
                 title: '5. A Maçonaria Contemporânea',
-                content: 'Atualmente, a Maçonaria no Brasil é composta por potências regulares de alto prestígio, sendo a GLOMAM e a CMSB referências de excelência e tradição. A instituição mantém seu caráter filosófico e filantrópico, focando em projetos sociais e na formação ética de seus membros, preservando um legado de mais de dois séculos na história nacional.'
+                content: 'Atualmente, a Maçonaria no Brasil é composta por potências regulares de alto prestígio, sendo a GLOMAM e a CMSB referências de excelência e tradição no Rito Escocês Antigo e Aceito. A instituição mantém seu caráter filosófico e filantrópico, focando em projetos sociais e na formação ética de seus membros, preservando um legado de mais de dois séculos na história nacional.'
             }
         ],
         footer: 'Publicado pela Assessoria de Comunicação da G.B.L.S. Conciliação Amazonense Nº 3'
@@ -322,37 +322,37 @@ export const CONTENT = {
         paragraph2: 'Projetos educacionais, assistência a famílias vulneráveis, campanhas de saúde e ações de impacto real na vida das comunidades de Manaus e do interior do estado.',
         projects: [
             {
-                icon: '🎓',
+                icon: 'GraduationCap',
                 title: 'Academia Maçônica de Liderança',
                 desc: 'Formação de líderes éticos e capacitados para os desafios da sociedade contemporânea.'
             },
             {
-                icon: '🏛️',
+                icon: 'Library',
                 title: 'Núcleo de Estudos Filosóficos',
                 desc: 'Espaço dedicado à pesquisa e ao aprofundamento do pensamento maçônico universal.'
             },
             {
-                icon: '🗓️',
+                icon: 'Calendar',
                 title: 'Fórum Anual',
                 desc: 'Evento de destaque que reúne especialistas para debater temas de relevância social e moral.'
             },
             {
-                icon: '🛶',
+                icon: 'Anchor',
                 title: 'Projeto Ribeirinho',
                 desc: 'Assistência integral e sustentável às comunidades remotas das bacias do Amazonas e Solimões.'
             },
             {
-                icon: '🚀',
+                icon: 'Rocket',
                 title: 'Projeto Jovens Empreendedores',
                 desc: 'Mentoria e suporte para o desenvolvimento de novos talentos e negócios éticos na região.'
             },
             {
-                icon: '📜',
+                icon: 'History',
                 title: 'Acervo Conciliação',
                 desc: 'Preservação da memória histórica da Maçonaria no Amazonas e de nossa Loja centenária.'
             },
             {
-                icon: '🤝',
+                icon: 'Users',
                 title: 'Clube de Negócios',
                 desc: 'Rede de colaboração entre irmãos e parceiros focada na prosperidade e auxílio mútuo.'
             }
@@ -372,8 +372,8 @@ export const CONTENT = {
                 content: 'Um estudo profundo sobre a base filosófica e os ensinamentos morais que sustentam a jornada escocesa.'
             },
             {
-                title: '3. Manual de Instrução GOB (1º ao 3º Grau)',
-                content: 'Manuais oficiais que regem a prática ritualística e a liturgia escocesa para as Lojas da Federação.'
+                title: '3. Manual de Instrução REAA (1º ao 3º Grau)',
+                content: 'Manuais oficiais que regem a prática ritualística e a liturgia escocesa para as Lojas jurisdicionadas à GLOMAM.'
             },
             {
                 title: '4. O Simbolismo do REAA (Nicola Aslan)',
@@ -520,7 +520,7 @@ export const CONTENT = {
             date: '15 de Março, 2026 — 20h',
             text: 'Próxima Sessão:',
             linkText: 'Conheça nossa história →',
-            link: '#historia'
+            link: '/historia'
         },
         logo: {
             name: 'Grande Benemérita Loja Simbólica',
@@ -528,53 +528,53 @@ export const CONTENT = {
         },
         links: [
             {
-                label: 'Descobrir', href: '#sobre', dropdown: [
+                label: 'Descobrir', href: '/historia', dropdown: [
                     {
                         title: 'Descobrir a Maçonaria', items: [
-                            { label: 'História da Maçonaria', href: '#historia-maçonaria' },
-                            { label: 'Maçonaria no Brasil', href: '#maconaria-brasil' },
-                            { label: 'Maçonaria no Amazonas', href: '#maconaria-amazonas' },
-                            { label: 'GLOMAM', href: '#glomam' }
+                            { label: 'História da Maçonaria', href: '/historia' },
+                            { label: 'Maçonaria no Brasil', href: '/historia#maconaria-brasil' },
+                            { label: 'Maçonaria no Amazonas', href: '/historia#maconaria-amazonas' },
+                            { label: 'GLOMAM', href: '/historia#glomam' }
                         ]
                     }
                 ]
             },
             {
-                label: 'Sobre a Loja', href: '#historia', dropdown: [
+                label: 'Sobre a Loja', href: '/historia', dropdown: [
                     {
                         title: 'A Instituição', items: [
-                            { label: 'História', href: '#historia' },
-                            { label: 'Nossos Valores', href: '#valores' },
-                            { label: 'Nominata', href: '#nominata' },
-                            { label: 'Veneráveis Mestres', href: '#veneraveis' },
-                            { label: 'Clube das Acácias', href: '#clube-acacias' }
+                            { label: 'História', href: '/historia' },
+                            { label: 'Nossos Valores', href: '/#valores' },
+                            { label: 'Nominata', href: '/nominata' },
+                            { label: 'Veneráveis Mestres', href: '/nominata' },
+                            { label: 'Clube das Acácias', href: '/historia#clube-acacias' }
                         ]
                     }
                 ]
             },
             {
-                label: 'Academia', href: '#academia-portal', dropdown: [
+                label: 'Academia', href: '/academia', dropdown: [
                     {
                         title: 'Áreas de Estudo', items: [
-                            { label: 'Artigos Filosóficos', href: '#academia-portal' },
-                            { label: 'Palestras', href: '#academia-portal' },
-                            { label: 'Seminários', href: '#academia-portal' },
-                            { label: 'Biblioteca', href: '#academia-portal' }
+                            { label: 'Artigos Filosóficos', href: '/academia' },
+                            { label: 'Palestras', href: '/academia' },
+                            { label: 'Seminários', href: '/academia' },
+                            { label: 'Biblioteca', href: '/academia' }
                         ]
                     }
                 ]
             },
             {
-                label: 'Instituto Social', href: '#instituto', dropdown: [
+                label: 'Instituto Social', href: '/instituto', dropdown: [
                     {
                         title: 'Iniciativas Sociais', items: [
-                            { label: 'Academia de Liderança', href: '#academia-maconica-de-lideranca' },
-                            { label: 'Estudos Filosóficos', href: '#nucleo-de-estudos-filosoficos' },
-                            { label: 'Fórum Anual', href: '#forum-anual' },
-                            { label: 'Projeto Ribeirinho', href: '#projeto-ribeirinho' },
-                            { label: 'Jovens Empreendedores', href: '#projeto-jovens-empreendedores' },
-                            { label: 'Acervo Histórico', href: '#acervo-conciliacao' },
-                            { label: 'Clube de Negócios', href: '#clube-de-negocios' }
+                            { label: 'Academia de Liderança', href: '/instituto' },
+                            { label: 'Estudos Filosóficos', href: '/instituto' },
+                            { label: 'Fórum Anual', href: '/instituto' },
+                            { label: 'Projeto Ribeirinho', href: '/instituto' },
+                            { label: 'Jovens Empreendedores', href: '/instituto' },
+                            { label: 'Acervo Histórico', href: '/instituto' },
+                            { label: 'Clube de Negócios', href: '/instituto' }
                         ]
                     }
                 ]
@@ -612,30 +612,30 @@ export const CONTENT = {
             {
                 title: 'Portal',
                 links: [
-                    { label: 'O que é a Maçonaria', href: '#sobre' },
-                    { label: 'História da Loja', href: '#historia' },
-                    { label: 'Nossos Valores', href: '#valores' },
-                    { label: 'Academia Filosófica', href: '#academia-portal' },
-                    { label: 'Instituto Social', href: '#instituto' }
+                    { label: 'O que é a Maçonaria', href: '/#intro' },
+                    { label: 'História da Loja', href: '/historia' },
+                    { label: 'Nossos Valores', href: '/#valores' },
+                    { label: 'Academia Filosófica', href: '/academia' },
+                    { label: 'Instituto Social', href: '/instituto' }
                 ]
             },
             {
                 title: 'Academia',
                 links: [
-                    { label: 'Artigos Filosóficos', href: '#academia-portal' },
-                    { label: 'Palestras', href: '#academia-portal' },
-                    { label: 'Seminários', href: '#academia-portal' },
-                    { label: 'Biblioteca', href: '#academia-portal' },
-                    { label: 'Newsletter', href: '#newsletter' }
+                    { label: 'Artigos Filosóficos', href: '/academia' },
+                    { label: 'Palestras', href: '/academia' },
+                    { label: 'Seminários', href: '/academia' },
+                    { label: 'Biblioteca', href: '/academia' },
+                    { label: 'Newsletter', href: '/#contato' }
                 ]
             },
             {
                 title: 'Institucional',
                 links: [
-                    { label: 'Nossa sede', href: '#sobre' },
-                    { label: 'Área do Irmão', href: '#' },
+                    { label: 'Nossa sede', href: '/historia' },
+                    { label: 'Área do Irmão', href: '/login' },
                     { label: 'Política de Privacidade', href: '#' },
-                    { label: 'Fale Conosco', href: '#' }
+                    { label: 'Fale Conosco', href: '/#contato' }
                 ]
             }
         ],

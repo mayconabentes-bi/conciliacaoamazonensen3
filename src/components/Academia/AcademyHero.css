@@ -1,0 +1,101 @@
+/* ═══════════════════════════════════════════════
+   ACADEMY HERO — Refined with site design tokens
+   ═══════════════════════════════════════════════ */
+
+.academy-hero {
+    position: relative;
+    padding: 14rem 0 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=2574&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    overflow: hidden;
+    margin-top: -100px;
+}
+
+.academy-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(7, 15, 30, 0.95) 0%, rgba(12, 26, 48, 0.85) 100%);
+    z-index: 1;
+}
+
+.academy-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.academy-hero-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeInDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.academy-hero h1 {
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    margin-bottom: 1.5rem;
+    color: #fff;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+    opacity: 0;
+}
+
+.academy-hero p {
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+    opacity: 0;
+}
+
+.academy-hero-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+    opacity: 0;
+}
+
+.academy-hero-deco .gold-line {
+    width: 60px;
+    height: 1px;
+    background-color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 0;
+}
+
+.academy-hero-deco .gold-line::before {
+    display: none;
+}
+
+.academy-hero-deco .hero-diamond {
+    width: 8px;
+    height: 8px;
+    background-color: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px var(--gold);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

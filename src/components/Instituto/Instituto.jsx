@@ -1,9 +1,34 @@
-import React from 'react';
+import { 
+    GraduationCap, 
+    Library, 
+    Calendar, 
+    Anchor, 
+    Rocket, 
+    History, 
+    Users,
+    HelpCircle 
+} from 'lucide-react';
 import './Instituto.css';
+
+const iconMap = {
+    GraduationCap,
+    Library,
+    Calendar,
+    Anchor,
+    Rocket,
+    History,
+    Users
+};
 
 const Instituto = ({ content }) => {
     const data = content;
     const PROJECTS = data.projects;
+
+    // Helper to render Lucide icons dynamically
+    const renderIcon = (iconName) => {
+        const IconComponent = iconMap[iconName] || HelpCircle;
+        return <IconComponent size={22} strokeWidth={1.5} />;
+    };
 
     // Helper to create URL-friendly IDs
     const sanitizeId = (title) => title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-');
@@ -32,7 +57,7 @@ const Instituto = ({ content }) => {
                     <div className="pillars-grid" id="instituto-projects">
                         {PROJECTS.map((proj, index) => (
                             <div key={index} id={sanitizeId(proj.title)} className={`pillar-card reveal reveal-delay-${index}`}>
-                                <div className="pillar-icon">{proj.icon}</div>
+                                <div className="pillar-icon">{renderIcon(proj.icon)}</div>
                                 <h4>{proj.title}</h4>
                                 <p>{proj.desc}</p>
                             </div>

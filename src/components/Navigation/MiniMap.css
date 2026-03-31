@@ -1,0 +1,97 @@
+.mini-map-container {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.mini-map-track {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  align-items: flex-end;
+}
+
+.mini-map-track::before {
+  content: '';
+  position: absolute;
+  right: 5px; /* Centered with 12px dots */
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: rgba(12, 26, 48, 0.1); /* Darker track for visibility */
+  z-index: -1;
+}
+
+.mini-map-dot-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  height: 12px;
+  padding-right: 20px; /* Space for the dot */
+}
+
+.mini-map-label {
+  color: #0c1a30; /* Dark Navy for contrast */
+  font-size: 0.65rem;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mini-map-dot {
+  position: absolute;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #c9a84c;
+  background: #0c1a30; /* Dark background for the dot itself */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.mini-map-dot-wrapper:hover .mini-map-label {
+  opacity: 1;
+  transform: translateX(-10px); /* Move towards the dot */
+}
+
+.mini-map-dot-wrapper:hover .mini-map-dot {
+  background: #c9a84c;
+  transform: scale(1.3);
+}
+
+.mini-map-dot-wrapper.active .mini-map-dot {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.5);
+}
+
+.mini-map-dot-wrapper.active .mini-map-label {
+  opacity: 1;
+  transform: translateX(-10px);
+  background: #0c1a30;
+  color: #fff;
+  border-color: #c9a84c;
+}
+
+@media (max-width: 768px) {
+  .mini-map-container {
+    display: none; /* Hide on small screens to avoid clutter */
+  }
+}
