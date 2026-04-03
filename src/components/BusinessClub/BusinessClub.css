@@ -1,0 +1,319 @@
+.business-club {
+    padding: 6rem 0;
+    min-height: 100vh;
+    background: var(--navy-deep);
+    color: var(--white);
+}
+
+.bc-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+.bc-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.bc-header p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.bc-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.bc-tabs button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.bc-tabs button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.bc-tabs button.active {
+    background: var(--gold-lt);
+    color: var(--navy-dark);
+    border-color: var(--gold-lt);
+    font-weight: 600;
+}
+
+.talent-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.relationship-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--gold-lt);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    white-space: nowrap;
+}
+
+/* Jobs Grid */
+.jobs-grid, .talents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.job-card, .talent-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.job-card:hover, .talent-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--gold-mid);
+}
+
+.job-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-lt);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+}
+
+.job-card h3, .talent-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold-lt);
+}
+
+.job-card .company, .talent-card .role {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+}
+
+.job-meta, .experience {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.job-meta span, .experience {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.description, .bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+.btn-apply {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid var(--gold-lt);
+    color: var(--gold-lt);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.btn-apply:hover {
+    background: var(--gold-lt);
+    color: var(--navy-dark);
+}
+
+/* Talent Specific */
+.talent-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.talent-avatar {
+    width: 4rem;
+    height: 4rem;
+    background: var(--gold-dk);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.talent-avatar.p-0 {
+    padding: 0;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.skill-tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.talent-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--gold-lt);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.action-link:hover {
+    opacity: 0.7;
+}
+
+/* Form Section */
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 3rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-container h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--gold-lt);
+    text-align: center;
+}
+
+.form-container p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 3rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.field {
+    margin-bottom: 1.5rem;
+}
+
+.field label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.field input, .field textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--gold-lt);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 0;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.empty-state p {
+    margin-top: 1rem;
+    font-family: 'Cinzel', serif;
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem 0;
+    font-family: 'Cinzel', serif;
+    color: var(--gold-lt);
+}

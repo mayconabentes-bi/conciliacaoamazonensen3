@@ -47,6 +47,8 @@ import HistoryPage from './pages/HistoryPage';
 import AcademyPage from './pages/AcademyPage';
 import InstitutePage from './pages/InstitutePage';
 import NominataPage from './pages/NominataPage';
+import BusinessClubPage from './pages/BusinessClubPage';
+import ResumeRegistrationPage from './pages/ResumeRegistrationPage';
 
 // Admin Components
 import Login from './admin/Login';
@@ -66,6 +68,7 @@ import TestimonialsEditor from './admin/editors/TestimonialsEditor';
 import NewsletterEditor from './admin/editors/NewsletterEditor';
 import GenericSectionEditor from './admin/editors/GenericSectionEditor';
 import SessionsEditor from './admin/editors/SessionsEditor';
+import BusinessClubEditor from './admin/editors/BusinessClubEditor';
 
 
 // AppContent lives INSIDE the Router so hooks like useReveal (which calls useLocation) work correctly.
@@ -97,6 +100,8 @@ const AppContent = () => {
                 <Route path="/historia" element={<HistoryPage content={content} />} />
                 <Route path="/academia" element={<AcademyPage content={content} />} />
                 <Route path="/instituto" element={<InstitutePage content={content} />} />
+                <Route path="/clube-negocios" element={<BusinessClubPage content={content} />} />
+                <Route path="/clube-negocios/cadastro" element={<ResumeRegistrationPage />} />
                 <Route path="/nominata" element={<NominataPage content={content} />} />
             </Route>
 
@@ -121,6 +126,7 @@ const AppContent = () => {
                 <Route path="testimonials" element={<TestimonialsEditor content={content.testimonials} onUpdate={(data) => updateSection('testimonials', data)} />} />
                 <Route path="newsletter" element={<NewsletterEditor content={content.newsletter} onUpdate={(data) => updateSection('newsletter', data)} />} />
                 <Route path="sessions" element={<SessionsEditor content={content.sessions} onUpdate={(data) => updateSection('sessions', data)} />} />
+                <Route path="business-club" element={<BusinessClubEditor />} />
                 
                 {/* History & Info Pages */}
                 <Route path="history-general" element={<GenericSectionEditor title="Maçonaria Geral" content={content.historyGeneral} onUpdate={(data) => updateSection('historyGeneral', data)} />} />

@@ -116,6 +116,9 @@ const AdminLayout = ({ setAuth }) => {
                     <NavLink to="/admin/clube-acacias" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <FileText size={18} /> Clube das Acácias
                     </NavLink>
+                    <NavLink to="/admin/business-club" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <Briefcase size={18} /> Clube de Negócios
+                    </NavLink>
                     <NavLink to="/admin/footer" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <ScrollText size={18} /> Rodapé (Footer)
                     </NavLink>
