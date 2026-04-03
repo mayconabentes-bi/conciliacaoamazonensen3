@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { 
     GraduationCap, 
     Library, 
@@ -55,13 +56,36 @@ const Instituto = ({ content }) => {
                     </div>
 
                     <div className="pillars-grid" id="instituto-projects">
-                        {PROJECTS.map((proj, index) => (
-                            <div key={index} id={sanitizeId(proj.title)} className={`pillar-card reveal reveal-delay-${index}`}>
-                                <div className="pillar-icon">{renderIcon(proj.icon)}</div>
-                                <h4>{proj.title}</h4>
-                                <p>{proj.desc}</p>
-                            </div>
-                        ))}
+                        {PROJECTS.map((proj, index) => {
+                            const CardContent = (
+                                <>
+                                    <div className="pillar-icon">{renderIcon(proj.icon)}</div>
+                                    <h4>{proj.title}</h4>
+                                    <p>{proj.desc}</p>
+                                    {proj.link && <span className="card-link-hint">Ver detalhes →</span>}
+                                </>
+                            );
+
+                            if (proj.link) {
+                                return (
+                                    <Link 
+                                        key={index} 
+                                        to={proj.link} 
+                                        id={sanitizeId(proj.title)} 
+                                        className={`pillar-card reveal reveal-delay-${index} clickable`}
+                                        style={{ textDecoration: 'none', color: 'inherit' }}
+                                    >
+                                        {CardContent}
+                                    </Link>
+                                );
+                            }
+
+                            return (
+                                <div key={index} id={sanitizeId(proj.title)} className={`pillar-card reveal reveal-delay-${index}`}>
+                                    {CardContent}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

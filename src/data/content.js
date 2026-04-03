@@ -354,7 +354,8 @@ export const CONTENT = {
             {
                 icon: 'Users',
                 title: 'Clube de Negócios',
-                desc: 'Rede de colaboração entre irmãos e parceiros focada na prosperidade e auxílio mútuo.'
+                desc: 'Rede de colaboração entre irmãos e parceiros focada na prosperidade e auxílio mútuo.',
+                link: '/clube-negocios'
             }
         ]
     },
@@ -574,7 +575,7 @@ export const CONTENT = {
                             { label: 'Projeto Ribeirinho', href: '/instituto' },
                             { label: 'Jovens Empreendedores', href: '/instituto' },
                             { label: 'Acervo Histórico', href: '/instituto' },
-                            { label: 'Clube de Negócios', href: '/instituto' }
+                            { label: 'Clube de Negócios', href: '/clube-negocios' }
                         ]
                     }
                 ]
