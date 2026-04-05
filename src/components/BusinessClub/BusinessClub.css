@@ -317,3 +317,175 @@
     font-family: 'Cinzel', serif;
     color: var(--gold-lt);
 }
+
+/* Modal de Candidatura */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #0a1628, #0d1b2a);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    animation: slideUp 0.4s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-job-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold-lt);
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--gold-lt);
+    margin-bottom: 0.5rem;
+}
+
+.modal-company {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-form .field label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modal-form .btn-gold {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Success State */
+.application-success {
+    text-align: center;
+    padding: 2rem 0;
+    animation: fadeIn 0.5s ease;
+}
+
+.application-success svg {
+    color: #4ade80;
+    margin-bottom: 1.5rem;
+}
+
+.application-success h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    color: var(--gold-lt);
+    margin-bottom: 1rem;
+}
+
+.application-success p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.application-success .success-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 2rem;
+}
+
+.application-success .btn-gold {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* btn-gold shared */
+.btn-gold {
+    display: block;
+    padding: 1rem;
+    background: var(--gold-lt);
+    color: var(--navy-dark);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background: var(--gold-dk);
+}
+
+.btn-gold:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+    }
+}

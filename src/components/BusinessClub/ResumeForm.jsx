@@ -15,12 +15,16 @@ const ResumeForm = () => {
         full_name: '',
         role: '',
         relationship: '',
+        lodge_name: '',
+        mason_name: '',
         experience_years: '',
         bio: '',
         skills: '',
         contact_email: '',
         linkedin_url: ''
     });
+
+    const [isMasonicMember, setIsMasonicMember] = useState(null); // null = not chosen, true/false
 
     const relationships = [
         'Irmão (Membro Regular)',
@@ -77,6 +81,9 @@ const ResumeForm = () => {
             
             const { error } = await supabase.from('resumes').insert([{
                 ...formData,
+                relationship: isMasonicMember ? formData.relationship : 'Comunidade Externa',
+                lodge_name: isMasonicMember ? formData.lodge_name : null,
+                mason_name: isMasonicMember ? formData.mason_name : null,
                 photo_url,
                 skills: skillsArray,
                 experience_years: parseInt(formData.experience_years) || 0,
@@ -126,24 +133,59 @@ const ResumeForm = () => {
                                 </div>
 
                                 <div className="form-grid">
-                                    <div className="field">
+                                    <div className="field" style={{ gridColumn: '1 / -1' }}>
                                         <label>Nome Completo</label>
                                         <input type="text" name="full_name" value={formData.full_name} onChange={handleInputChange} required />
                                     </div>
-                                    <div className="field">
-                                        <label>Vínculo Maçônico</label>
-                                        <select name="relationship" value={formData.relationship} onChange={handleInputChange} required>
-                                            <option value="">Selecione seu vínculo...</option>
-                                            {relationships.map((rel, i) => (
-                                                <option key={i} value={rel}>{rel}</option>
-                                            ))}
-                                        </select>
+                                </div>
+
+                                <div className="masonic-toggle">
+                                    <label className="toggle-label">Você é membro da Maçonaria ou parente de um Maçom?</label>
+                                    <div className="toggle-buttons">
+                                        <button 
+                                            type="button"
+                                            className={`toggle-btn ${isMasonicMember === true ? 'active' : ''}`}
+                                            onClick={() => setIsMasonicMember(true)}
+                                        >
+                                            Sim
+                                        </button>
+                                        <button 
+                                            type="button"
+                                            className={`toggle-btn ${isMasonicMember === false ? 'active' : ''}`}
+                                            onClick={() => { setIsMasonicMember(false); setFormData(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); }}
+                                        >
+                                            Não
+                                        </button>
                                     </div>
                                 </div>
 
+                                {isMasonicMember === true && (
+                                    <div className="masonic-fields" style={{ animation: 'slideDown 0.4s ease' }}>
+                                        <div className="field">
+                                            <label>Vínculo Maçônico</label>
+                                            <select name="relationship" value={formData.relationship} onChange={handleInputChange} required>
+                                                <option value="">Selecione seu vínculo...</option>
+                                                {relationships.map((rel, i) => (
+                                                    <option key={i} value={rel}>{rel}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="form-grid">
+                                            <div className="field">
+                                                <label>Nome da Loja Maçônica</label>
+                                                <input type="text" name="lodge_name" value={formData.lodge_name} onChange={handleInputChange} placeholder="Ex: Conciliação Amazonense Nº 3" required />
+                                            </div>
+                                            <div className="field">
+                                                <label>Nome do Maçom (Referência)</label>
+                                                <input type="text" name="mason_name" value={formData.mason_name} onChange={handleInputChange} placeholder="Nome do Irmão relacionado" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
                                 <button 
                                     className="btn-gold block" 
-                                    disabled={!formData.full_name || !formData.relationship}
+                                    disabled={!formData.full_name || isMasonicMember === null || (isMasonicMember && (!formData.relationship || !formData.lodge_name || !formData.mason_name))}
                                     onClick={() => setStep(2)}
                                 >
                                     Continuar para dados técnicos <ArrowRight size={18} />
@@ -244,6 +286,19 @@ const ResumeForm = () => {
                 .success-card .margin-auto { margin: 0 auto 2rem; display: block; }
                 .text-center { text-align: center; }
                 .block { width: 100%; display: flex; justify-content: center; gap: 10px; padding: 1rem; }
+
+                .masonic-toggle { margin-bottom: 2rem; }
+                .toggle-label { display: block; font-family: 'Cinzel', serif; font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+                .toggle-buttons { display: flex; gap: 1rem; justify-content: center; }
+                .toggle-btn { padding: 0.7rem 2.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); border-radius: 6px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; transition: all 0.3s; }
+                .toggle-btn:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+                .toggle-btn.active { background: var(--gold-lt); color: var(--navy-dark); border-color: var(--gold-lt); font-weight: 600; }
+                .masonic-fields { margin-bottom: 1rem; }
+
+                @keyframes slideDown {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
                 
                 @media (max-width: 600px) {
                     .form-grid, .form-row-multi { grid-template-columns: 1fr; flex-direction: column; }

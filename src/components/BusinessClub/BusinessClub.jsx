@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User } from 'lucide-react';
+import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User, X, CheckCircle, Phone, Send } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import './BusinessClub.css';
@@ -11,6 +11,18 @@ const BusinessClub = ({ content }) => {
     const [resumes, setResumes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
+    const [selectedJob, setSelectedJob] = useState(null);
+    const [applicationSent, setApplicationSent] = useState(false);
+    const [appForm, setAppForm] = useState({
+        applicant_name: '',
+        applicant_email: '',
+        applicant_phone: '',
+        cover_message: '',
+        relationship: '',
+        lodge_name: '',
+        mason_name: ''
+    });
+    const [isMasonicApplicant, setIsMasonicApplicant] = useState(null);
     const [formData, setFormData] = useState({
         full_name: '',
         role: '',
@@ -86,6 +98,48 @@ const BusinessClub = ({ content }) => {
         }
     };
 
+    const handleApply = (job) => {
+        setSelectedJob(job);
+        setApplicationSent(false);
+        setAppForm({ applicant_name: '', applicant_email: '', applicant_phone: '', cover_message: '', relationship: '', lodge_name: '', mason_name: '' });
+        setIsMasonicApplicant(null);
+    };
+
+    const closeModal = () => {
+        setSelectedJob(null);
+        setApplicationSent(false);
+    };
+
+    const handleAppFormChange = (e) => {
+        const { name, value } = e.target;
+        setAppForm(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmitApplication = async (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+        try {
+            const { error } = await supabase.from('job_applications').insert([{
+                job_id: selectedJob.id,
+                job_title: selectedJob.title,
+                company: selectedJob.company,
+                applicant_name: appForm.applicant_name,
+                applicant_email: appForm.applicant_email,
+                applicant_phone: appForm.applicant_phone,
+                cover_message: appForm.cover_message,
+                relationship: isMasonicApplicant ? appForm.relationship : 'Comunidade Externa',
+                lodge_name: isMasonicApplicant ? appForm.lodge_name : null,
+                mason_name: isMasonicApplicant ? appForm.mason_name : null
+            }]);
+            if (error) throw error;
+            setApplicationSent(true);
+        } catch (error) {
+            alert('Erro ao enviar candidatura: ' + error.message);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
     return (
         <section className="business-club">
             <div className="container">
@@ -133,7 +187,7 @@ const BusinessClub = ({ content }) => {
                                                 {job.salary && <span><DollarSign size={14} /> {job.salary}</span>}
                                             </div>
                                             <p className="description">{job.description}</p>
-                                            <button className="btn-apply">Candidatar-se</button>
+                                            <button className="btn-apply" onClick={() => handleApply(job)}>Candidatar-se</button>
                                         </div>
                                     ))}
                                 </div>
@@ -246,6 +300,93 @@ const BusinessClub = ({ content }) => {
                     )}
                 </div>
             </div>
+
+            {/* Modal de Candidatura */}
+            {selectedJob && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}><X size={20} /></button>
+                        
+                        {applicationSent ? (
+                            <div className="application-success">
+                                <CheckCircle size={64} />
+                                <h3>Candidatura Enviada!</h3>
+                                <p>Sua candidatura para <strong>{selectedJob.title}</strong> em <strong>{selectedJob.company}</strong> foi registrada com sucesso.</p>
+                                <p className="success-sub">A empresa entrará em contato através do e-mail informado.</p>
+                                <button className="btn-gold" onClick={closeModal}>Fechar</button>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="modal-header">
+                                    <div className="modal-job-badge">{selectedJob.type}</div>
+                                    <h3>{selectedJob.title}</h3>
+                                    <p className="modal-company">{selectedJob.company} — {selectedJob.location}</p>
+                                </div>
+                                <form onSubmit={handleSubmitApplication} className="modal-form">
+                                    <div className="field">
+                                        <label><User size={14} /> Nome Completo</label>
+                                        <input type="text" name="applicant_name" value={appForm.applicant_name} onChange={handleAppFormChange} placeholder="Seu nome completo" required />
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="field">
+                                            <label><Mail size={14} /> E-mail</label>
+                                            <input type="email" name="applicant_email" value={appForm.applicant_email} onChange={handleAppFormChange} placeholder="seu@email.com" required />
+                                        </div>
+                                        <div className="field">
+                                            <label><Phone size={14} /> Telefone</label>
+                                            <input type="tel" name="applicant_phone" value={appForm.applicant_phone} onChange={handleAppFormChange} placeholder="(92) 99999-9999" />
+                                        </div>
+                                    </div>
+
+                                    <div className="masonic-toggle">
+                                        <label className="toggle-label">Você é membro da Maçonaria ou parente de um Maçom?</label>
+                                        <div className="toggle-buttons">
+                                            <button type="button" className={`toggle-btn ${isMasonicApplicant === true ? 'active' : ''}`} onClick={() => setIsMasonicApplicant(true)}>Sim</button>
+                                            <button type="button" className={`toggle-btn ${isMasonicApplicant === false ? 'active' : ''}`} onClick={() => { setIsMasonicApplicant(false); setAppForm(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); }}>Não</button>
+                                        </div>
+                                    </div>
+
+                                    {isMasonicApplicant === true && (
+                                        <div className="masonic-fields" style={{ animation: 'slideDown 0.4s ease' }}>
+                                            <div className="field">
+                                                <label>Vínculo Maçônico</label>
+                                                <select name="relationship" value={appForm.relationship} onChange={handleAppFormChange} required>
+                                                    <option value="">Selecione seu vínculo...</option>
+                                                    <option value="Irmão (Membro Regular)">Irmão (Membro Regular)</option>
+                                                    <option value="Cunhada (Esposa/Viúva de Maçom)">Cunhada (Esposa/Viúva de Maçom)</option>
+                                                    <option value="Sobrinha (Filha de Maçom)">Sobrinha (Filha de Maçom)</option>
+                                                    <option value="Sobrinho (Filho de Maçom)">Sobrinho (Filho de Maçom)</option>
+                                                    <option value="Baixa (Parente de Maçom)">Baixa (Parente de Maçom)</option>
+                                                    <option value="Comunidade Maçônica">Comunidade Maçônica</option>
+                                                    <option value="Outro">Outro</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-row">
+                                                <div className="field">
+                                                    <label>Nome da Loja Maçônica</label>
+                                                    <input type="text" name="lodge_name" value={appForm.lodge_name} onChange={handleAppFormChange} placeholder="Ex: Conciliação Amazonense Nº 3" required />
+                                                </div>
+                                                <div className="field">
+                                                    <label>Nome do Maçom</label>
+                                                    <input type="text" name="mason_name" value={appForm.mason_name} onChange={handleAppFormChange} placeholder="Nome do Irmão relacionado" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="field">
+                                        <label><Send size={14} /> Mensagem de Apresentação</label>
+                                        <textarea name="cover_message" value={appForm.cover_message} onChange={handleAppFormChange} rows={4} placeholder="Conte brevemente por que você é ideal para esta vaga..." required></textarea>
+                                    </div>
+                                    <button type="submit" className="btn-gold" disabled={submitting || isMasonicApplicant === null || (isMasonicApplicant && (!appForm.relationship || !appForm.lodge_name || !appForm.mason_name))}>
+                                        {submitting ? 'Enviando...' : 'Enviar Candidatura'}
+                                    </button>
+                                </form>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
