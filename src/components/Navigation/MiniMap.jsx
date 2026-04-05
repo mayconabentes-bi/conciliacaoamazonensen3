@@ -5,7 +5,6 @@ import './MiniMap.css';
 const sections = [
   { id: 'hero', label: 'Início' },
   { id: 'intro', label: 'Introdução' },
-  { id: 'valores', label: 'Valores' },
   { id: 'historia', label: 'História' },
   { id: 'academia', label: 'Academia' },
   { id: 'instituto', label: 'Instituto' },

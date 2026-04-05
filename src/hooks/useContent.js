@@ -16,6 +16,7 @@ export const useContent = () => {
             data.historyBrazil = INITIAL_CONTENT.historyBrazil;
             data.historyAmazonas = INITIAL_CONTENT.historyAmazonas;
             data.historyGlomam = INITIAL_CONTENT.historyGlomam;
+            data.hero = INITIAL_CONTENT.hero;
             data.history = INITIAL_CONTENT.history;
             data.institute = INITIAL_CONTENT.institute;
             data.academy = INITIAL_CONTENT.academy;
@@ -26,6 +27,7 @@ export const useContent = () => {
             data.nominata = INITIAL_CONTENT.nominata;
             data.sessions = INITIAL_CONTENT.sessions;
             data.clubeAcacias = INITIAL_CONTENT.clubeAcacias;
+            data.reea = INITIAL_CONTENT.reea;
             data.nav = INITIAL_CONTENT.nav;
             data.footer = INITIAL_CONTENT.footer;
             data.testimonials = INITIAL_CONTENT.testimonials;
@@ -133,7 +135,11 @@ export const useContent = () => {
 
             if (error) {
                 console.error('Erro ao salvar no Supabase:', error);
-                alert('Erro ao salvar no servidor. Verifique o console.');
+                if (error.code === '401' || error.code === '403' || error.message?.includes('row-level security') || error.code === '42501') {
+                    alert('🔒 Erro de Permissão: Sua sessão expirou ou você não tem acesso de administrador. Recarregue a página e faça o login novamente.');
+                } else {
+                    alert('Erro ao salvar no servidor. Verifique o console.');
+                }
             }
         } catch (err) {
             console.error('Erro na sincronização:', err);

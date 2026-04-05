@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import './Navbar.css';
 import logoImg from '../../assets/logo-conciliacao.png';
+import OrbitalLogo from './OrbitalLogo';
 
 const Navbar = ({ content, sessions }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -92,7 +93,7 @@ const Navbar = ({ content, sessions }) => {
                 <div className="container">
                     <div className="nav-inner">
                         <Link to="/" className="nav-logo">
-                            <img src={logoImg} alt={`Logo ${content.logo.sub}`} />
+                            <OrbitalLogo size={isScrolled ? 48 : 56} />
                             <div className="nav-logo-text">
                                 <span className="official-name">
                                     GRANDE BENEMÉRITA LOJA SIMBÓLICA<br />

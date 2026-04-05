@@ -8,7 +8,7 @@ const ValuesStrip = ({ content, activeIndex, onTabClick }) => {
     }));
 
     // Se preferir números romanos fixos como no original:
-    const ROMANS = ['I', 'II', 'III', 'IV'];
+    const ROMANS = ['I', 'II', 'III', 'IV', 'V'];
 
     return (
         <div className="values-strip">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 import { 
     LayoutDashboard, 
     Image as ImageIcon, 
@@ -27,7 +28,8 @@ import './Admin.css';
 const AdminLayout = ({ setAuth }) => {
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
         setAuth(false);
         navigate('/');
     };
@@ -116,6 +118,9 @@ const AdminLayout = ({ setAuth }) => {
                     </NavLink>
                     <NavLink to="/admin/clube-acacias" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <FileText size={18} /> Clube das Acácias
+                    </NavLink>
+                    <NavLink to="/admin/reea" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <ScrollText size={18} /> O Rito (REAA)
                     </NavLink>
                     <NavLink to="/admin/business-club" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <Briefcase size={18} /> Espaço de Integração e Ofício

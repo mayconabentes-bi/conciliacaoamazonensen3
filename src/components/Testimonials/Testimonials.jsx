@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './Testimonials.css';
+import PasswordGateModal from '../Academia/PasswordGateModal';
+import { useGrauAccess } from '../../hooks/useGrauAccess';
 
 const Testimonials = ({ content, onSubmit }) => {
     const data = content;
     const TESTIMONIALS = data.list;
 
-    const [secretWord, setSecretWord] = useState('');
     const [isFormVisible, setIsFormVisible] = useState(false);
+    const [showGate, setShowGate] = useState(false);
+    const [pendingGrau, setPendingGrau] = useState(null);
+    const { verifyPassword, getGrauConfig } = useGrauAccess();
+    
     const [formData, setFormData] = useState({
         author: '',
         info: '', // This will be the Lodge
@@ -15,14 +20,17 @@ const Testimonials = ({ content, onSubmit }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
 
-    const handleSecretWordChange = (e) => {
-        const word = e.target.value;
-        setSecretWord(word);
-        // Obfuscation check for "PAZ"
-        const secret = String.fromCharCode(80, 65, 90);
-        if (word === secret) {
-            setIsFormVisible(true);
+    const handlePasswordAttempt = (senhaDigitada) => {
+        if (!pendingGrau) return false;
+        
+        if (verifyPassword(pendingGrau, senhaDigitada)) {
+            setTimeout(() => {
+                setIsFormVisible(true);
+                setShowGate(false);
+            }, 1000);
+            return true;
         }
+        return false;
     };
 
     const handleFormChange = (e) => {
@@ -49,7 +57,7 @@ const Testimonials = ({ content, onSubmit }) => {
             setFormData({ author: '', info: '', text: '' });
             setTimeout(() => {
                 setIsFormVisible(false);
-                setSecretWord('');
+                setPendingGrau(null);
                 setSubmitStatus(null);
             }, 3000);
         } catch (err) {
@@ -87,16 +95,27 @@ const Testimonials = ({ content, onSubmit }) => {
 
                 <div className="testimonials-submission reveal">
                     {!isFormVisible ? (
-                        <div className="secret-word-container">
-                            <label htmlFor="secret-word">Deseja enviar seu depoimento? Digite a palavra semestral em letras maiúsculas:</label>
-                            <input
-                                type="password"
-                                id="secret-word"
-                                value={secretWord}
-                                onChange={handleSecretWordChange}
-                                placeholder="Palavra secreta..."
-                                className="secret-input"
-                            />
+                        <div className="degree-selector-container">
+                            <h3>Deseja enviar seu depoimento?</h3>
+                            <p>Identifique seu grau para acessar o formulário:</p>
+                            <div className="degree-cards">
+                                {[1, 2, 3].map((g) => (
+                                    <button 
+                                        key={g} 
+                                        className={`degree-card degree-${g}`}
+                                        onClick={() => {
+                                            setPendingGrau(g);
+                                            setShowGate(true);
+                                        }}
+                                    >
+                                        <div className="degree-card-icon">{g === 1 ? '⊿' : g === 2 ? '⬠' : '☆'}</div>
+                                        <div className="degree-card-info">
+                                            <span>{g}° Grau</span>
+                                            <strong>{g === 1 ? 'Aprendiz' : g === 2 ? 'Companheiro' : 'Mestre'}</strong>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     ) : (
                         <div className="testimonial-form-card">
@@ -156,6 +175,15 @@ const Testimonials = ({ content, onSubmit }) => {
                     )}
                 </div>
             </div>
+
+            {showGate && pendingGrau && (
+                <PasswordGateModal
+                    grau={pendingGrau}
+                    pergunta={getGrauConfig(pendingGrau)?.pergunta}
+                    onSuccess={handlePasswordAttempt}
+                    onClose={() => setShowGate(false)}
+                />
+            )}
         </section>
     );
 };

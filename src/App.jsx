@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // Error Boundary — Prevents blank screen on unexpected render crashes
@@ -39,6 +39,7 @@ class ErrorBoundary extends React.Component {
 
 import { useReveal } from './hooks/useReveal';
 import { useContent } from './hooks/useContent';
+import { supabase } from './lib/supabase';
 
 // Public Pages & Layouts
 import PublicLayout from './layouts/PublicLayout';
@@ -77,6 +78,22 @@ const AppContent = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const { content, updateSection, submitTestimonial } = useContent();
     useReveal();
+
+    // Init Session Status
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setIsAuthenticated(!!session);
+        };
+        
+        checkSession();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setIsAuthenticated(!!session);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     const syncHeroSlide = (index) => {
         const carouselEvent = new CustomEvent('syncHero', { detail: index });
@@ -118,7 +135,7 @@ const AppContent = () => {
                 <Route path="intro" element={<IntroEditor content={content.intro} onUpdate={(data) => updateSection('intro', data)} />} />
                 <Route path="hero" element={<HeroEditor content={content.hero} onUpdate={(data) => updateSection('hero', data)} />} />
                 <Route path="history" element={<HistoryEditor content={content.history} onUpdate={(data) => updateSection('history', data)} />} />
-                <Route path="values" element={<ValuesEditor content={content.values} onUpdate={(data) => updateSection('values', data)} />} />
+
                 <Route path="academy" element={<AcademyEditor content={content.academy} onUpdate={(data) => updateSection('academy', data)} />} />
                 <Route path="institute" element={<InstituteEditor content={content.institute} onUpdate={(data) => updateSection('institute', data)} />} />
                 <Route path="nominata" element={<NominataEditor content={content.nominata} onUpdate={(data) => updateSection('nominata', data)} />} />
@@ -134,6 +151,7 @@ const AppContent = () => {
                 <Route path="history-amazonas" element={<GenericSectionEditor title="Maçonaria no Amazonas" content={content.historyAmazonas} onUpdate={(data) => updateSection('historyAmazonas', data)} />} />
                 <Route path="history-glomam" element={<GenericSectionEditor title="GLOMAM" content={content.historyGlomam} onUpdate={(data) => updateSection('historyGlomam', data)} />} />
                 <Route path="clube-acacias" element={<GenericSectionEditor title="Clube das Acácias" content={content.clubeAcacias} onUpdate={(data) => updateSection('clubeAcacias', data)} />} />
+                <Route path="reea" element={<GenericSectionEditor title="O Rito (REAA)" content={content.reea} onUpdate={(data) => updateSection('reea', data)} />} />
                 
                 {/* Academy Extended */}
                 <Route path="library" element={<GenericSectionEditor title="Academia: Biblioteca" content={content.library} onUpdate={(data) => updateSection('library', data)} />} />

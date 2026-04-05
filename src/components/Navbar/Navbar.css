@@ -100,16 +100,10 @@
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px; /* Increased gap for orbital rings */
     text-decoration: none;
     flex: 0 0 auto;
-}
-
-.nav-logo img {
-    width: 56px; /* Larger logo */
-    height: 56px;
-    flex-shrink: 0;
-    object-fit: contain;
+    margin-right: 8px; /* Extra breathing room */
 }
 
 .nav-logo-text .official-name {

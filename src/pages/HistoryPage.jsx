@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import History from '../components/History/History';
 import HistoryGeneral from '../components/HistoryGeneral/HistoryGeneral';
+import { CONTENT as INITIAL_CONTENT } from '../data/content';
 import './HistoryPage.css';
 
 const HistoryPage = ({ content }) => {
@@ -15,6 +16,7 @@ const HistoryPage = ({ content }) => {
         else if (hash === '#maconaria-amazonas') setActiveTab('amazonas');
         else if (hash === '#glomam') setActiveTab('glomam');
         else if (hash === '#clube-acacias') setActiveTab('acacias');
+        else if (hash === '#reea') setActiveTab('reea');
         else setActiveTab('historia');
         
         window.scrollTo(0, 0);
@@ -25,7 +27,8 @@ const HistoryPage = ({ content }) => {
         { id: 'brasil', label: 'Maçonaria no Brasil' },
         { id: 'amazonas', label: 'Maçonaria no Amazonas' },
         { id: 'glomam', label: 'A GLOMAM' },
-        { id: 'acacias', label: 'Clube das Acácias' }
+        { id: 'acacias', label: 'Clube das Acácias' },
+        { id: 'reea', label: 'O Rito (REAA)' }
     ];
 
     const handleTabClick = (tabId) => {
@@ -34,7 +37,8 @@ const HistoryPage = ({ content }) => {
             'brasil': '#maconaria-brasil',
             'amazonas': '#maconaria-amazonas',
             'glomam': '#glomam',
-            'acacias': '#clube-acacias'
+            'acacias': '#clube-acacias',
+            'reea': '#reea'
         };
         navigate(`/historia${hashes[tabId]}`);
     };
@@ -85,7 +89,20 @@ const HistoryPage = ({ content }) => {
                         )}
                         {activeTab === 'acacias' && (
                             <div className="tab-pane-transition">
-                                <HistoryGeneral content={content.clubeAcacias} />
+                                <HistoryGeneral content={
+                                    (content.clubeAcacias?.sections?.[0]?.title?.includes('Simbolismo')) 
+                                    ? content.clubeAcacias 
+                                    : INITIAL_CONTENT.clubeAcacias
+                                } />
+                            </div>
+                        )}
+                        {activeTab === 'reea' && (
+                            <div className="tab-pane-transition">
+                                <HistoryGeneral content={
+                                    (content.reea?.sections?.[0]?.title?.includes('Rito')) 
+                                    ? content.reea 
+                                    : INITIAL_CONTENT.reea
+                                } />
                             </div>
                         )}
                     </main>

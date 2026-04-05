@@ -3,44 +3,53 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '3.0.0', // Academy Grau System + Courses
+    version: '3.4.0', // Forced sync for Acacias and REEA
     hero: {
         slides: [
             {
-                tag: 'Oriente de Manaus · Desde 1894',
-                title: 'Construindo uma sociedade',
-                strong: 'com Integridade',
-                description: 'Honestidade, confiabilidade e princípios sólidos formam a base de um caráter virtuoso. A Maçonaria cultiva esses valores em cada irmão, gerando homens de palavra e ação.',
-                btnText: 'Descobrir a Maçonaria',
+                tag: 'Oriente de Manaus · Desde 1892',
+                title: '132 anos de',
+                strong: 'Tradição na Amazônia',
+                description: 'Fundada em 1892 – 3ª Loja mais antiga de Manaus e do Amazonas. Sob a jurisdição da Grande Loja Maçônica do Amazonas – GLOMAM. Fundada em 1904, a primeira Grande Loja do Brasil.',
+                btnText: 'Nossa História',
                 btnLink: '/historia',
-                value: 'Integridade'
+                value: 'Tradição'
             },
             {
-                tag: 'Fraternidade Universal',
-                title: 'Uma base comum para',
-                strong: 'Amizade Verdadeira',
-                description: 'A Maçonaria oferece a seus membros a oportunidade de construir amizades profundas e duradouras com pessoas de diferentes origens, unidas por valores e propósitos comuns.',
-                btnText: 'Conhecer a Loja',
-                btnLink: '/historia',
-                value: 'Amizade'
+                tag: 'Pilares Maçônicos',
+                title: 'Liberdade · Igualdade',
+                strong: 'Fraternidade',
+                description: 'Valores da GLOMAM – primeira Grande Loja do Brasil. Sabedoria · Força · Beleza: Pilares da ação maçônica em nossa jurisdição.',
+                btnText: 'Nossa Instituição',
+                btnLink: '/historia#glomam',
+                value: 'Valores'
             },
             {
-                tag: 'Diversidade · Inclusão · Harmonia',
-                title: 'Tratar cada um com',
-                strong: 'Respeito e Dignidade',
-                description: 'Desde suas origens, a Maçonaria respeita as crenças de seus membros. Um espaço onde diferentes origens convergem, cultivando tolerância e harmonia genuína.',
-                btnText: 'Nossos Valores',
-                btnLink: '/#valores',
+                tag: 'Humanismo & Fé',
+                title: 'Respeito a todas as',
+                strong: 'Crenças e Culturas',
+                description: 'Valorização do Ser Humano – compromisso público da GLOMAM. A Maçonaria acolhe homens de todas as religiões com respeito absoluto à fé de cada um.',
+                btnText: 'Ações Sociais',
+                btnLink: '/instituto',
                 value: 'Respeito'
             },
             {
-                tag: 'Impacto Social · Amazônia',
-                title: 'Criando impacto através do',
-                strong: 'Serviço Comunitário',
-                description: 'Participar de eventos, arrecadar fundos para causas sociais ou voluntariar em organizações comunitárias — o serviço está no coração da Maçonaria Amazonense.',
+                tag: 'Dentro e Fora do Templo',
+                title: 'Trabalhamos pelo',
+                strong: 'Amazonas',
+                description: 'Caridade, educação e cultura – os frutos públicos da Maçonaria. Em parceria com a GLOMAM, levamos ajuda humanitária a quem mais precisa.',
                 btnText: 'Instituto Social',
                 btnLink: '/instituto',
-                value: 'Serviço'
+                value: 'Compromisso'
+            },
+            {
+                tag: 'Manaus/AM · Regularidade',
+                title: 'Rito Escocês',
+                strong: 'Antigo e Aceito',
+                description: 'Regularidade reconhecida pela Grande Loja Maçônica do Amazonas. Jurisdição GLOMAM – 50 Lojas ativas no Estado do Amazonas.',
+                btnText: 'Academia Filosófica',
+                btnLink: '/academia',
+                value: 'Rito'
             }
         ]
     },
@@ -228,37 +237,61 @@ export const CONTENT = {
         ],
         footer: 'Publicado pela Assessoria de Comunicação da G.B.L.S. Conciliação Amazonense Nº 3'
     },
-    values: {
-        tag: 'Nossos Fundamentos',
-        title: 'Os Quatro Pilares da Maçonaria',
-        description: 'Os valores fundamentais que definem quem somos, pelo que nos pautamos e o que fazemos.',
-        cards: [
+
+    reea: {
+        tag: 'Doutrina e Tradição',
+        title: 'Rito Escocês Antigo e Aceito (REAA)',
+        intro: 'O REAA é um dos sistemas ritualísticos mais praticados e conhecidos dentro da Maçonaria em todo o mundo. Suas raízes são profundas, unindo simbolismo cavalheiresco e filosófico em uma jornada de 33 graus.',
+        sections: [
             {
-                num: 'I',
-                title: 'Integridade',
-                description: 'Honestidade, confiabilidade, honra e responsabilidade formam a base de um caráter virtuoso. Cultivam confiança e revelam o compromisso com princípios sólidos.',
-                note: '"Seja em público ou na privacidade, o Maçom age sempre do mesmo modo."'
+                title: 'Origens e Evolução',
+                content: 'Apesar do nome "Escocês", o rito consolidou-se na França do século XVIII. Originado do Rito de Perfeição, foi posteriormente estruturado e formalizado nos Estados Unidos em 1801, em Charleston. No século XIX, Albert Pike desempenhou um papel crucial em sua revisão filosófica e expansão global.'
             },
             {
-                num: 'II',
-                title: 'Amizade',
-                description: 'A Maçonaria proporciona oportunidades para construir amizades profundas e duradouras com pessoas de todas as origens, unidas por interesses e valores comuns.',
-                note: '"Irmãos de Loja são irmãos para a vida — na prosperidade e na adversidade."'
+                title: 'A Estrutura dos 33 Graus',
+                content: 'O sistema é progressivo, iniciando nos Graus Simbólicos (1º ao 3º - Aprendiz, Companheiro e Mestre) praticados nas Lojas Azuis. Os Graus Filosóficos (4º ao 33º) aprofundam os estudos éticos e morais em corpos subordinados aos Supremos Conselhos.'
             },
             {
-                num: 'III',
-                title: 'Respeito',
-                description: 'Desde seus primórdios, a Maçonaria respeita as crenças de seus membros. Promove um ambiente onde a diversidade é valorizada e onde diferentes origens convergem em harmonia.',
-                note: '"Nenhum Maçom é superior a outro dentro do Templo — apenas mais experiente."'
-            },
-            {
-                num: 'IV',
-                title: 'Serviço',
-                description: 'Participar de eventos, apoiar causas sociais ou voluntariar na comunidade — o serviço está no coração da Maçonaria. Nossos membros contribuem com tempo, recursos e conhecimento.',
-                note: '"O serviço é o primeiro ensinamento recebido por todo novo Maçom."'
+                title: 'Princípios e Filosofia',
+                content: 'Orientado pela divisa "Ordo Ab Chao" (A Ordem vinda do Caos), o rito busca a harmonia individual e social. É um sistema ecumênico e teísta, exigindo a crença em um Ser Superior (Grande Arquiteto do Universo), mas mantendo independência de dogmas religiosos específicos.'
             }
-        ]
+        ],
+        attributes: [
+            { label: 'Origem', value: 'França / EUA (1801)' },
+            { label: 'Divisa', value: 'Ordo Ab Chao' },
+            { label: 'Estrutura', value: '33 Graus' },
+            { label: 'Caráter', value: 'Filosófico e Iniciático' }
+        ],
+        footer: 'Conteúdo de domínio público sobre a Ordem Maçônica.'
     },
+    clubeAcacias: {
+        tag: 'Apoio e Integração',
+        title: 'Clube das Acácias: O Coração da Família Maçônica',
+        intro: 'O Clube das Acácias é o braço feminino da Loja, composto pelas esposas, mães, irmãs e filhas de maçons. Sua atuação é vital para a harmonia interna e para o impacto social da Maçonaria na comunidade amazonense.',
+        sections: [
+            {
+                title: 'O Simbolismo da Acácia e a Cunhada',
+                content: 'Na tradição maçônica, a Acácia é o símbolo da imortalidade, da inocência e da pureza. Essas mesmas virtudes são atribuídas às esposas dos maçons, carinhosamente chamadas de "cunhadas".\n\nAssim como a acácia permanece sempre verde e resistente às intempéries, a esposa do maçom representa a resiliência e o suporte inabalável ao lar e à ordem. Ela é a guardiã da inocência e das virtudes que sustentam a família e a sociedade, sendo considerada o elo de "imortalidade" que garante a continuidade dos ideais maçônicos através das gerações.'
+            },
+            {
+                title: 'Atuação Social e Filantrópica',
+                content: 'O Clube é o motor caritativo da Loja. Através da organização de bazares, chás beneficentes e campanhas de arrecadação, as integrantes transformam ideais em ajuda prática. Seu trabalho beneficia creches, asilos e comunidades em situação de vulnerabilidade, levando o "perfume da acácia" — em forma de solidariedade — a quem mais precisa.'
+            },
+            {
+                title: 'O Elo da Fraternidade',
+                content: 'A participação das familiares é o que humaniza a instituição. Ao integrar as famílias, o Clube das Acácias fortalece os laços de fraternidade, promovendo eventos de união e garantindo que o espírito de união maçônica não se restrinja apenas ao templo, mas se estenda a cada lar.'
+            }
+        ],
+        attributes: [
+            { label: 'Identidade', value: 'Braço Feminino da Loja' },
+            { label: 'Simbolismo', value: 'Imortalidade e Inocência' },
+            { label: 'Foco Principal', value: 'Filantropia e Integração Familiar' },
+            { label: 'Valores', value: 'União, Resiliência e Solidariedade' }
+        ],
+        footer: 'Coordenação Regional do Clube das Acácias — G.B.L.S. Conciliação Amazonense Nº 3'
+    },
+
+
     academy: {
         tag: 'Conhecimento',
         title: 'Academia Filosófica',
@@ -650,7 +683,8 @@ export const CONTENT = {
                             { label: 'História da Maçonaria', href: '/historia' },
                             { label: 'Maçonaria no Brasil', href: '/historia#maconaria-brasil' },
                             { label: 'Maçonaria no Amazonas', href: '/historia#maconaria-amazonas' },
-                            { label: 'GLOMAM', href: '/historia#glomam' }
+                            { label: 'GLOMAM', href: '/historia#glomam' },
+                            { label: 'O Rito (REAA)', href: '/historia#reea' }
                         ]
                     }
                 ]
@@ -660,7 +694,7 @@ export const CONTENT = {
                     {
                         title: 'A Instituição', items: [
                             { label: 'História', href: '/historia' },
-                            { label: 'Nossos Valores', href: '/#valores' },
+                            { label: 'Conheça o REEA', href: '/historia#reea' },
                             { label: 'Nominata', href: '/nominata' },
                             { label: 'Veneráveis Mestres', href: '/nominata' },
                             { label: 'Clube das Acácias', href: '/historia#clube-acacias' }
@@ -669,16 +703,7 @@ export const CONTENT = {
                 ]
             },
             {
-                label: 'Academia', href: '/academia', dropdown: [
-                    {
-                        title: 'Áreas de Estudo', items: [
-                            { label: 'Artigos Filosóficos', href: '/academia' },
-                            { label: 'Palestras', href: '/academia' },
-                            { label: 'Seminários', href: '/academia' },
-                            { label: 'Biblioteca', href: '/academia' }
-                        ]
-                    }
-                ]
+                label: 'Academia', href: '/academia'
             },
             {
                 label: 'Instituto Social', href: '/instituto', dropdown: [
@@ -730,7 +755,6 @@ export const CONTENT = {
                 links: [
                     { label: 'O que é a Maçonaria', href: '/#intro' },
                     { label: 'História da Loja', href: '/historia' },
-                    { label: 'Nossos Valores', href: '/#valores' },
                     { label: 'Academia Filosófica', href: '/academia' },
                     { label: 'Instituto Social', href: '/instituto' }
                 ]

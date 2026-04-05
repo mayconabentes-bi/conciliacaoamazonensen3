@@ -1,0 +1,140 @@
+.orbital-logo-container {
+    position: relative;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.orbital-rings {
+    position: relative;
+    width: 140%;
+    height: 140%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-logo {
+    position: relative;
+    width: 70%;
+    height: 70%;
+    z-index: 10;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.center-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Anéis SVG */
+.ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    pointer-events: none;
+}
+
+.ring .path {
+    stroke: rgba(201, 168, 76, 0.15);
+    stroke-width: 0.5;
+}
+
+.ring.ring-outer {
+    animation: rotate-clockwise 120s linear infinite;
+}
+
+.ring.ring-inner {
+    width: 80%;
+    height: 80%;
+    animation: rotate-counter-clockwise 80s linear infinite;
+}
+
+.ring-inner .dot {
+    fill: var(--gold);
+    opacity: 0.4;
+}
+
+.ring-inner .path.dashed {
+    stroke-dasharray: 2 4;
+}
+
+/* Símbolos e Letras */
+.symbol-text {
+    fill: var(--gold-lt);
+    font-family: 'Cinzel', serif;
+    font-size: 8px; /* Pequeno para ser sofisticado */
+    text-anchor: middle;
+    alignment-baseline: middle;
+    font-weight: 400;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.symbol-text.heavy {
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.symbol-text.smaller {
+    font-size: 6px;
+}
+
+/* Aura de Luz (Breathing) */
+.aura {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+    animation: aura-breathe 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Animações */
+@keyframes rotate-clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counter-clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes aura-breathe {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* Efeito de Hover */
+.orbital-logo-container:hover {
+    transform: scale(1.05);
+}
+
+.orbital-logo-container:hover .symbol-text {
+    opacity: 1;
+    fill: var(--gold);
+}
+
+.orbital-logo-container:hover .ring.ring-outer {
+    animation-duration: 40s; /* Acelera levemente no hover */
+}
+
+/* Shimmer (Opcional - Adicionado via filtro no SVG) */
+.ring .path {
+    filter: drop-shadow(0 0 1px var(--gold-lt));
+}
+
+@media (max-width: 480px) {
+    .orbital-rings {
+        width: 120%;
+        height: 120%;
+    }
+}
