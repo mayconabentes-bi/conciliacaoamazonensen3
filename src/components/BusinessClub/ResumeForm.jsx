@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Camera, User, Mail, Linkedin, Award, Link, ArrowRight, CheckCircle2, ChevronLeft, Briefcase } from 'lucide-react';
+import { Camera, User, Mail, Linkedin, Award, Link, ArrowRight, CheckCircle2, ChevronLeft, Briefcase, Shield, Globe } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 
@@ -140,22 +140,25 @@ const ResumeForm = () => {
                                 </div>
 
                                 <div className="masonic-toggle">
-                                    <label className="toggle-label">Você é membro da Maçonaria ou parente de um Maçom?</label>
-                                    <div className="toggle-buttons">
-                                        <button 
-                                            type="button"
-                                            className={`toggle-btn ${isMasonicMember === true ? 'active' : ''}`}
+                                    <label className="toggle-label">Vínculo com a Maçonaria</label>
+                                    <div className="toggle-cards">
+                                        <div 
+                                            className={`toggle-card ${isMasonicMember === true ? 'active' : ''}`}
                                             onClick={() => setIsMasonicMember(true)}
                                         >
-                                            Sim
-                                        </button>
-                                        <button 
-                                            type="button"
-                                            className={`toggle-btn ${isMasonicMember === false ? 'active' : ''}`}
-                                            onClick={() => { setIsMasonicMember(false); setFormData(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); }}
+                                            <Shield size={28} />
+                                            <span>Membro ou Parente</span>
+                                        </div>
+                                        <div 
+                                            className={`toggle-card ${isMasonicMember === false ? 'active' : ''}`}
+                                            onClick={() => { 
+                                                setIsMasonicMember(false); 
+                                                setFormData(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); 
+                                            }}
                                         >
-                                            Não
-                                        </button>
+                                            <Globe size={28} />
+                                            <span>Público Geral</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -286,14 +289,6 @@ const ResumeForm = () => {
                 .success-card .margin-auto { margin: 0 auto 2rem; display: block; }
                 .text-center { text-align: center; }
                 .block { width: 100%; display: flex; justify-content: center; gap: 10px; padding: 1rem; }
-
-                .masonic-toggle { margin-bottom: 2rem; }
-                .toggle-label { display: block; font-family: 'Cinzel', serif; font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
-                .toggle-buttons { display: flex; gap: 1rem; justify-content: center; }
-                .toggle-btn { padding: 0.7rem 2.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); border-radius: 6px; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; transition: all 0.3s; }
-                .toggle-btn:hover { background: rgba(255,255,255,0.1); color: var(--white); }
-                .toggle-btn.active { background: var(--gold-lt); color: var(--navy-dark); border-color: var(--gold-lt); font-weight: 600; }
-                .masonic-fields { margin-bottom: 1rem; }
 
                 @keyframes slideDown {
                     from { opacity: 0; transform: translateY(-10px); }

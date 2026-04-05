@@ -489,3 +489,105 @@
         padding: 1.5rem;
     }
 }
+
+/* Masonic Toggle Redesign */
+.masonic-toggle {
+    margin: 2.5rem 0;
+    text-align: center;
+}
+
+.toggle-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.toggle-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.toggle-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.8rem 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.toggle-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.toggle-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(201, 168, 76, 0.3);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+.toggle-card:hover::after {
+    opacity: 1;
+}
+
+.toggle-card.active {
+    background: rgba(201, 168, 76, 0.08);
+    border-color: var(--gold-lt);
+    color: var(--gold-lt);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 15px rgba(201, 168, 76, 0.1);
+}
+
+.toggle-card svg {
+    transition: all 0.4s;
+    opacity: 0.7;
+}
+
+.toggle-card.active svg {
+    transform: scale(1.1);
+    color: var(--gold-lt);
+    opacity: 1;
+}
+
+.toggle-card span {
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+@media (max-width: 480px) {
+    .toggle-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .toggle-card {
+        padding: 1.2rem;
+        flex-direction: row;
+        justify-content: center;
+    }
+}

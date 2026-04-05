@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User, X, CheckCircle, Phone, Send } from 'lucide-react';
+import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User, X, CheckCircle, Phone, Send, Shield, Globe } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import './BusinessClub.css';
@@ -339,10 +339,25 @@ const BusinessClub = ({ content }) => {
                                     </div>
 
                                     <div className="masonic-toggle">
-                                        <label className="toggle-label">Você é membro da Maçonaria ou parente de um Maçom?</label>
-                                        <div className="toggle-buttons">
-                                            <button type="button" className={`toggle-btn ${isMasonicApplicant === true ? 'active' : ''}`} onClick={() => setIsMasonicApplicant(true)}>Sim</button>
-                                            <button type="button" className={`toggle-btn ${isMasonicApplicant === false ? 'active' : ''}`} onClick={() => { setIsMasonicApplicant(false); setAppForm(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); }}>Não</button>
+                                        <label className="toggle-label">Vínculo com a Maçonaria</label>
+                                        <div className="toggle-cards">
+                                            <div 
+                                                className={`toggle-card ${isMasonicApplicant === true ? 'active' : ''}`}
+                                                onClick={() => setIsMasonicApplicant(true)}
+                                            >
+                                                <Shield size={24} />
+                                                <span>Membro ou Parente</span>
+                                            </div>
+                                            <div 
+                                                className={`toggle-card ${isMasonicApplicant === false ? 'active' : ''}`}
+                                                onClick={() => { 
+                                                    setIsMasonicApplicant(false); 
+                                                    setAppForm(prev => ({ ...prev, relationship: '', lodge_name: '', mason_name: '' })); 
+                                                }}
+                                            >
+                                                <Globe size={24} />
+                                                <span>Público Geral</span>
+                                            </div>
                                         </div>
                                     </div>
 
