@@ -308,6 +308,108 @@ textarea:-webkit-autofill:focus {
 }
 
 /* Responsive */
+/* ═══════════════════════════════════════════════
+   BUSINESS CLUB SPECIFIC
+   ═══════════════════════════════════════════════ */
+.bc-admin-tabs {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--admin-border);
+    margin-bottom: 2rem;
+    display: inline-flex !important;
+}
+
+.bc-admin-tabs .btn-save {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+.bc-admin-tabs .btn-save.ghost {
+    background: transparent;
+    color: var(--admin-muted);
+}
+
+.bc-admin-tabs .btn-save.ghost:hover {
+    color: var(--admin-text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.action-btn-mini {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-gold);
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn-mini:hover {
+    background: var(--admin-gold);
+    color: var(--admin-bg);
+    transform: scale(1.05);
+}
+
+.action-btn-mini.delete:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: white;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.gold {
+    background: rgba(201, 168, 76, 0.2);
+    color: var(--admin-gold);
+}
+
+.badge.gray {
+    background: rgba(132, 141, 151, 0.1);
+    color: var(--admin-muted);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-responsive table th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--admin-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-responsive table td {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 1024px) {
     .admin-sidebar { width: 240px; }
     .admin-main { padding: 32px; }

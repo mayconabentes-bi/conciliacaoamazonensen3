@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User, X, CheckCircle, Phone, Send, Shield, Globe } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import { useReveal } from '../../hooks/useReveal';
 import CustomSelect from '../Common/CustomSelect';
 import './BusinessClub.css';
 
 const BusinessClub = ({ content }) => {
+    useReveal();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('vagas');
     const [jobs, setJobs] = useState([]);
@@ -46,6 +48,25 @@ const BusinessClub = ({ content }) => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    // Re-trigger reveal animations after async data loads
+    useEffect(() => {
+        if (!loading) {
+            const timer = setTimeout(() => {
+                const revealEls = document.querySelectorAll('.reveal:not(.visible)');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('visible');
+                            observer.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+                revealEls.forEach(el => observer.observe(el));
+            }, 150);
+            return () => clearTimeout(timer);
+        }
+    }, [loading, jobs, resumes]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -150,165 +171,151 @@ const BusinessClub = ({ content }) => {
         }
     };
 
+    // Helper for horizontal scrolling
+    const scrollRow = (id, direction) => {
+        const container = document.getElementById(id);
+        if (container) {
+            const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
+
+    const FeaturedHero = () => {
+        const featured = jobs[0] || resumes[0] || null;
+
+        return (
+            <div className="bc-featured-hero reveal">
+                <div className="hero-overlay"></div>
+                <div className="hero-content">
+                    <div className="hero-badge">✦ Espaço de Integração e Ofício</div>
+                    <h1>{featured ? (featured.title || featured.role) : 'Conecte-se ao Círculo'}</h1>
+                    <p>{featured ? (featured.description || featured.bio) : 'Descubra oportunidades exclusivas e conecte seu talento à nossa rede de confiança. Publique vagas, encontre profissionais ou cadastre seu currículo.'}</p>
+                    <div className="hero-actions">
+                        {featured?.title ? (
+                            <button className="btn-gold" onClick={() => handleApply(featured)}>
+                                Candidatar-se Agora
+                            </button>
+                        ) : (
+                            <button className="btn-gold" onClick={() => navigate('/integracao-oficio/cadastro')}>
+                                Cadastrar Currículo
+                            </button>
+                        )}
+                        <button className="btn-save ghost" onClick={() => navigate('/integracao-oficio/cadastro')}>
+                            <UserPlus size={18} /> Banco de Talentos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const ContentRow = ({ title, items, type, id }) => {
+        return (
+            <div className="bc-content-row reveal">
+                <div className="row-header">
+                    <h2>{title}</h2>
+                    {items && items.length > 3 && (
+                        <div className="row-nav">
+                            <button onClick={() => scrollRow(id, 'left')}>‹</button>
+                            <button onClick={() => scrollRow(id, 'right')}>›</button>
+                        </div>
+                    )}
+                </div>
+                {items && items.length > 0 ? (
+                    <div className="row-scroll-container" id={id}>
+                        {items.map((item, idx) => (
+                            <div key={idx} className={`${type}-card-streaming`}>
+                                {type === 'job' ? (
+                                    <div className="card-inner">
+                                        <div className="card-top">
+                                            <span className="badge">{item.type}</span>
+                                            <Briefcase size={20} className="icon" />
+                                        </div>
+                                        <h3>{item.title}</h3>
+                                        <p className="company">{item.company}</p>
+                                        <div className="meta">
+                                            <span><MapPin size={12} /> {item.location}</span>
+                                            {item.salary && <span><DollarSign size={12} /> {item.salary}</span>}
+                                        </div>
+                                        <button className="card-btn" onClick={() => handleApply(item)}>Explorar</button>
+                                    </div>
+                                ) : (
+                                    <div className="card-inner">
+                                        <div className="talent-avatar-streaming">
+                                            {item.photo_url ? (
+                                                <img src={item.photo_url} alt={item.full_name} />
+                                            ) : (
+                                                <span>{item.full_name.charAt(0)}</span>
+                                            )}
+                                        </div>
+                                        <h3>{item.full_name}</h3>
+                                        <p className="role">{item.role}</p>
+                                        <div className="skills-mini">
+                                            {item.skills?.slice(0, 2).map((skill, i) => (
+                                                <span key={i}>{skill}</span>
+                                            ))}
+                                            {item.skills?.length > 2 && <span>+{item.skills.length - 2}</span>}
+                                        </div>
+                                        <div className="talent-actions-mini">
+                                            <a href={`mailto:${item.contact_email}`}><Mail size={14} /></a>
+                                            {item.linkedin_url && <a href={item.linkedin_url} target="_blank" rel="noopener noreferrer"><Linkedin size={14} /></a>}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="empty-state">
+                        {type === 'job' ? <Search size={40} /> : <Users size={40} />}
+                        <p>{type === 'job' ? 'Nenhuma vaga disponível no momento.' : 'Nenhum talento cadastrado ainda.'}</p>
+                    </div>
+                )}
+            </div>
+        );
+    };
+
     return (
-        <section className="business-club">
+        <section className="business-club streaming-style">
             <div className="container">
                 <header className="bc-header reveal">
-                    <div className="gold-line"><span>Clube de Negócios</span></div>
-                    <h1>Conexão e Oportunidades<br /><em>no Oriente de Manaus</em></h1>
-                    <p>Um espaço dedicado ao fortalecimento profissional e econômico de nossa comunidade, promovendo o auxílio mútuo e a prosperidade.</p>
+                    <div className="gold-line"><span>Espaço de Integração e Ofício</span></div>
+                    <h1>Excelência e Ofício<br /><em>no Círculo de Confiança</em></h1>
                 </header>
 
-                <div className="bc-tabs reveal reveal-delay-1">
-                    <button 
-                        className={activeTab === 'vagas' ? 'active' : ''} 
-                        onClick={() => setActiveTab('vagas')}
-                    >
-                        <Briefcase size={18} /> Banco de Vagas
-                    </button>
-                    <button 
-                        className={activeTab === 'talentos' ? 'active' : ''} 
-                        onClick={() => setActiveTab('talentos')}
-                    >
-                        <Users size={18} /> Banco de Talentos
-                    </button>
-                    <button 
-                        className={activeTab === 'cadastro' ? 'active' : ''} 
-                        onClick={() => navigate('/clube-negocios/cadastro')}
-                    >
-                        <UserPlus size={18} /> Cadastrar Currículo
-                    </button>
-                </div>
+                {loading ? (
+                    <div className="loading">Sincronizando Banco de Talentos...</div>
+                ) : (
+                    <>
+                        <FeaturedHero />
+                        
+                        <main className="bc-streaming-content">
+                            <ContentRow 
+                                id="vagas-recentes"
+                                title="Oportunidades no Círculo" 
+                                items={jobs} 
+                                type="job" 
+                            />
+                            
+                            <ContentRow 
+                                id="talentos-destaque"
+                                title="Talentos em Evidência" 
+                                items={resumes} 
+                                type="talent" 
+                            />
 
-                <div className="bc-content">
-                    {activeTab === 'vagas' && (
-                        <div className="jobs-section">
-                            {loading ? (
-                                <div className="loading">Carregando vagas...</div>
-                            ) : jobs.length > 0 ? (
-                                <div className="jobs-grid">
-                                    {jobs.map(job => (
-                                        <div key={job.id} className="job-card">
-                                            <div className="job-badge">{job.type}</div>
-                                            <h3>{job.title}</h3>
-                                            <p className="company">{job.company}</p>
-                                            <div className="job-meta">
-                                                <span><MapPin size={14} /> {job.location}</span>
-                                                {job.salary && <span><DollarSign size={14} /> {job.salary}</span>}
-                                            </div>
-                                            <p className="description">{job.description}</p>
-                                            <button className="btn-apply" onClick={() => handleApply(job)}>Candidatar-se</button>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="empty-state">
-                                    <Search size={48} />
-                                    <p>Nenhuma vaga disponível no momento.</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {activeTab === 'talentos' && (
-                        <div className="talents-section">
-                            {loading ? (
-                                <div className="loading">Carregando talentos...</div>
-                            ) : resumes.length > 0 ? (
-                                <div className="talents-grid">
-                                    {resumes.map(resume => (
-                                        <div key={resume.id} className="talent-card">
-                                            <div className="talent-info">
-                                                {resume.photo_url ? (
-                                                    <div className="talent-avatar p-0">
-                                                        <img src={resume.photo_url} alt={resume.full_name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
-                                                    </div>
-                                                ) : (
-                                                    <div className="talent-avatar">{resume.full_name.charAt(0)}</div>
-                                                )}
-                                                <div>
-                                                    <div className="talent-header-row">
-                                                        <h3>{resume.full_name}</h3>
-                                                        {resume.relationship && <span className="relationship-tag">{resume.relationship}</span>}
-                                                    </div>
-                                                    <p className="role">{resume.role}</p>
-                                                </div>
-                                            </div>
-                                            <div className="experience">
-                                                <Award size={14} /> {resume.experience_years} anos de experiência
-                                            </div>
-                                            <p className="bio">{resume.bio}</p>
-                                            <div className="skills">
-                                                {resume.skills?.map((skill, i) => (
-                                                    <span key={i} className="skill-tag">{skill}</span>
-                                                ))}
-                                            </div>
-                                            <div className="talent-actions">
-                                                <a href={`mailto:${resume.contact_email}`} className="action-link"><Mail size={16} /> Contato</a>
-                                                {resume.linkedin_url && (
-                                                    <a href={resume.linkedin_url} target="_blank" rel="noopener noreferrer" className="action-link">
-                                                        <Linkedin size={16} /> LinkedIn
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="empty-state">
-                                    <Users size={48} />
-                                    <p>Ainda não há talentos cadastrados no banco.</p>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {activeTab === 'cadastro' && (
-                        <div className="cadastro-section reveal">
-                            <div className="form-container">
-                                <h3>Cadastro Profissional</h3>
-                                <p>Preencha os dados abaixo para integrar nosso Banco de Talentos.</p>
-                                <form onSubmit={handleSubmitResume}>
-                                    <div className="form-row">
-                                        <div className="field">
-                                            <label>Nome Completo</label>
-                                            <input type="text" name="full_name" value={formData.full_name} onChange={handleInputChange} required />
-                                        </div>
-                                        <div className="field">
-                                            <label>Cargo / Especialidade</label>
-                                            <input type="text" name="role" value={formData.role} onChange={handleInputChange} placeholder="Ex: Engenheiro Civil, Advogado..." required />
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="field">
-                                            <label>Anos de Experiência</label>
-                                            <input type="number" name="experience_years" value={formData.experience_years} onChange={handleInputChange} required />
-                                        </div>
-                                        <div className="field">
-                                            <label>E-mail de Contato</label>
-                                            <input type="email" name="contact_email" value={formData.contact_email} onChange={handleInputChange} required />
-                                        </div>
-                                    </div>
-                                    <div className="field">
-                                        <label>Habilidades (separadas por vírgula)</label>
-                                        <input type="text" name="skills" value={formData.skills} onChange={handleInputChange} placeholder="Ex: Gestão, Vendas, AutoCAD..." required />
-                                    </div>
-                                    <div className="field">
-                                        <label>Resumo Profissional</label>
-                                        <textarea name="bio" value={formData.bio} onChange={handleInputChange} rows={4} required></textarea>
-                                    </div>
-                                    <div className="field">
-                                        <label>LinkedIn URL (opcional)</label>
-                                        <input type="url" name="linkedin_url" value={formData.linkedin_url} onChange={handleInputChange} placeholder="https://linkedin.com/in/..." />
-                                    </div>
-                                    <button type="submit" className="btn-gold" disabled={submitting}>
-                                        {submitting ? 'Cadastrando...' : 'Finalizar Cadastro'}
+                            <div className="bc-cta-banner reveal">
+                                <div className="cta-content">
+                                    <h3>Faça parte do nosso Banco de Talentos</h3>
+                                    <p>Conecte seu currículo com as melhores oportunidades dentro da nossa rede de colaboração.</p>
+                                    <button className="btn-gold" onClick={() => navigate('/integracao-oficio/cadastro')}>
+                                        Cadastrar Agora
                                     </button>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        </main>
+                    </>
+                )}
             </div>
 
             {/* Modal de Candidatura */}
@@ -330,8 +337,24 @@ const BusinessClub = ({ content }) => {
                                 <div className="modal-header">
                                     <div className="modal-job-badge">{selectedJob.type}</div>
                                     <h3>{selectedJob.title}</h3>
-                                    <p className="modal-company">{selectedJob.company} — {selectedJob.location}</p>
+                                    <p className="modal-company">{selectedJob.company} — {selectedJob.location} {selectedJob.salary && `— ${selectedJob.salary}`}</p>
                                 </div>
+                                
+                                <div className="modal-description-section" style={{ marginBottom: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                    <h4 style={{ color: 'var(--gold)', marginBottom: '0.5rem', fontSize: '0.8rem', textTransform: 'uppercase' }}>Descrição da Vaga</h4>
+                                    <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', whiteSpace: 'pre-wrap', marginBottom: '1.5rem' }}>{selectedJob.description}</p>
+                                    
+                                    {selectedJob.requirements && (
+                                        <>
+                                            <h4 style={{ color: 'var(--gold)', marginBottom: '0.5rem', fontSize: '0.8rem', textTransform: 'uppercase' }}>Requisitos</h4>
+                                            <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', whiteSpace: 'pre-wrap' }}>{selectedJob.requirements}</p>
+                                        </>
+                                    )}
+                                </div>
+
+                                <div className="modal-divider" style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '2rem 0' }}></div>
+                                <h4 style={{ textAlign: 'center', marginBottom: '1.5rem', fontFamily: 'Cinzel, serif', fontSize: '1rem', color: 'var(--gold)' }}>Formulário de Candidatura</h4>
+
                                 <form onSubmit={handleSubmitApplication} className="modal-form">
                                     <div className="field">
                                         <label><User size={14} /> Nome Completo</label>

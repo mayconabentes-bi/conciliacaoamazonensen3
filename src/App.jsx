@@ -100,8 +100,8 @@ const AppContent = () => {
                 <Route path="/historia" element={<HistoryPage content={content} />} />
                 <Route path="/academia" element={<AcademyPage content={content} />} />
                 <Route path="/instituto" element={<InstitutePage content={content} />} />
-                <Route path="/clube-negocios" element={<BusinessClubPage content={content} />} />
-                <Route path="/clube-negocios/cadastro" element={<ResumeRegistrationPage />} />
+                <Route path="/integracao-oficio" element={<BusinessClubPage content={content} />} />
+                <Route path="/integracao-oficio/cadastro" element={<ResumeRegistrationPage />} />
                 <Route path="/nominata" element={<NominataPage content={content} />} />
             </Route>
 

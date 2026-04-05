@@ -250,9 +250,9 @@ const ResumeForm = () => {
                         <div className="form-card success-card text-center">
                             <CheckCircle2 size={80} color="var(--gold)" className="margin-auto" />
                             <h2>Cadastro Realizado!</h2>
-                            <p>Seu perfil agora faz parte do Banco de Talentos do Clube de Negócios Conciliação.</p>
-                            <button className="btn-gold" onClick={() => navigate('/clube-negocios')}>
-                                Ir para o Clube de Negócios
+                            <p>Seu perfil agora faz parte do Banco de Talentos do Espaço de Integração e Ofício Conciliação.</p>
+                            <button className="btn-gold" onClick={() => navigate('/integracao-oficio')}>
+                                Ir para o Espaço de Integração e Ofício
                             </button>
                         </div>
                     )}

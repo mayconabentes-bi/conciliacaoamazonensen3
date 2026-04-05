@@ -1,10 +1,12 @@
 /* ═══════════════════════════════════════════════
-   ACADEMIA PAGE — BACKGROUND WRAPPER
-   Uses site's design system: navy/gold/cream
+   ACADEMIA PAGE — Full Layout
    ═══════════════════════════════════════════════ */
 
 .academy-page {
     background: var(--navy-deep);
     min-height: 100vh;
+}
+
+.academy-page-body {
     padding-bottom: 6rem;
 }

@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '2.8.3', // Force update to remove legacy GOB references
+    version: '3.0.0', // Academy Grau System + Courses
     hero: {
         slides: [
             {
@@ -265,55 +265,130 @@ export const CONTENT = {
         articles: [
             {
                 icon: 'Compass',
-                cat: 'Simbologia REAA',
+                cat: 'Artigos',
                 title: 'O Painel do Grau de Aprendiz no REAA',
                 excerpt: 'Uma análise detalhada sobre a arquitetura simbólica e os elementos únicos do painel do primeiro grau no Rito Escocês.',
-                meta: ['Instrução', '15 min']
+                meta: ['Instrução', '15 min'],
+                grau: 1
             },
             {
                 icon: 'History',
-                cat: 'História',
+                cat: 'Artigos',
                 title: 'A Origem do Rito: De Charleston ao Brasil',
                 excerpt: 'A trajetória histórica do Rito Escocês Antigo e Aceito desde sua fundação em 1801 até sua consolidação em solo brasileiro.',
-                meta: ['História REAA', '20 min']
+                meta: ['História REAA', '20 min'],
+                grau: 1
             },
             {
                 icon: 'Scale',
-                cat: 'Filosofia',
+                cat: 'Artigos',
                 title: 'O Legado das Guildas Medievais',
                 excerpt: 'Uma análise profunda sobre a transição da Maçonaria Operativa para a Especulativa e a preservação dos ritos ancestrais.',
-                meta: ['História', '15 min']
+                meta: ['História', '15 min'],
+                grau: 1
             },
             {
                 icon: 'Star',
-                cat: 'Simbolismo',
+                cat: 'Artigos',
                 title: 'O G.A.D.U. e a Diversidade Religiosa',
                 excerpt: 'Reflexão sobre o conceito do Grande Arquiteto do Universo como princípio unificador que respeita todas as crenças individuais.',
-                meta: ['Filosofia', '10 min']
+                meta: ['Filosofia', '10 min'],
+                grau: 2
             },
             {
-                cat: 'Palestras',
-                title: 'A Liderança Ética e o Perfil do Mestre Maçom',
-                excerpt: 'Uma análise profunda sobre o papel das lideranças na Ordem e os desafios da conduta ética na sociedade contemporânea.',
-                meta: ['Kennyo Ismail', '50 min'],
-                icon: 'Mic'
+                icon: 'Compass',
+                cat: 'Artigos',
+                title: 'A Câmara do Meio e a Jornada do Companheiro',
+                excerpt: 'Estudo sobre o simbolismo da passagem do 1° ao 2° Grau e a construção do conhecimento interior.',
+                meta: ['Simbologia', '18 min'],
+                grau: 2
             },
             {
-                cat: 'Seminários',
-                title: 'Seminário Nacional de História da Maçonaria no Brasil',
-                excerpt: 'Compilado de estudos sobre a participação da Maçonaria na Independência e na Proclamação da República.',
-                meta: ['CMSB', 'Anais 2024'],
-                icon: 'Users'
+                icon: 'Star',
+                cat: 'Artigos',
+                title: 'A Lenda de Hiram Abiff e o Mestre Maçom',
+                excerpt: 'Uma análise filosófica profunda sobre a lenda central do 3° Grau e seus ensinamentos sobre mortalidade e imortalidade.',
+                meta: ['Filosofia', '25 min'],
+                grau: 3
             },
             {
-                cat: 'Biblioteca',
-                title: 'História Geral da Maçonaria (Nicola Aslan)',
-                excerpt: 'Obra fundamental de um dos maiores historiadores maçônicos do Brasil, explorando as raízes da Ordem no país.',
-                meta: ['Ed. Madras', 'Destaque'],
-                icon: 'Book'
+                icon: 'Scale',
+                cat: 'Artigos',
+                title: 'O Rito e o Sagrado: A Alquimia Espiritual do REAA',
+                excerpt: 'Investigação sobre os aspectos herméticos e alquímicos preservados nos altos graus do Rito Escocês.',
+                meta: ['Esoterismo', '30 min'],
+                grau: 3
             }
         ]
     },
+    courses: [
+        {
+            title: 'Fundamentos da Maçonaria',
+            cat: 'Cursos',
+            excerpt: 'Curso introdutório sobre os princípios, história e estrutura da Ordem Maçônica. Ideal para recém-iniciados.',
+            grau: 1,
+            totalLessons: 12,
+            completedLessons: 5,
+            duration: '6h total',
+            instructor: 'Assessoria Acadêmica',
+            meta: ['12 aulas', '6 horas']
+        },
+        {
+            title: 'Simbologia do 1° Grau - REAA',
+            cat: 'Cursos',
+            excerpt: 'Estudo completo de todos os símbolos apresentados no Grau de Aprendiz do Rito Escocês Antigo e Aceito.',
+            grau: 1,
+            totalLessons: 8,
+            completedLessons: 8,
+            duration: '4h total',
+            instructor: 'Orador da Loja',
+            meta: ['8 aulas', '4 horas']
+        },
+        {
+            title: 'A Geometria Sagrada e as Ferramentas',
+            cat: 'Cursos',
+            excerpt: 'Aprofundamento na geometria sagrada e o significado esotérico do Esquadro, Compasso e Nível no trabalho especulativo.',
+            grau: 2,
+            totalLessons: 10,
+            completedLessons: 3,
+            duration: '5h total',
+            instructor: 'Mestre Instalado',
+            meta: ['10 aulas', '5 horas']
+        },
+        {
+            title: 'Liturgia e Ritual do 2° Grau',
+            cat: 'Cursos',
+            excerpt: 'Estudo detalhado da liturgia e do cerimonial do Grau de Companheiro, suas origens e adaptações brasileiras.',
+            grau: 2,
+            totalLessons: 6,
+            completedLessons: 0,
+            duration: '3h total',
+            instructor: 'Mestre de Cerimônias',
+            meta: ['6 aulas', '3 horas']
+        },
+        {
+            title: 'Os Altos Graus Filosóficos do REAA',
+            cat: 'Cursos',
+            excerpt: 'Introdução aos graus filosóficos (4° ao 33°) do Rito Escocês, suas lições morais e impacto na formação do Mestre.',
+            grau: 3,
+            totalLessons: 15,
+            completedLessons: 0,
+            duration: '8h total',
+            instructor: 'Supremo Conselho',
+            meta: ['15 aulas', '8 horas']
+        },
+        {
+            title: 'Liderança Ética e Venerância',
+            cat: 'Cursos',
+            excerpt: 'Formação para futuros Veneráveis Mestres: gestão, liderança, oratória ritualística e conduta exemplar.',
+            grau: 3,
+            totalLessons: 10,
+            completedLessons: 2,
+            duration: '5h total',
+            instructor: 'Grão-Mestre Adjunto',
+            meta: ['10 aulas', '5 horas']
+        }
+    ],
     institute: {
         tag: 'Responsabilidade Social',
         title: 'Instituto Social Conciliação',
@@ -353,9 +428,9 @@ export const CONTENT = {
             },
             {
                 icon: 'Users',
-                title: 'Clube de Negócios',
+                title: 'Espaço de Integração e Ofício',
                 desc: 'Rede de colaboração entre irmãos e parceiros focada na prosperidade e auxílio mútuo.',
-                link: '/clube-negocios'
+                link: '/integracao-oficio'
             }
         ]
     },
@@ -365,20 +440,32 @@ export const CONTENT = {
         intro: 'Obras fundamentais para o estudo da liturgia, história e filosofia exclusivas do Rito Escocês Antigo e Aceito.',
         sections: [
             {
-                title: '1. Ordem Sobre o Caos (Kennyo Ismail)',
-                content: 'A obra definitiva sobre a história e o funcionamento dos 33 graus do REAA, detalhando simbolismo e princípios éticos.'
+                title: 'Ordem Sobre o Caos (Kennyo Ismail)',
+                cat: 'Biblioteca Digital',
+                content: 'A obra definitiva sobre a história e o funcionamento dos 33 graus do REAA, detalhando simbolismo e princípios éticos.',
+                meta: ['Kennyo Ismail', '320 págs'],
+                grau: 1
             },
             {
-                title: '2. Moral e Dogma do REAA (Rizzardo da Camino)',
-                content: 'Um estudo profundo sobre a base filosófica e os ensinamentos morais que sustentam a jornada escocesa.'
+                title: 'Moral e Dogma do REAA (Rizzardo da Camino)',
+                cat: 'Biblioteca Digital',
+                content: 'Um estudo profundo sobre a base filosófica e os ensinamentos morais que sustentam a jornada escocesa.',
+                meta: ['Rizzardo da Camino', '450 págs'],
+                grau: 2
             },
             {
-                title: '3. Manual de Instrução REAA (1º ao 3º Grau)',
-                content: 'Manuais oficiais que regem a prática ritualística e a liturgia escocesa para as Lojas jurisdicionadas à GLOMAM.'
+                title: 'Manual de Instrução REAA (1º ao 3º Grau)',
+                cat: 'Biblioteca Digital',
+                content: 'Manuais oficiais que regem a prática ritualística e a liturgia escocesa para as Lojas jurisdicionadas à GLOMAM.',
+                meta: ['GLOMAM', 'Oficial'],
+                grau: 1
             },
             {
-                title: '4. O Simbolismo do REAA (Nicola Aslan)',
-                content: 'Análise erudita dos símbolos e ritos que compõem a espinha dorsal da Maçonaria Escocesa no Brasil.'
+                title: 'O Simbolismo do REAA (Nicola Aslan)',
+                cat: 'Biblioteca Digital',
+                content: 'Análise erudita dos símbolos e ritos que compõem a espinha dorsal da Maçonaria Escocesa no Brasil.',
+                meta: ['Nicola Aslan', '280 págs'],
+                grau: 3
             }
         ],
         footer: 'Acesse o portal do Supremo Conselho para materiais dos Graus Filosóficos.'
@@ -390,15 +477,31 @@ export const CONTENT = {
         sections: [
             {
                 title: 'As Viagens da Iniciação Escocesa',
-                content: 'Explicação simbólica sobre as provações e o significado esotérico das circulações no rito.'
+                cat: 'Palestras',
+                content: 'Explicação simbólica sobre as provações e o significado esotérico das circulações no rito.',
+                meta: ['Palestrante Convidado', '45 min'],
+                grau: 1
             },
             {
                 title: 'O Pavimento Mosaico e a Dualidade',
-                content: 'Como a interação entre o preto e o branco no templo REAA reflete a harmonia dos opostos.'
+                cat: 'Palestras',
+                content: 'Como a interação entre o preto e o branco no templo REAA reflete a harmonia dos opostos.',
+                meta: ['Orador Titular', '30 min'],
+                grau: 1
             },
             {
                 title: 'A Escada de Jacó e os Graus de Virtude',
-                content: 'O simbolismo da ascensão moral representada na decoração e liturgia do rito.'
+                cat: 'Palestras',
+                content: 'O simbolismo da ascensão moral representada na decoração e liturgia do rito.',
+                meta: ['Mestre Instalado', '40 min'],
+                grau: 2
+            },
+            {
+                title: 'A Liderança Ética e o Perfil do Mestre Maçom',
+                cat: 'Palestras',
+                content: 'Uma análise profunda sobre o papel das lideranças na Ordem e os desafios da conduta ética na sociedade contemporânea.',
+                meta: ['Kennyo Ismail', '50 min'],
+                grau: 3
             }
         ],
         attributes: [
@@ -414,15 +517,27 @@ export const CONTENT = {
         sections: [
             {
                 title: 'Convenção Nacional de Liturgia REAA',
-                content: 'Seminário anual para uniformização dos procedimentos ritualísticos nas Lojas da Jurisdição.'
+                cat: 'Seminários',
+                content: 'Seminário anual para uniformização dos procedimentos ritualísticos nas Lojas da Jurisdição.',
+                meta: ['GLOMAM', 'Anual'],
+                grau: 1,
+                eventDate: '2026-06-15'
             },
             {
                 title: 'Simpósio do Supremo Conselho Grau 33',
-                content: 'Encontro destinado ao estudo da filosofia dos altos graus e sua conexão com as Lojas Simbólicas.'
+                cat: 'Seminários',
+                content: 'Encontro destinado ao estudo da filosofia dos altos graus e sua conexão com as Lojas Simbólicas.',
+                meta: ['Supremo Conselho', '2 dias'],
+                grau: 3,
+                eventDate: '2026-08-20'
             },
             {
                 title: 'Vade-Mécum Escocês: Prática e Ritual',
-                content: 'Workshop prático sobre a execução correta da liturgia e o uso das ferramentas no altar.'
+                cat: 'Seminários',
+                content: 'Workshop prático sobre a execução correta da liturgia e o uso das ferramentas no altar.',
+                meta: ['Workshop', '4 horas'],
+                grau: 2,
+                eventDate: '2026-05-10'
             }
         ],
         footer: 'Organização: Grande Secretaria de Orientação Ritualística.'
@@ -575,7 +690,7 @@ export const CONTENT = {
                             { label: 'Projeto Ribeirinho', href: '/instituto' },
                             { label: 'Jovens Empreendedores', href: '/instituto' },
                             { label: 'Acervo Histórico', href: '/instituto' },
-                            { label: 'Clube de Negócios', href: '/clube-negocios' }
+                            { label: 'Espaço de Integração e Ofício', href: '/integracao-oficio' }
                         ]
                     }
                 ]

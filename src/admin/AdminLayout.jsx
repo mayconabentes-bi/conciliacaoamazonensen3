@@ -19,7 +19,8 @@ import {
     Library, 
     Mic2, 
     Calendar,
-    ExternalLink
+    ExternalLink,
+    Briefcase
 } from 'lucide-react';
 import './Admin.css';
 
@@ -117,7 +118,7 @@ const AdminLayout = ({ setAuth }) => {
                         <FileText size={18} /> Clube das Acácias
                     </NavLink>
                     <NavLink to="/admin/business-club" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-                        <Briefcase size={18} /> Clube de Negócios
+                        <Briefcase size={18} /> Espaço de Integração e Ofício
                     </NavLink>
                     <NavLink to="/admin/footer" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <ScrollText size={18} /> Rodapé (Footer)
