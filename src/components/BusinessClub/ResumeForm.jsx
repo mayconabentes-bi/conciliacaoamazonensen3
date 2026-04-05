@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Camera, User, Mail, Linkedin, Award, Link, ArrowRight, CheckCircle2, ChevronLeft, Briefcase, Shield, Globe } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import CustomSelect from '../Common/CustomSelect';
 
 const ResumeForm = () => {
     const navigate = useNavigate();
@@ -24,9 +25,7 @@ const ResumeForm = () => {
         linkedin_url: ''
     });
 
-    const [isMasonicMember, setIsMasonicMember] = useState(null); // null = not chosen, true/false
-
-    const relationships = [
+    const bondOptions = [
         'Irmão (Membro Regular)',
         'Cunhada (Esposa/Viúva de Maçom)',
         'Sobrinha (Filha de Maçom)',
@@ -35,6 +34,8 @@ const ResumeForm = () => {
         'Comunidade Maçônica',
         'Outro'
     ];
+
+    const [isMasonicMember, setIsMasonicMember] = useState(null); // null = not chosen, true/false
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -166,12 +167,12 @@ const ResumeForm = () => {
                                     <div className="masonic-fields" style={{ animation: 'slideDown 0.4s ease' }}>
                                         <div className="field">
                                             <label>Vínculo Maçônico</label>
-                                            <select name="relationship" value={formData.relationship} onChange={handleInputChange} required>
-                                                <option value="">Selecione seu vínculo...</option>
-                                                {relationships.map((rel, i) => (
-                                                    <option key={i} value={rel}>{rel}</option>
-                                                ))}
-                                            </select>
+                                            <CustomSelect 
+                                                options={bondOptions}
+                                                value={formData.relationship}
+                                                onChange={(val) => setFormData(prev => ({ ...prev, relationship: val }))}
+                                                placeholder="Selecione seu vínculo..."
+                                            />
                                         </div>
                                         <div className="form-grid">
                                             <div className="field">

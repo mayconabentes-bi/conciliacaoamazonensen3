@@ -591,3 +591,95 @@
         justify-content: center;
     }
 }
+
+/* Custom Select Redesign */
+.custom-select-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-trigger {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 52px;
+}
+
+.custom-select-trigger:hover, .custom-select-trigger.open {
+    border-color: var(--gold-lt);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.custom-select-trigger.placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.custom-select-trigger .chevron {
+    transition: transform 0.3s ease;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.custom-select-trigger .chevron.rotated {
+    transform: rotate(180deg);
+}
+
+.custom-select-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #0d1b2a;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 8px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Dropdown */
+.custom-select-options::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-select-options::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+.custom-select-options::-webkit-scrollbar-thumb {
+    background: var(--gold-lt);
+    border-radius: 10px;
+}
+
+.custom-select-option {
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s;
+}
+
+.custom-select-option:hover {
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--gold-lt);
+    padding-left: 1.2rem;
+}
+
+.custom-select-option.selected {
+    background: rgba(201, 168, 76, 0.1);
+    color: var(--gold-lt);
+    font-weight: 600;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Briefcase, UserPlus, Users, Search, MapPin, DollarSign, ExternalLink, Mail, Linkedin, Award, User, X, CheckCircle, Phone, Send, Shield, Globe } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import CustomSelect from '../Common/CustomSelect';
 import './BusinessClub.css';
 
 const BusinessClub = ({ content }) => {
@@ -12,6 +13,15 @@ const BusinessClub = ({ content }) => {
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
+    const bondOptions = [
+        'Irmão (Membro Regular)',
+        'Cunhada (Esposa/Viúva de Maçom)',
+        'Sobrinha (Filha de Maçom)',
+        'Sobrinho (Filho de Maçom)',
+        'Baixa (Parente de Maçom)',
+        'Comunidade Maçônica',
+        'Outro'
+    ];
     const [applicationSent, setApplicationSent] = useState(false);
     const [appForm, setAppForm] = useState({
         applicant_name: '',
@@ -365,16 +375,12 @@ const BusinessClub = ({ content }) => {
                                         <div className="masonic-fields" style={{ animation: 'slideDown 0.4s ease' }}>
                                             <div className="field">
                                                 <label>Vínculo Maçônico</label>
-                                                <select name="relationship" value={appForm.relationship} onChange={handleAppFormChange} required>
-                                                    <option value="">Selecione seu vínculo...</option>
-                                                    <option value="Irmão (Membro Regular)">Irmão (Membro Regular)</option>
-                                                    <option value="Cunhada (Esposa/Viúva de Maçom)">Cunhada (Esposa/Viúva de Maçom)</option>
-                                                    <option value="Sobrinha (Filha de Maçom)">Sobrinha (Filha de Maçom)</option>
-                                                    <option value="Sobrinho (Filho de Maçom)">Sobrinho (Filho de Maçom)</option>
-                                                    <option value="Baixa (Parente de Maçom)">Baixa (Parente de Maçom)</option>
-                                                    <option value="Comunidade Maçônica">Comunidade Maçônica</option>
-                                                    <option value="Outro">Outro</option>
-                                                </select>
+                                                <CustomSelect 
+                                                    options={bondOptions}
+                                                    value={appForm.relationship}
+                                                    onChange={(val) => setAppForm(prev => ({ ...prev, relationship: val }))}
+                                                    placeholder="Selecione seu vínculo..."
+                                                />
                                             </div>
                                             <div className="form-row">
                                                 <div className="field">
