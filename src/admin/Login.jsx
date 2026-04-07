@@ -61,19 +61,14 @@ const Login = ({ onLogin }) => {
                             required
                         />
                     </div>
-                    <button type="submit" className="login-btn" disabled={loading}>
+                    <button type="submit" className="btn-save" disabled={loading} style={{ width: '100%', marginTop: '10px', padding: '16px' }}>
                         {loading ? 'Acessando...' : 'Acessar Painel'}
                     </button>
-                    <Link to="/" className="back-link" style={{
-                        display: 'block',
-                        textAlign: 'center',
-                        marginTop: '20px',
-                        color: 'var(--admin-muted)',
-                        textDecoration: 'none',
-                        fontSize: '0.9rem'
-                    }}>
-                        ← Voltar ao Site
-                    </Link>
+                    <div className="login-footer">
+                        <Link to="/" className="back-link">
+                            ← Voltar ao Portal
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

@@ -30,6 +30,9 @@ CREATE TABLE IF NOT EXISTS public.resumes (
     contact_email TEXT NOT NULL,
     linkedin_url TEXT,
     photo_url TEXT,
+    relationship TEXT,
+    lodge_name TEXT,
+    mason_name TEXT,
     is_public BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -66,6 +69,9 @@ CREATE TABLE IF NOT EXISTS public.job_applications (
     applicant_name TEXT NOT NULL,
     applicant_email TEXT NOT NULL,
     applicant_phone TEXT,
+    relationship TEXT,
+    lodge_name TEXT,
+    mason_name TEXT,
     cover_message TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

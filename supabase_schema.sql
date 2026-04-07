@@ -23,6 +23,9 @@ CREATE TABLE IF NOT EXISTS public.resumes (
     skills TEXT[] DEFAULT '{}',
     contact_email TEXT NOT NULL,
     linkedin_url TEXT,
+    relationship TEXT,
+    lodge_name TEXT,
+    mason_name TEXT,
     is_public BOOLEAN DEFAULT false,
     created_at TIMESTAMPTZ DEFAULT now()
 );
