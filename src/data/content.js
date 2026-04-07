@@ -8,7 +8,7 @@ export const CONTENT = {
         slides: [
             {
                 tag: 'Oriente de Manaus · Desde 1894',
-                title: '132 anos de',
+                title: '131 anos de',
                 strong: 'Tradição na Amazônia',
                 description: 'Fundada em 1894 – 3ª Loja mais antiga de Manaus e do Amazonas. Sob a jurisdição da Grande Loja Maçônica do Amazonas – GLOMAM. Fundada em 1904, a primeira Grande Loja do Brasil.',
                 btnText: 'Nossa História',
@@ -729,7 +729,7 @@ export const CONTENT = {
     stats: [
         { num: '3ª', label: 'Mais Antiga do Amazonas' },
         { num: '+40', label: 'Irmãos Regulares' },
-        { num: '132', label: 'Anos de Tradição' }
+        { num: '131', label: 'Anos de Tradição' }
     ],
     newsletter: {
         title: 'Newsletter Filosófica',
