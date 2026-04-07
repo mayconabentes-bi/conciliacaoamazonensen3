@@ -17,6 +17,7 @@ const HistoryPage = ({ content }) => {
         else if (hash === '#glomam') setActiveTab('glomam');
         else if (hash === '#clube-acacias') setActiveTab('acacias');
         else if (hash === '#reea') setActiveTab('reea');
+        else if (hash === '#trajetoria') setActiveTab('trajetoria');
         else setActiveTab('historia');
         
         window.scrollTo(0, 0);
@@ -27,8 +28,9 @@ const HistoryPage = ({ content }) => {
         { id: 'brasil', label: 'Maçonaria no Brasil' },
         { id: 'amazonas', label: 'Maçonaria no Amazonas' },
         { id: 'glomam', label: 'A GLOMAM' },
+        { id: 'reea', label: 'O Rito (REAA)' },
         { id: 'acacias', label: 'Clube das Acácias' },
-        { id: 'reea', label: 'O Rito (REAA)' }
+        { id: 'trajetoria', label: 'Nossa Trajetória (A Loja)' }
     ];
 
     const handleTabClick = (tabId) => {
@@ -37,8 +39,9 @@ const HistoryPage = ({ content }) => {
             'brasil': '#maconaria-brasil',
             'amazonas': '#maconaria-amazonas',
             'glomam': '#glomam',
+            'reea': '#reea',
             'acacias': '#clube-acacias',
-            'reea': '#reea'
+            'trajetoria': '#trajetoria'
         };
         navigate(`/historia${hashes[tabId]}`);
     };
@@ -47,28 +50,14 @@ const HistoryPage = ({ content }) => {
         <div className="page-container history-page-layout">
             <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div className="history-grid-layout">
-                    <aside className="history-sidebar">
-                        <div className="history-sidebar-sticky">
-                            <h3 className="cinzel gold-text" style={{ fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(212, 175, 55, 0.3)', paddingBottom: '1rem' }}>
-                                Acervo Histórico
-                            </h3>
-                            <ul className="history-tabs">
-                                {tabs.map(tab => (
-                                    <li 
-                                        key={tab.id} 
-                                        className={activeTab === tab.id ? 'active' : ''}
-                                        onClick={() => handleTabClick(tab.id)}
-                                    >
-                                        {tab.label}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </aside>
                     <main className="history-content-area">
                         {activeTab === 'historia' && (
                             <div className="tab-pane-transition">
                                 <HistoryGeneral content={content.historyGeneral} />
+                            </div>
+                        )}
+                        {activeTab === 'trajetoria' && (
+                            <div className="tab-pane-transition">
                                 <History content={content.history} />
                             </div>
                         )}

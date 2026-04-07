@@ -90,7 +90,8 @@
     line-height: 1.75;
     color: var(--navy);
     margin-bottom: 2.2rem;
-    text-align: justify;
+    text-align: left; /* Premium reading standard (prevents text rivers) */
+    max-width: 65ch; /* Symmetric readability */
     opacity: 0.95;
 }
 

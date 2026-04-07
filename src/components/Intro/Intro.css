@@ -115,10 +115,13 @@
 }
 
 .intro-text p {
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.9;
+    font-weight: 400;
+    line-height: 1.9; /* Improved breathing room */
     color: var(--muted);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    max-width: 65ch; /* Symmetric readability */
 }
 
 .intro-text .highlight {
@@ -146,10 +149,13 @@
 }
 
 .intro-section-p {
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 16px;
+    font-weight: 400;
     line-height: 1.8;
     color: var(--muted);
     white-space: pre-line;
+    max-width: 70ch; /* Symmetric readability limit */
 }
 
 .intro-section-bullets {
@@ -159,12 +165,15 @@
 }
 
 .intro-section-bullets li {
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 15px;
+    font-weight: 400;
     line-height: 1.7;
     color: var(--muted);
     margin-bottom: 12px;
     padding-left: 20px;
     position: relative;
+    max-width: 70ch;
 }
 
 .intro-section-bullets li::before {

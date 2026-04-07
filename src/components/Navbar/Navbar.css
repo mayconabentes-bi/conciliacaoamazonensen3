@@ -16,8 +16,9 @@
 .announce {
     background: linear-gradient(to right, #0a0e14, #1a2332, #0a0e14);
     color: rgba(255, 255, 255, 0.85);
-    padding: 12px 0;
-    font-size: 11.5px;
+    margin-bottom: 0;
+    padding: 14px 0;
+    font-size: 13px;
     border-bottom: 1px solid rgba(201, 168, 76, 0.2);
     text-align: center;
     position: relative;
@@ -90,25 +91,30 @@
 
 .nav-inner {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start; /* Flow from the left */
-    gap: 32px; /* Uniform base gap */
-    height: 90px;
+    position: relative;
+    height: 110px;
     width: 100%;
+}
+
+.nav-col-left,
+.nav-col-right {
+    display: flex;
+    align-items: center;
+    z-index: 10;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
-    gap: 24px; /* Increased gap for orbital rings */
+    gap: 16px; /* Optimized gap */
     text-decoration: none;
-    flex: 0 0 auto;
-    margin-right: 8px; /* Extra breathing room */
 }
 
 .nav-logo-text .official-name {
     font-family: 'Cinzel', serif;
-    font-size: clamp(8.5px, 0.75vw, 10.5px);
+    font-size: clamp(11.5px, 0.9vw, 13px); /* Compact desktop font size */
     color: var(--navy);
     letter-spacing: 0.05em;
     display: block;
@@ -121,8 +127,10 @@
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px; /* Matching gap */
-    margin-right: auto; /* Pushes subsequent elements (actions) to the right */
+    gap: 18px; /* Compact horizontal density */
+    z-index: 5;
+    white-space: nowrap;
+    margin: 0 16px; /* Ensure safe breathing room from side columns */
 }
 
 .nav-item {
@@ -136,15 +144,34 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 0 8px; /* Tighter padding for center grid */
+    padding: 10px 0; /* Vertical padding only */
     font-family: 'Cinzel', serif;
-    font-size: 9.5px; /* Slightly smaller for center fit */
+    font-size: 13px; /* Strong desktop presence */
     font-weight: 500;
     letter-spacing: .05em;
     color: var(--navy);
     text-transform: uppercase;
     transition: all 0.3s ease;
     white-space: nowrap;
+    position: relative;
+}
+
+/* Premium Underline Animation */
+.nav-item>a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+}
+
+.nav-item>a:hover::after,
+.nav-item>a.active::after {
+    width: 100%;
 }
 
 .nav-item>a:hover,
@@ -232,8 +259,7 @@
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 32px; /* Matching gap */
-    justify-content: flex-end;
+    gap: 24px; /* Optimized gap */
 }
 
 
@@ -242,9 +268,9 @@
     background: rgba(201, 168, 76, 0.05);
     border: 1px solid rgba(201, 168, 76, 0.2);
     color: var(--navy);
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -262,10 +288,10 @@
 .btn-nav-outline,
 .btn-nav-gold {
     font-family: 'Cinzel', serif;
-    font-size: 9px;
+    font-size: 13px;
     letter-spacing: .12em;
     text-transform: uppercase;
-    padding: 9px 18px;
+    padding: 11px 22px;
     transition: var(--transition);
     white-space: nowrap;
 }
@@ -363,7 +389,7 @@
 }
 
 /* Mobile Menu Logic - High Breakpoint for High-DPI/Scaling Safety */
-@media (max-width: 1650px) {
+@media (max-width: 1550px) {
     .nav-links {
         display: none !important;
     }

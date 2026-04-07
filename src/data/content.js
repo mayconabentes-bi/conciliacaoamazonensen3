@@ -3,14 +3,14 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '3.4.0', // Forced sync for Acacias and REEA
+    version: '3.4.2', // Updated foundation year to 1894
     hero: {
         slides: [
             {
-                tag: 'Oriente de Manaus · Desde 1892',
+                tag: 'Oriente de Manaus · Desde 1894',
                 title: '132 anos de',
                 strong: 'Tradição na Amazônia',
-                description: 'Fundada em 1892 – 3ª Loja mais antiga de Manaus e do Amazonas. Sob a jurisdição da Grande Loja Maçônica do Amazonas – GLOMAM. Fundada em 1904, a primeira Grande Loja do Brasil.',
+                description: 'Fundada em 1894 – 3ª Loja mais antiga de Manaus e do Amazonas. Sob a jurisdição da Grande Loja Maçônica do Amazonas – GLOMAM. Fundada em 1904, a primeira Grande Loja do Brasil.',
                 btnText: 'Nossa História',
                 btnLink: '/historia',
                 value: 'Tradição'
@@ -693,8 +693,7 @@ export const CONTENT = {
                 label: 'Sobre a Loja', href: '/historia', dropdown: [
                     {
                         title: 'A Instituição', items: [
-                            { label: 'História', href: '/historia' },
-                            { label: 'Conheça o REEA', href: '/historia#reea' },
+                            { label: 'Nossa Trajetória', href: '/historia#trajetoria' },
                             { label: 'Nominata', href: '/nominata' },
                             { label: 'Veneráveis Mestres', href: '/nominata' },
                             { label: 'Clube das Acácias', href: '/historia#clube-acacias' }
@@ -722,16 +721,15 @@ export const CONTENT = {
             }
         ],
         actions: {
-            outline: 'Área do Irmão',
+            outline: 'Painel de Gestão',
             outlineHref: '/login',
             gold: ''
         }
     },
     stats: [
         { num: '3ª', label: 'Mais Antiga do Amazonas' },
-        { num: '+50', label: 'Irmãos Ativos' },
-        { num: '+100', label: 'Famílias Apoiadas' },
-        { num: '∞', label: 'Anos de Tradição' }
+        { num: '+40', label: 'Irmãos Regulares' },
+        { num: '132', label: 'Anos de Tradição' }
     ],
     newsletter: {
         title: 'Newsletter Filosófica',
@@ -754,7 +752,7 @@ export const CONTENT = {
                 title: 'Portal',
                 links: [
                     { label: 'O que é a Maçonaria', href: '/#intro' },
-                    { label: 'História da Loja', href: '/historia' },
+                    { label: 'História da Loja', href: '/historia#trajetoria' },
                     { label: 'Academia Filosófica', href: '/academia' },
                     { label: 'Instituto Social', href: '/instituto' }
                 ]
@@ -773,7 +771,7 @@ export const CONTENT = {
                 title: 'Institucional',
                 links: [
                     { label: 'Nossa sede', href: '/historia' },
-                    { label: 'Área do Irmão', href: '/login' },
+                    { label: 'Painel de Gestão', href: '/login' },
                     { label: 'Política de Privacidade', href: '#' },
                     { label: 'Fale Conosco', href: '/#contato' }
                 ]

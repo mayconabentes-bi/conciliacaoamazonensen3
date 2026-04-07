@@ -84,7 +84,7 @@ const StatsEditor = ({ content, onUpdate }) => {
                                 <label>Rótulo/Descrição</label>
                                 <textarea
                                     value={stat.label}
-                                    placeholder="Ex: Irmãos Ativos"
+                                    placeholder="Ex: Irmãos Regulares"
                                     onChange={(e) => handleChange(index, 'label', e.target.value)}
                                     rows={2}
                                 />

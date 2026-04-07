@@ -51,7 +51,7 @@ const HistoryGeneral = ({ content, id = "historia-maçonaria" }) => {
                     </div>
 
                     <footer className="history-general-footer reveal">
-                        <p className="cormorant">{content.footer}</p>
+                        <p>{content.footer}</p>
                     </footer>
                 </div>
             </div>

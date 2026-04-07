@@ -6,57 +6,9 @@
 }
 
 .history-grid-layout {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 992px) {
-    .history-grid-layout {
-        grid-template-columns: 280px 1fr;
-        gap: 4rem;
-    }
-}
-
-.history-sidebar {
-    position: relative;
-}
-
-.history-sidebar-sticky {
-    position: sticky;
-    top: 120px;
-}
-
-.history-tabs {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.history-tabs li {
-    padding: 1rem 1.5rem;
-    color: var(--color-gray-light);
-    font-size: 1.05rem;
-    font-family: var(--font-cormorant);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border-left: 2px solid transparent;
-}
-
-.history-tabs li:hover {
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--color-light);
-}
-
-.history-tabs li.active {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--color-gold);
-    border-left-color: var(--color-gold);
-    font-weight: 600;
+    justify-content: center;
+    width: 100%;
 }
 
 .history-content-area {

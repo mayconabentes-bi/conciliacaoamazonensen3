@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search } from 'lucide-react';
 import './Navbar.css';
 import logoImg from '../../assets/logo-conciliacao.png';
 import OrbitalLogo from './OrbitalLogo';
@@ -66,9 +65,7 @@ const Navbar = ({ content, sessions }) => {
         }
     }, []);
 
-    const openSearch = () => {
-        window.dispatchEvent(new CustomEvent('openCommandPalette'));
-    };
+
 
     if (!content) return null;
 
@@ -92,15 +89,17 @@ const Navbar = ({ content, sessions }) => {
             <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isReturning ? 'is-returning' : ''}`} id="navbar">
                 <div className="container">
                     <div className="nav-inner">
-                        <Link to="/" className="nav-logo">
-                            <OrbitalLogo size={isScrolled ? 48 : 56} />
-                            <div className="nav-logo-text">
-                                <span className="official-name">
-                                    GRANDE BENEMÉRITA LOJA SIMBÓLICA<br />
-                                    CONCILIAÇÃO AMAZONENSE Nº 3
-                                </span>
-                            </div>
-                        </Link>
+                        <div className="nav-col-left">
+                            <Link to="/" className="nav-logo">
+                                <OrbitalLogo size={isScrolled ? 56 : 72} />
+                                <div className="nav-logo-text">
+                                    <span className="official-name">
+                                        GRANDE BENEMÉRITA LOJA SIMBÓLICA<br />
+                                        CONCILIAÇÃO AMAZONENSE Nº 3
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
 
                         <ul className="nav-links">
                             {content.links.map((link, index) => (
@@ -124,11 +123,10 @@ const Navbar = ({ content, sessions }) => {
                             ))}
                         </ul>
 
-                        <div className="nav-actions">
-                            <button className="btn-search-trigger" onClick={openSearch} title="Buscar conteúdo (Ctrl+K)">
-                                <Search size={18} />
-                            </button>
-                            <Link to="/login" className="btn-nav-outline">Painel de Gestão</Link>
+                        <div className="nav-col-right">
+                            <div className="nav-actions">
+                                <Link to="/login" className="btn-nav-outline">Painel de Gestão</Link>
+                            </div>
                         </div>
 
                         <button className="nav-hamburger" onClick={toggleMenu} aria-label="Menu">

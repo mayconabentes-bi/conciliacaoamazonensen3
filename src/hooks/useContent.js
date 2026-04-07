@@ -31,6 +31,7 @@ export const useContent = () => {
             data.nav = INITIAL_CONTENT.nav;
             data.footer = INITIAL_CONTENT.footer;
             data.testimonials = INITIAL_CONTENT.testimonials;
+            data.stats = INITIAL_CONTENT.stats;
             
             // Sync version
             data.version = INITIAL_CONTENT.version;

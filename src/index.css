@@ -43,8 +43,8 @@ html {
 }
 
 body {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400; /* Regular weight for optimal screen legibility */
   color: var(--text);
   background: var(--white);
   overflow-x: hidden;
@@ -83,6 +83,18 @@ button {
 
 .cormorant {
   font-family: 'Cormorant Garamond', serif;
+}
+
+/* Premium Typography Patterns */
+.text-readable {
+  max-width: 65ch; /* Maximum line length for comfortable reading */
+  margin-inline: auto; /* Absolute center horizontal symmetry */
+}
+
+/* For larger symmetric blocks */
+.text-symmetric-wide {
+  max-width: 80ch;
+  margin-inline: auto;
 }
 
 .container {

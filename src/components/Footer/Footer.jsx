@@ -5,7 +5,7 @@ const Footer = ({ content }) => {
     if (!content) return null;
 
     return (
-        <footer>
+        <footer className="site-footer">
             <div className="container">
                 <div className="footer-main">
                     <div className="footer-brand">

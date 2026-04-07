@@ -132,10 +132,13 @@
 }
 
 .hero-slide p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba(250, 246, 238, .65);
-    max-width: 35rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.15rem; /* Slight bump for readability */
+    line-height: 1.8; /* Premium whitespace */
+    font-weight: 400;
+    color: rgba(250, 246, 238, .85); /* Slightly better contrast */
+    max-width: 60ch; /* Symmetric readability max-width */
+    margin-inline: auto; /* Absolute center horizontal symmetry */
     margin-bottom: 3rem;
 }
 
