@@ -48,6 +48,7 @@ import HistoryPage from './pages/HistoryPage';
 import AcademyPage from './pages/AcademyPage';
 import InstitutePage from './pages/InstitutePage';
 import NominataPage from './pages/NominataPage';
+import VeneraveisPage from './pages/VeneraveisPage';
 import BusinessClubPage from './pages/BusinessClubPage';
 import ResumeRegistrationPage from './pages/ResumeRegistrationPage';
 
@@ -64,6 +65,7 @@ import InstituteEditor from './admin/editors/InstituteEditor';
 import FooterEditor from './admin/editors/FooterEditor';
 import NavEditor from './admin/editors/NavEditor';
 import NominataEditor from './admin/editors/NominataEditor';
+import VeneraveisEditor from './admin/editors/VeneraveisEditor';
 import StatsEditor from './admin/editors/StatsEditor';
 import TestimonialsEditor from './admin/editors/TestimonialsEditor';
 import NewsletterEditor from './admin/editors/NewsletterEditor';
@@ -120,6 +122,7 @@ const AppContent = () => {
                 <Route path="/integracao-oficio" element={<BusinessClubPage content={content} />} />
                 <Route path="/integracao-oficio/cadastro" element={<ResumeRegistrationPage />} />
                 <Route path="/nominata" element={<NominataPage content={content} />} />
+                <Route path="/veneraveis" element={<VeneraveisPage content={content} />} />
             </Route>
 
             {/* Admin Routes */}
@@ -139,6 +142,7 @@ const AppContent = () => {
                 <Route path="academy" element={<AcademyEditor content={content.academy} onUpdate={(data) => updateSection('academy', data)} />} />
                 <Route path="institute" element={<InstituteEditor content={content.institute} onUpdate={(data) => updateSection('institute', data)} />} />
                 <Route path="nominata" element={<NominataEditor content={content.nominata} onUpdate={(data) => updateSection('nominata', data)} />} />
+                <Route path="veneraveis" element={<VeneraveisEditor content={content.veneraveis} onUpdate={(data) => updateSection('veneraveis', data)} />} />
                 <Route path="stats" element={<StatsEditor content={content.stats} onUpdate={(data) => updateSection('stats', data)} />} />
                 <Route path="testimonials" element={<TestimonialsEditor content={content.testimonials} onUpdate={(data) => updateSection('testimonials', data)} />} />
                 <Route path="newsletter" element={<NewsletterEditor content={content.newsletter} onUpdate={(data) => updateSection('newsletter', data)} />} />

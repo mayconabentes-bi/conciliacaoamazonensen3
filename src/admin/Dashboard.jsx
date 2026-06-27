@@ -36,6 +36,13 @@ const Dashboard = () => {
             complexity: 'Fácil'
         },
         { 
+            title: 'Galeria dos Veneráveis Mestres', 
+            desc: 'Adicione e atualize os Veneráveis que já conduziram a Loja.', 
+            icon: <Users size={24} />, 
+            path: '/admin/veneraveis',
+            complexity: 'Fácil'
+        },
+        { 
             title: 'Estatísticas', 
             desc: 'Edite os números em destaque (ex: Ir. Membros, Anos de Fundação).', 
             icon: <BarChart3 size={24} />, 

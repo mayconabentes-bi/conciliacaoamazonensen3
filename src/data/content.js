@@ -695,7 +695,7 @@ export const CONTENT = {
                         title: 'A Instituição', items: [
                             { label: 'Nossa Trajetória', href: '/historia#trajetoria' },
                             { label: 'Nominata', href: '/nominata' },
-                            { label: 'Veneráveis Mestres', href: '/nominata' },
+                            { label: 'Veneráveis Mestres', href: '/veneraveis' },
                             { label: 'Clube das Acácias', href: '/historia#clube-acacias' }
                         ]
                     }

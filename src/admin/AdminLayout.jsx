@@ -90,6 +90,9 @@ const AdminLayout = ({ setAuth }) => {
                     <NavLink to="/admin/nominata" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <Users size={18} /> Nominata
                     </NavLink>
+                    <NavLink to="/admin/veneraveis" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <Users size={18} /> Galeria Veneráveis
+                    </NavLink>
                     <NavLink to="/admin/testimonials" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <MessageSquare size={18} /> Depoimentos
                     </NavLink>

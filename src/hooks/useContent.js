@@ -50,6 +50,12 @@ export const useContent = () => {
             needsUpdate = true;
         }
 
+        // Initialize the new Veneráveis section if missing
+        if (!data.veneraveis) {
+            data.veneraveis = INITIAL_CONTENT.veneraveis;
+            needsUpdate = true;
+        }
+
         // Removed legacy hardcoded nav migrations as they conflict with new MPA linking.
         return { data, needsUpdate };
     };
