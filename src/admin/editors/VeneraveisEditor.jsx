@@ -17,7 +17,7 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
     const handleAdd = () => {
         setData({
             ...data,
-            members: [...(data.members || []), { role: 'Venerável Mestre', name: 'Novo Irmão', photo: '' }]
+            members: [...(data.members || []), { role: 'Venerável Mestre', name: 'Nome do Irmão', year: '', photo: '' }]
         });
     };
 
@@ -39,6 +39,19 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
             </div>
 
             <div className="admin-card">
+                <div style={{ marginBottom: '24px', padding: '18px', border: '1px solid var(--admin-border)', borderRadius: '12px', background: 'rgba(212, 175, 55, 0.08)' }}>
+                    <h2 style={{ margin: '0 0 12px', fontSize: '1.15rem', color: 'var(--admin-text)' }}>
+                        Ações para você iniciar o carregamento
+                    </h2>
+                    <ol style={{ margin: 0, paddingLeft: '22px', color: 'var(--admin-muted)', lineHeight: 1.7 }}>
+                        <li>Entrar no painel administrativo.</li>
+                        <li>Acessar <strong>Galeria Veneráveis</strong>.</li>
+                        <li>Clicar em <strong>Adicionar Irmão</strong>.</li>
+                        <li>Preencher <strong>Cargo</strong>, <strong>Nome do Irmão</strong>, <strong>Ano/Período</strong> e <strong>URL/Caminho da Foto</strong>.</li>
+                        <li>Usar caminhos como <code>/assets/veneraveis/nome_do_arquivo.jpg</code> ou uma URL pública de imagem.</li>
+                        <li>Clicar em <strong>Salvar Alterações</strong>.</li>
+                    </ol>
+                </div>
                 <div className="editor-form">
                     <div className="form-group">
                         <label>Título da Seção</label>
@@ -91,10 +104,20 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
                                 />
                             </div>
                             <div className="form-group">
+                                <label>Ano/Período</label>
+                                <input
+                                    type="text"
+                                    placeholder="Ex.: 2024, 2024–2025 ou 1998/1999"
+                                    value={member.year || ''}
+                                    onChange={(e) => handleItemChange(index, 'year', e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group">
                                 <label>URL/Caminho da Foto</label>
                                 <input
                                     type="text"
-                                    value={member.photo}
+                                    placeholder="Ex.: /assets/veneraveis/irmao_nome.jpg"
+                                    value={member.photo || ''}
                                     onChange={(e) => handleItemChange(index, 'photo', e.target.value)}
                                 />
                             </div>

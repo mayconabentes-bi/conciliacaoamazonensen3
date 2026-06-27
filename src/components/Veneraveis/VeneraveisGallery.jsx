@@ -27,7 +27,7 @@ const VeneraveisGallery = ({ content }) => {
     };
 
     return (
-        <section className="nominata" id="nominata">
+        <section className="nominata nominata--no-feature" id="veneraveis">
             <div className="container">
                 <header className="nominata-header reveal">
                     <span className="tag">{content.tag}</span>
@@ -45,7 +45,7 @@ const VeneraveisGallery = ({ content }) => {
                     >
                         {members.map((member, index) => (
                             <motion.div
-                                key={`${member.name}-${index}`}
+                                key={`${member.name || 'veneravel'}-${member.year || index}`}
                                 className="member-card"
                                 variants={itemVariants}
                             >
@@ -55,22 +55,29 @@ const VeneraveisGallery = ({ content }) => {
                                             <img
                                                 src={resolveAssetUrl(member.photo)}
                                                 alt={member.name}
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
+                                                onError={(event) => {
+                                                    event.target.onerror = null;
+                                                    event.target.style.display = 'none';
+                                                    event.target.nextSibling.style.display = 'flex';
                                                 }}
                                             />
                                         ) : null}
                                         <div className="photo-fallback" style={{ display: member.photo ? 'none' : 'flex' }}>
-                                            <span className="initials">{member.name.split(' ').map((n) => n[0]).join('').substring(0, 2)}</span>
+                                            <span className="initials">
+                                                {(member.name || 'VM')
+                                                    .split(' ')
+                                                    .map((namePart) => namePart[0])
+                                                    .join('')
+                                                    .substring(0, 2)}
+                                            </span>
                                         </div>
                                         <div className="photo-overlay"></div>
                                     </div>
                                 </div>
                                 <div className="member-info">
-                                    <span className="member-role">{member.role}</span>
+                                    <span className="member-role">{member.role || 'Venerável Mestre'}</span>
                                     <h3 className="member-name">{member.name}</h3>
+                                    {member.year ? <span className="member-year">{member.year}</span> : null}
                                 </div>
                             </motion.div>
                         ))}
@@ -78,7 +85,7 @@ const VeneraveisGallery = ({ content }) => {
                 ) : (
                     <div className="nominata-grid" style={{ display: 'flex', justifyContent: 'center' }}>
                         <div className="member-card" style={{ maxWidth: '520px', textAlign: 'center', padding: '24px' }}>
-                            Nenhum irmão cadastrado nesta galeria ainda.
+                            Nenhum Irmão cadastrado nesta galeria ainda.
                         </div>
                     </div>
                 )}

@@ -25,6 +25,7 @@ export const useContent = () => {
             data.seminars = INITIAL_CONTENT.seminars;
             data.courses = INITIAL_CONTENT.courses;
             data.nominata = INITIAL_CONTENT.nominata;
+            data.veneraveis = INITIAL_CONTENT.veneraveis;
             data.sessions = INITIAL_CONTENT.sessions;
             data.clubeAcacias = INITIAL_CONTENT.clubeAcacias;
             data.reea = INITIAL_CONTENT.reea;

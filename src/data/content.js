@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '3.4.2', // Updated foundation year to 1894
+    version: '3.4.4', // Added year support for historical Veneráveis gallery
     hero: {
         slides: [
             {
@@ -606,9 +606,10 @@ export const CONTENT = {
         ]
     },
     veneraveis: {
-        tag: 'Patrimônio da Loja',
+        tag: 'Memória Institucional',
         title: 'Galeria Histórica dos Veneráveis Mestres',
         description: 'Registro permanente dos Irmãos que conduziram os trabalhos da Loja ao longo de sua história.',
+        featuredFirst: false,
         members: []
     },
     sessions: [

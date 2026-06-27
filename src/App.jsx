@@ -57,11 +57,13 @@ import ResumeRegistrationPage from './pages/ResumeRegistrationPage';
 import Login from './admin/Login';
 import AdminLayout from './admin/AdminLayout';
 import Dashboard from './admin/Dashboard';
+import Diagnostics from './admin/Diagnostics';
 import HeroEditor from './admin/editors/HeroEditor';
 import IntroEditor from './admin/editors/IntroEditor';
 import HistoryEditor from './admin/editors/HistoryEditor';
 import ValuesEditor from './admin/editors/ValuesEditor';
 import AcademyEditor from './admin/editors/AcademyEditor';
+import CoursesEditor from './admin/editors/CoursesEditor';
 import InstituteEditor from './admin/editors/InstituteEditor';
 import FooterEditor from './admin/editors/FooterEditor';
 import NavEditor from './admin/editors/NavEditor';
@@ -136,12 +138,14 @@ const AppContent = () => {
                 isAuthenticated ? <AdminLayout setAuth={setIsAuthenticated} /> : <Navigate to="/login" />
             }>
                 <Route index element={<Dashboard />} />
+                <Route path="diagnostics" element={<Diagnostics />} />
                 <Route path="menu" element={<NavEditor content={content.nav} onUpdate={(data) => updateSection('nav', data)} />} />
                 <Route path="intro" element={<IntroEditor content={content.intro} onUpdate={(data) => updateSection('intro', data)} />} />
                 <Route path="hero" element={<HeroEditor content={content.hero} onUpdate={(data) => updateSection('hero', data)} />} />
                 <Route path="history" element={<HistoryEditor content={content.history} onUpdate={(data) => updateSection('history', data)} />} />
 
                 <Route path="academy" element={<AcademyEditor content={content.academy} onUpdate={(data) => updateSection('academy', data)} />} />
+                <Route path="courses" element={<CoursesEditor content={content.courses} onUpdate={(data) => updateSection('courses', data)} />} />
                 <Route path="institute" element={<InstituteEditor content={content.institute} onUpdate={(data) => updateSection('institute', data)} />} />
                 <Route path="nominata" element={<NominataEditor content={content.nominata} onUpdate={(data) => updateSection('nominata', data)} />} />
                 <Route path="veneraveis" element={<VeneraveisEditor content={content.veneraveis} onUpdate={(data) => updateSection('veneraveis', data)} />} />

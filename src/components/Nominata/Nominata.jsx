@@ -25,7 +25,7 @@ const Nominata = ({ content }) => {
     };
 
     return (
-        <section className="nominata" id="nominata">
+        <section className={`nominata ${content.featuredFirst === false ? 'nominata--no-feature' : ''}`} id="nominata">
             <div className="container">
                 <header className="nominata-header reveal">
                     <span className="tag">{content.tag}</span>
@@ -68,6 +68,7 @@ const Nominata = ({ content }) => {
                             <div className="member-info">
                                 <span className="member-role">{member.role}</span>
                                 <h3 className="member-name">{member.name}</h3>
+                                {member.year ? <span className="member-year">{member.year}</span> : null}
                             </div>
                         </motion.div>
                     ))}
