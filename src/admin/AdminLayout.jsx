@@ -18,6 +18,7 @@ import {
     Mail, 
     FileText, 
     Settings,
+    BookOpen,
     Library, 
     Mic2, 
     Calendar,
@@ -153,4 +154,3 @@ const AdminLayout = ({ setAuth }) => {
 };
 
 export default AdminLayout;
-
