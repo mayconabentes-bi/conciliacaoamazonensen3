@@ -17,6 +17,7 @@ import {
     MessageSquare, 
     Mail, 
     FileText, 
+    Settings,
     Library, 
     Mic2, 
     Calendar,
@@ -59,6 +60,9 @@ const AdminLayout = ({ setAuth }) => {
                     <NavLink to="/admin" end className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <LayoutDashboard size={18} /> Dashboard
                     </NavLink>
+                    <NavLink to="/admin/diagnostics" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <Settings size={18} /> Diagnóstico
+                    </NavLink>
                     <NavLink to="/admin/menu" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <Menu size={18} /> Navegação e Topo
                     </NavLink>
@@ -72,6 +76,9 @@ const AdminLayout = ({ setAuth }) => {
                     <div style={sectionTitleStyle}>Conteúdo Especializado</div>
                     <NavLink to="/admin/academy" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <GraduationCap size={18} /> Academia (Artigos)
+                    </NavLink>
+                    <NavLink to="/admin/courses" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <BookOpen size={18} /> Cursos
                     </NavLink>
                     <NavLink to="/admin/library" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <Library size={18} /> Biblioteca

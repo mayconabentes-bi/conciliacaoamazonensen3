@@ -16,7 +16,8 @@ import {
     Mic2,
     GraduationCap,
     Heart,
-    Calendar as CalendarIcon
+    Calendar as CalendarIcon,
+    Settings
 } from 'lucide-react';
 
 const Dashboard = () => {
@@ -37,7 +38,7 @@ const Dashboard = () => {
         },
         { 
             title: 'Galeria dos Veneráveis Mestres', 
-            desc: 'Adicione e atualize os Veneráveis que já conduziram a Loja.', 
+            desc: 'Clique aqui para carregar fotos, nomes e ano/período dos Veneráveis Mestres.', 
             icon: <Users size={24} />, 
             path: '/admin/veneraveis',
             complexity: 'Fácil'
@@ -74,6 +75,13 @@ const Dashboard = () => {
             complexity: 'Médio'
         },
         { 
+            title: 'Cursos da Academia', 
+            desc: 'Edite os cursos exibidos na Academia Filosófica.', 
+            icon: <GraduationCap size={24} />, 
+            path: '/admin/courses',
+            complexity: 'Médio'
+        },
+        { 
             title: 'Biblioteca Digital', 
             desc: 'Edite os títulos e links da biblioteca.', 
             icon: <Library size={24} />, 
@@ -104,6 +112,13 @@ const Dashboard = () => {
     ];
 
     const advancedActions = [
+        { 
+            title: 'Diagnóstico de Publicação', 
+            desc: 'Verifique chaves VITE, Supabase e status das APIs usadas pelo site oficial.', 
+            icon: <Settings size={24} />, 
+            path: '/admin/diagnostics',
+            complexity: 'Avançado'
+        },
         { 
             title: 'Menu de Navegação', 
             desc: 'Gerencie os links do menu e a barra de anúncios superior.', 

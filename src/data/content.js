@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 export const CONTENT = {
-    version: '3.4.2', // Updated foundation year to 1894
+    version: '3.4.4', // Added year support for historical Veneráveis gallery
     hero: {
         slides: [
             {
@@ -604,6 +604,13 @@ export const CONTENT = {
             { role: 'Representante Titular ALM', name: 'CLAUDIO ANTÔNIO PAULA DE CASTRO', photo: '/assets/nominata/claudio_castro.png' },
             { role: 'Representante Suplente ALM', name: 'CLÁUDIO DE BARROS MOURA', photo: '/assets/nominata/claudio_moura.png' }
         ]
+    },
+    veneraveis: {
+        tag: 'Memória Institucional',
+        title: 'Galeria Histórica dos Veneráveis Mestres',
+        description: 'Registro permanente dos Irmãos que conduziram os trabalhos da Loja ao longo de sua história.',
+        featuredFirst: false,
+        members: []
     },
     sessions: [
         {
