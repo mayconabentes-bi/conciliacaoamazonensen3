@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 
 const VeneraveisEditor = ({ content, onUpdate }) => {
-    const [data, setData] = useState(content || { tag: '', title: '', description: '', members: [] });
+    const [data, setData] = useState(content || {
+        tag: 'Patrimônio da Loja',
+        title: 'Galeria Histórica dos Veneráveis Mestres',
+        description: 'Registro permanente dos Irmãos que conduziram os trabalhos da Loja ao longo de sua história.',
+        members: []
+    });
 
     const handleItemChange = (index, field, value) => {
         const newItems = [...(data.members || [])];
@@ -19,17 +24,17 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
     const handleSave = async () => {
         try {
             await onUpdate(data);
-            alert('Galeria dos Veneráveis Mestres atualizada com sucesso!');
+            alert('Galeria Histórica dos Veneráveis Mestres atualizada com sucesso!');
         } catch (error) {
             console.error('Erro ao salvar Veneráveis:', error);
-            alert('Falha ao salvar a Galeria dos Veneráveis Mestres. Verifique os dados e tente novamente.');
+            alert('Falha ao salvar a Galeria Histórica dos Veneráveis Mestres. Verifique os dados e tente novamente.');
         }
     };
 
     return (
         <div className="editor-container">
             <div className="admin-page-header">
-                <h1>Editor: Galeria dos Veneráveis Mestres</h1>
+                <h1>Editor: Galeria Histórica dos Veneráveis Mestres</h1>
                 <button className="btn-save" onClick={handleSave}>Salvar Alterações</button>
             </div>
 
