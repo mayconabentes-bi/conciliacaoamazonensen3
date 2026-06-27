@@ -605,6 +605,12 @@ export const CONTENT = {
             { role: 'Representante Suplente ALM', name: 'CLÁUDIO DE BARROS MOURA', photo: '/assets/nominata/claudio_moura.png' }
         ]
     },
+    veneraveis: {
+        tag: 'Patrimônio da Loja',
+        title: 'Galeria Histórica dos Veneráveis Mestres',
+        description: 'Registro permanente dos Irmãos que conduziram os trabalhos da Loja ao longo de sua história.',
+        members: []
+    },
     sessions: [
         {
             date: '2026-03-22',

@@ -49,6 +49,7 @@ import AcademyPage from './pages/AcademyPage';
 import InstitutePage from './pages/InstitutePage';
 import NominataPage from './pages/NominataPage';
 import VeneraveisPage from './pages/VeneraveisPage';
+import VeneraveisGalleryPage from './pages/VeneraveisGalleryPage';
 import BusinessClubPage from './pages/BusinessClubPage';
 import ResumeRegistrationPage from './pages/ResumeRegistrationPage';
 
@@ -122,7 +123,8 @@ const AppContent = () => {
                 <Route path="/integracao-oficio" element={<BusinessClubPage content={content} />} />
                 <Route path="/integracao-oficio/cadastro" element={<ResumeRegistrationPage />} />
                 <Route path="/nominata" element={<NominataPage content={content} />} />
-                <Route path="/veneraveis" element={<VeneraveisPage content={content} />} />
+                <Route path="/veneraveis" element={<VeneraveisGalleryPage content={content} />} />
+                <Route path="/veneraveis-antiga" element={<VeneraveisPage content={content} />} />
             </Route>
 
             {/* Admin Routes */}

@@ -36,8 +36,8 @@ const Dashboard = () => {
             complexity: 'Fácil'
         },
         { 
-            title: 'Galeria dos Veneráveis Mestres', 
-            desc: 'Adicione e atualize os Veneráveis que já conduziram a Loja.', 
+            title: 'Galeria Histórica dos Veneráveis Mestres', 
+            desc: 'Registre e atualize os Irmãos que conduziram os trabalhos da Loja ao longo da história.', 
             icon: <Users size={24} />, 
             path: '/admin/veneraveis',
             complexity: 'Fácil'
