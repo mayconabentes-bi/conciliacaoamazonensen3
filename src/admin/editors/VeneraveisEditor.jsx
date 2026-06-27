@@ -1,4 +1,30 @@
 import React, { useState } from 'react';
+import { supabase } from '../../lib/supabase';
+
+const STORAGE_BUCKET = 'veneraveis';
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const MAX_IMAGE_SIZE_MB = 5;
+
+const normalizeFileName = (value) => {
+    const normalized = (value || 'veneravel')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+
+    return normalized || 'veneravel';
+};
+
+const getImageExtension = (file) => {
+    const extensionByType = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/webp': 'webp'
+    };
+
+    return extensionByType[file.type] || file.name.split('.').pop()?.toLowerCase() || 'jpg';
+};
 
 const VeneraveisEditor = ({ content, onUpdate }) => {
     const [data, setData] = useState(content || {
@@ -7,11 +33,67 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
         description: 'Registro permanente dos Irmãos que conduziram os trabalhos da Loja ao longo de sua história.',
         members: []
     });
+    const [uploadingIndex, setUploadingIndex] = useState(null);
 
     const handleItemChange = (index, field, value) => {
         const newItems = [...(data.members || [])];
         newItems[index] = { ...newItems[index], [field]: value };
         setData({ ...data, members: newItems });
+    };
+
+    const handlePhotoUpload = async (index, file) => {
+        if (!file) return;
+
+        if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+            alert('Formato inválido. Envie uma imagem JPG, PNG ou WebP.');
+            return;
+        }
+
+        if (file.size > MAX_IMAGE_SIZE_MB * 1024 * 1024) {
+            alert(`Imagem muito grande. O limite atual é ${MAX_IMAGE_SIZE_MB} MB.`);
+            return;
+        }
+
+        const member = data.members?.[index] || {};
+        const extension = getImageExtension(file);
+        const fileName = `${normalizeFileName(member.name)}-${Date.now()}.${extension}`;
+        const storagePath = `fotos/${fileName}`;
+
+        setUploadingIndex(index);
+
+        try {
+            const { error: uploadError } = await supabase
+                .storage
+                .from(STORAGE_BUCKET)
+                .upload(storagePath, file, {
+                    cacheControl: '3600',
+                    contentType: file.type,
+                    upsert: false
+                });
+
+            if (uploadError) {
+                throw uploadError;
+            }
+
+            const { data: publicUrlData } = supabase
+                .storage
+                .from(STORAGE_BUCKET)
+                .getPublicUrl(storagePath);
+
+            const publicUrl = publicUrlData?.publicUrl;
+
+            if (!publicUrl) {
+                throw new Error('Upload realizado, mas não foi possível gerar a URL pública da imagem.');
+            }
+
+            handleItemChange(index, 'photo', publicUrl);
+            alert('Foto enviada ao Supabase. Clique em "Salvar Alterações" para publicar a foto na galeria.');
+        } catch (error) {
+            console.error('Erro ao enviar foto para o Supabase Storage:', error);
+            alert(`Falha ao enviar a foto: ${error.message || 'verifique o bucket e as permissões do Supabase Storage.'}`);
+        } finally {
+            setUploadingIndex(null);
+        }
     };
 
     const handleAdd = () => {
@@ -47,9 +129,9 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
                         <li>Entrar no painel administrativo.</li>
                         <li>Acessar <strong>Galeria Veneráveis</strong>.</li>
                         <li>Clicar em <strong>Adicionar Irmão</strong>.</li>
-                        <li>Preencher <strong>Cargo</strong>, <strong>Nome do Irmão</strong>, <strong>Ano/Período</strong> e <strong>URL/Caminho da Foto</strong>.</li>
-                        <li>Usar caminhos como <code>/assets/veneraveis/nome_do_arquivo.jpg</code> ou uma URL pública de imagem.</li>
-                        <li>Clicar em <strong>Salvar Alterações</strong>.</li>
+                        <li>Preencher <strong>Cargo</strong>, <strong>Nome do Irmão</strong> e <strong>Ano/Período</strong>.</li>
+                        <li>Clicar em <strong>Enviar Foto para o Supabase</strong> e selecionar uma imagem JPG, PNG ou WebP.</li>
+                        <li>Conferir a prévia da imagem e clicar em <strong>Salvar Alterações</strong>.</li>
                     </ol>
                 </div>
                 <div className="editor-form">
@@ -113,10 +195,37 @@ const VeneraveisEditor = ({ content, onUpdate }) => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label>URL/Caminho da Foto</label>
+                                <label>Foto do Venerável Mestre</label>
+                                {member.photo ? (
+                                    <div style={{ marginBottom: '12px' }}>
+                                        <img
+                                            src={member.photo}
+                                            alt={member.name || 'Prévia da foto'}
+                                            style={{ width: '100%', maxHeight: '220px', objectFit: 'cover', borderRadius: '12px', border: '1px solid var(--admin-border)' }}
+                                        />
+                                    </div>
+                                ) : null}
+                                <input
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    disabled={uploadingIndex === index}
+                                    onChange={(event) => {
+                                        const file = event.target.files?.[0];
+                                        handlePhotoUpload(index, file);
+                                        event.target.value = '';
+                                    }}
+                                />
+                                <small style={{ display: 'block', marginTop: '8px', color: 'var(--admin-muted)', lineHeight: 1.5 }}>
+                                    {uploadingIndex === index
+                                        ? 'Enviando foto para o Supabase...'
+                                        : 'A imagem será salva no bucket público veneraveis do Supabase Storage.'}
+                                </small>
+                            </div>
+                            <div className="form-group">
+                                <label>URL pública da Foto</label>
                                 <input
                                     type="text"
-                                    placeholder="Ex.: /assets/veneraveis/irmao_nome.jpg"
+                                    placeholder="A URL será preenchida após o upload"
                                     value={member.photo || ''}
                                     onChange={(e) => handleItemChange(index, 'photo', e.target.value)}
                                 />
